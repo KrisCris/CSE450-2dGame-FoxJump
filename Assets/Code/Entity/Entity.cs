@@ -17,7 +17,7 @@ namespace Code.Entity
             Collider2D = GetComponent<Collider2D>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
         }
-        private void Start()
+        protected void Start()
         {
             GetObjects();
         }

@@ -8,10 +8,9 @@ namespace Code.Entity
         public int maxJumps = 1;
         protected int CurrJumps;
 
-        private void Start()
+        protected new void Start()
         {
-            // don't work
-            GetObjects();
+            base.Start();
             CurrJumps = maxJumps;
         }
         private void OnCollisionStay2D(Collision2D other)
