@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using TMPro;
 
 namespace Entity {
     public class Entity : MonoBehaviour {
@@ -10,6 +11,7 @@ namespace Entity {
         public float maxHealth = 10;
         public bool damageable = true;
 
+        public TextMeshProUGUI healthText;
         private float _health;
         protected bool FacingRight;
         
@@ -40,12 +42,13 @@ namespace Entity {
                     OnDeath("Killed by Game Design.");
                 }
             }
-
+            healthText.text = _health + "";
             return damageable;
         }
 
         private float OnHealing<T>(float heal, T source) {
             _health = Mathf.Min(heal + _health, maxHealth);
+            healthText.text = _health + "";
             return _health;
         }
 
