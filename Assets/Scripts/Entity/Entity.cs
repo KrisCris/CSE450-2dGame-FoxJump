@@ -11,6 +11,7 @@ namespace Entity {
         public bool damageable = true;
 
         private float _health;
+        protected bool FacingRight;
         
         private void InitProperties() {
             Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -18,13 +19,14 @@ namespace Entity {
             SpriteRenderer = GetComponent<SpriteRenderer>();
             Animator = GetComponent<Animator>();
             _health = maxHealth;
+            FacingRight = true;
         }
 
         protected void Start() {
             InitProperties();
         }
 
-        private void Update() {
+        protected void Update() {
             // TODO Entity  Movement? 
             // TODO health management?
             Debug.Log("[HEALTH] "+_health);
@@ -50,6 +52,11 @@ namespace Entity {
         private void OnDeath(string reason) {
             // TODO Die
             print("died for "+reason);
+        }
+        
+        protected void FlipFacing() {
+            SpriteRenderer.flipX = FacingRight;
+            FacingRight = !FacingRight;
         }
     }
 }

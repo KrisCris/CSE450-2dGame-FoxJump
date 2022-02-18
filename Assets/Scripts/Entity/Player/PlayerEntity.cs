@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Item;
 using UnityEngine;
@@ -14,14 +15,27 @@ namespace Entity.Player {
 
         private Dictionary<Items, int> _inventory;
         
-        private bool _isCrouching = false;
+        private bool _isCrouching;
 
         private new void Start() {
             base.Start();
             _inventory = new Dictionary<Items, int>();
+            _isCrouching = false;
         }
         
-        private void Update() {
+        void FixedUpdate() {
+            // This is sync'd with Physics Engine
+            Animator.SetFloat("Speed", Rigidbody2D.velocity.magnitude);
+            if (Rigidbody2D.velocity.magnitude > 0) {
+                Animator.speed = Rigidbody2D.velocity.magnitude / 3f;
+            }
+            else {
+                Animator.speed = 1f;
+            }
+        }
+        
+        private new void Update() {
+            base.Update();
             if (Input.GetKey(keyUp)) {
                 // TODO climb?
             }
@@ -33,11 +47,21 @@ namespace Entity.Player {
                 // TODO maybe some skills
             }
 
+            if (Input.GetKeyUp(keyDown)) {
+                _isCrouching = false;
+            }
+
             if (Input.GetKey(keyLeft)) {
+                if (FacingRight) {
+                    FlipFacing();
+                }
                 Rigidbody2D.AddForce(Vector2.left * 12f * Time.deltaTime, ForceMode2D.Impulse);
             }
 
             if (Input.GetKey(keyRight)) {
+                if (!FacingRight) {
+                    FlipFacing();
+                }
                 Rigidbody2D.AddForce(Vector2.right * 12f * Time.deltaTime, ForceMode2D.Impulse);
             }
 
@@ -49,7 +73,7 @@ namespace Entity.Player {
                 }
             }
             
-            Animator.SetBool("isCrouching", _isCrouching);
+            Animator.SetBool("IsCrouching", _isCrouching);
         }
 
         public Dictionary<Items, int> GetInventory() {

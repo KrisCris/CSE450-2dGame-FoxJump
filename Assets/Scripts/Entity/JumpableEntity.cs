@@ -5,9 +5,17 @@ namespace Entity {
         public int maxJumps = 1;
         protected int CurrJumps;
 
+        private bool passiveJumping;
+
         protected new void Start() {
             base.Start();
             CurrJumps = maxJumps;
+            passiveJumping = false;
+        }
+
+        protected new void Update() {
+            base.Update();
+            Animator.SetBool("IsJumping", CurrJumps < maxJumps || passiveJumping);
         }
 
         private void OnCollisionStay2D(Collision2D other) {
