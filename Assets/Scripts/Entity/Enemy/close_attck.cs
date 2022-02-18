@@ -56,7 +56,7 @@ public class close_attck : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        collision.gameObject.SendMessage("onDamage", attack_value);
+        collision.gameObject.SendMessage("OnDamage", attack_value);
 
         if (target == targetA)
         {

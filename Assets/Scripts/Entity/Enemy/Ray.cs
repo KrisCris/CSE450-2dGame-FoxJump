@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Entity.Player;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -93,7 +94,7 @@ public class Ray : MonoBehaviour
                 lineRenderer.SetPosition(1, hitInfo.point);
                 lineRenderer.colorGradient = redColor;
                 /// cur off health;
-                hitInfo.collider.gameObject.SendMessage("onDamage", attack_value);
+                hitInfo.collider.gameObject.SendMessage("OnDamage", attack_value);
               
             }
         }
@@ -109,7 +110,10 @@ public class Ray : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        collision.gameObject.SendMessage("onDamage", attack_value);
+        if (collision.gameObject.GetComponent<PlayerEntity>()) {
+            collision.gameObject.SendMessage("OnDamage", attack_value);
+        }
+        
 
         if (target == targetA)
         {
