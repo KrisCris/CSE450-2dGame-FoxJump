@@ -25,7 +25,8 @@ namespace Entity.Player {
             _isCrouching = false;
         }
         
-        void FixedUpdate() {
+        protected new void FixedUpdate() {
+            base.FixedUpdate();
             // This is synced with Physics Engine
             Animator.SetFloat(Speed, Rigidbody2D.velocity.magnitude);
             if (Rigidbody2D.velocity.magnitude > 0) {
@@ -98,14 +99,6 @@ namespace Entity.Player {
             }
 
             return 0;
-        }
-
-        public void OnTriggerEnter(Collider other) {
-            
-        }
-
-        public void OnTriggerExit(Collider other) {
-            throw new NotImplementedException();
         }
     }
 }
