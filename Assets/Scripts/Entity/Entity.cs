@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 namespace Entity {
     public class Entity : MonoBehaviour {
@@ -65,6 +66,7 @@ namespace Entity {
 
         private void OnDeath(string reason) {
             // TODO Die
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             print("died for "+reason);
         }
         
