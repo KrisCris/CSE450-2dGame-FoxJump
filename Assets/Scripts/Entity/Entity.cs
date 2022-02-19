@@ -38,9 +38,6 @@ namespace Entity {
             if (!damageable && timer > 0) {
                 --timer;
             }
-            print("damageable" + damageable);
-            print("timer" + timer);
-            // Debug.Log("[HEALTH] "+_health);
         }
 
         protected void Update() {
