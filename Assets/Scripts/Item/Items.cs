@@ -1,5 +1,5 @@
 ﻿namespace Item {
-    public enum Items {
+    public enum Items{
         Key,
         Coin,
     }

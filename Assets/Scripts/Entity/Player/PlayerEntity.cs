@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using Item;
 using UnityEngine;
@@ -14,8 +13,11 @@ namespace Entity.Player {
         public KeyCode keyInteraction = KeyCode.E;
 
         private Dictionary<Items, int> _inventory;
-        
+        private HashSet<Component> _interactable;
+
         private bool _isCrouching;
+        private static readonly int IsCrouching = Animator.StringToHash("IsCrouching");
+        private static readonly int Speed = Animator.StringToHash("Speed");
 
         private new void Start() {
             base.Start();
@@ -23,9 +25,10 @@ namespace Entity.Player {
             _isCrouching = false;
         }
         
-        void FixedUpdate() {
-            // This is sync'd with Physics Engine
-            Animator.SetFloat("Speed", Rigidbody2D.velocity.magnitude);
+        protected new void FixedUpdate() {
+            base.FixedUpdate();
+            // This is synced with Physics Engine
+            Animator.SetFloat(Speed, Rigidbody2D.velocity.magnitude);
             if (Rigidbody2D.velocity.magnitude > 0) {
                 Animator.speed = Rigidbody2D.velocity.magnitude / 3f;
             }
@@ -55,14 +58,14 @@ namespace Entity.Player {
                 if (FacingRight) {
                     FlipFacing();
                 }
-                Rigidbody2D.AddForce(Vector2.left * 12f * Time.deltaTime, ForceMode2D.Impulse);
+                Rigidbody2D.AddForce(Vector2.left * (12f * Time.deltaTime), ForceMode2D.Impulse);
             }
 
             if (Input.GetKey(keyRight)) {
                 if (!FacingRight) {
                     FlipFacing();
                 }
-                Rigidbody2D.AddForce(Vector2.right * 12f * Time.deltaTime, ForceMode2D.Impulse);
+                Rigidbody2D.AddForce(Vector2.right * (12f * Time.deltaTime), ForceMode2D.Impulse);
             }
 
             // jump
@@ -72,8 +75,8 @@ namespace Entity.Player {
                     Rigidbody2D.AddForce(Vector2.up * 10f, ForceMode2D.Impulse);
                 }
             }
-            
-            Animator.SetBool("IsCrouching", _isCrouching);
+
+            Animator.SetBool(IsCrouching, _isCrouching);
         }
 
         public Dictionary<Items, int> GetInventory() {

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using TMPro;
 
 namespace Entity {
     public class Entity : MonoBehaviour {
@@ -9,7 +11,9 @@ namespace Entity {
 
         public float maxHealth = 10;
         public bool damageable = true;
+        public int timer = 25;
 
+        public TextMeshProUGUI healthText;
         private float _health;
         protected bool FacingRight;
         
@@ -26,26 +30,36 @@ namespace Entity {
             InitProperties();
         }
 
+        protected void FixedUpdate() {
+            if (timer == 0) {
+                damageable = true;
+                timer = 25;
+            }
+            if (!damageable && timer > 0) {
+                --timer;
+            }
+        }
+
         protected void Update() {
             // TODO Entity  Movement? 
             // TODO health management?
-            Debug.Log("[HEALTH] "+_health);
+            
         }
 
-        private bool OnDamage<T>(float dmg, T source) {
+        private void OnDamage(float dmg) {
             if (damageable) {
                 _health = Mathf.Max(_health - dmg, 0);
-                _health = _health <= dmg ? 0 : _health - dmg;
+                damageable = false;
                 if (_health <= 0) {
                     OnDeath("Killed by Game Design.");
                 }
             }
-
-            return damageable;
+            healthText.text = _health + "";
         }
 
         private float OnHealing<T>(float heal, T source) {
             _health = Mathf.Min(heal + _health, maxHealth);
+            healthText.text = _health + "";
             return _health;
         }
 
