@@ -6,7 +6,7 @@ namespace Entity.Enemy {
     public class CloseAttackEnemy : Entity {
         [SerializeField] private float moveSpeed;
         private Transform _target;
-        public float attackDamage;
+        public float attackDamage = 2;
         [SerializeField] private Transform targetA, targetB;
         
         // private SpriteRenderer _spriteRenderer;

@@ -425,7 +425,7 @@ MonoBehaviour:
   moveSpeed: 1
   maxDist: 2
   firePoint: {fileID: 1080865971878820372}
-  attack_value: 1
+  attackDamage: 1
   targetA: {fileID: 1080865970032971039}
   targetB: {fileID: 1080865971041009331}
   redColor:
