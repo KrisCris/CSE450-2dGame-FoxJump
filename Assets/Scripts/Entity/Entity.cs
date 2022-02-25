@@ -1,7 +1,5 @@
-﻿using System;
-using Entity.Enemy;
-using UnityEngine;
-using TMPro;
+﻿using UnityEngine;
+using UI;
 using UnityEngine.SceneManagement;
 
 namespace Entity {
@@ -26,11 +24,16 @@ namespace Entity {
             Animator = GetComponent<Animator>();
             _health = maxHealth;
             FacingRight = true;
+            SpriteRenderer.flipX = !FacingRight;
+            if (healthBar) {
+                healthBar.GetComponent<HealthBar>().Init(maxHealth);
+            }
         }
 
         protected void Start() {
             InitProperties();
         }
+        
 
         protected void FixedUpdate() {
             if (timer == 0) {
@@ -52,23 +55,32 @@ namespace Entity {
             if (damageable) {
                 _health = Mathf.Max(_health - dmg, 0);
                 damageable = false;
+                if (healthBar) {
+                    healthBar.GetComponent<HealthBar>().UpdateHealthBar(_health, maxHealth);
+                }
                 if (_health <= 0) {
                     OnDeath("Killed by Game Design.");
                 }
             }
-            healthBar.GetComponent<HealthBar>().UpdateHealthBar(_health/maxHealth);
+            
         }
 
         private float OnHealing<T>(float heal, T source) {
             _health = Mathf.Min(heal + _health, maxHealth);
-            healthBar.GetComponent<HealthBar>().UpdateHealthBar(_health/maxHealth);
+            if (healthBar) {
+                healthBar.GetComponent<HealthBar>().UpdateHealthBar(_health, maxHealth);
+            }
             return _health;
         }
 
         private void OnDeath(string reason) {
             // TODO Die
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             print("died for "+reason);
+            OnReborn();
+        }
+
+        private void OnReborn() {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         
         protected void FlipFacing() {
