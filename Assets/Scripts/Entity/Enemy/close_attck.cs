@@ -19,6 +19,8 @@ public class close_attck : MonoBehaviour
     [SerializeField] private bool isLeft;
 
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,5 +72,10 @@ public class close_attck : MonoBehaviour
             spriteRenderer.flipX = true;
 
         }
+    }
+
+    private void gethurt(float damage)
+    {
+        this.GetComponentInChildren<healthbar>().hp -= damage;
     }
 }

@@ -122,4 +122,8 @@ public class Ray : MonoBehaviour
 
         }
     }
+    private void gethurt(float damage)
+    {
+        this.GetComponentInChildren<healthbar>().hp -= damage;
+    }
 }
