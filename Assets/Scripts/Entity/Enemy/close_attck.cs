@@ -56,8 +56,8 @@ public class close_attck : MonoBehaviour {
         }
     }
 
-    private void gethurt(float damage)
-    {
-        this.GetComponentInChildren<healthbar>().hp -= damage;
-    }
+    // private void gethurt(float damage)
+    // {
+    //     this.GetComponentInChildren<healthbar>().hp -= damage;
+    // }
 }

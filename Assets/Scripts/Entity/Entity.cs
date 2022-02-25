@@ -1,4 +1,5 @@
 ﻿using System;
+using Entity.Enemy;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
@@ -14,7 +15,7 @@ namespace Entity {
         public bool damageable = true;
         public int timer = 25;
 
-        public TextMeshProUGUI healthText;
+        public GameObject healthBar;
         private float _health;
         protected bool FacingRight;
         
@@ -55,12 +56,12 @@ namespace Entity {
                     OnDeath("Killed by Game Design.");
                 }
             }
-            healthText.text = _health + "";
+            healthBar.GetComponent<HealthBar>().UpdateHealthBar(_health/maxHealth);
         }
 
         private float OnHealing<T>(float heal, T source) {
             _health = Mathf.Min(heal + _health, maxHealth);
-            healthText.text = _health + "";
+            healthBar.GetComponent<HealthBar>().UpdateHealthBar(_health/maxHealth);
             return _health;
         }
 
