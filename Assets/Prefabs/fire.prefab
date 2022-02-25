@@ -418,6 +418,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b5762e218a068d4796a385fe9725d50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 10
+  damageable: 1
+  timer: 25
+  healthBar: {fileID: 0}
   moveSpeed: 1
   maxDist: 2
   firePoint: {fileID: 1080865971878820372}
@@ -482,7 +486,6 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  isLeft: 1
 --- !u!1 &1080865971540130182
 GameObject:
   m_ObjectHideFlags: 0
