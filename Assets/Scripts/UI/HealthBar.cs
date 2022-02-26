@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 namespace UI {
     public class HealthBar : MonoBehaviour {
-        public Image hpImage;
-        public Image hpEffect;
+        public Image fgImage;
+        public Image bgImage;
 
         // private float _healthPercent = 1;
 
@@ -15,8 +15,8 @@ namespace UI {
         // [SerializeField] private float maxHp;
         // [SerializeField] private float hurtsSpeed = 0.001f;
 
-        public float imgSpeed = 0.01f;
-        public float efxSpeed = 0.001f;
+        public float fgSpeed = 1f;
+        public float bgSpeed = 0.1f;
 
         // Start is called before the first frame update
         // void Start()
@@ -36,20 +36,17 @@ namespace UI {
         }
 
         void Update() {
-            float shouldFill = _curHealth / _maxHealth;
-            
-            hpImage.fillAmount = hpImage.fillAmount > shouldFill
-                ? hpImage.fillAmount - imgSpeed
-                : hpImage.fillAmount;
+            int op = 1;
+            float targetValue = _curHealth / _maxHealth;
+            float fgOffset = targetValue - fgImage.fillAmount;
+            float bgOffset = targetValue - bgImage.fillAmount;
+            if (fgOffset < 0) op = -1;
 
-            hpEffect.fillAmount = hpEffect.fillAmount > shouldFill
-                ? hpEffect.fillAmount - efxSpeed
-                : hpEffect.fillAmount;
-            // if (hpEffect.fillAmount > shouldFill) {
-            //     hpEffect.fillAmount -= hurtsSpeed;
-            // } else {
-            //     hpEffect.fillAmount = hpImage.fillAmount;
-            // }
+            float dFg = Mathf.Min(Time.deltaTime * fgSpeed, fgOffset * op);
+            float dBg = Mathf.Min(Time.deltaTime * bgSpeed, bgOffset * op);
+
+            fgImage.fillAmount += dFg * op;
+            bgImage.fillAmount += dBg * op;
         }
     }
 }
