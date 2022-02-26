@@ -38,6 +38,9 @@ namespace Entity {
 
         protected void FixedUpdate() {
             if (timer == 0) {
+                if (GetComponent<PlayerEntity>()) {
+                    Animator.SetBool("IsDamaging", false);
+                }
                 damageable = true;
                 timer = 25;
             }
@@ -59,6 +62,11 @@ namespace Entity {
                 if (healthBar) {
                     healthBar.GetComponent<HealthBar>().UpdateHealthBar(_health, maxHealth);
                 }
+
+                if (GetComponent<PlayerEntity>()) {
+                    Animator.SetBool("IsDamaging", true);
+                }
+                
                 if (_health <= 0) {
                     OnDeath("Killed by Game Design.");
                 }
