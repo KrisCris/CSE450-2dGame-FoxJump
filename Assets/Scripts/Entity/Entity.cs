@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Entity.Player;
+using UnityEngine;
 using UI;
 using UnityEngine.SceneManagement;
 
@@ -65,7 +66,7 @@ namespace Entity {
             
         }
 
-        private float OnHealing<T>(float heal, T source) {
+        private float OnHealing(float heal) {
             _health = Mathf.Min(heal + _health, maxHealth);
             if (healthBar) {
                 healthBar.GetComponent<HealthBar>().UpdateHealthBar(_health, maxHealth);
@@ -76,7 +77,12 @@ namespace Entity {
         private void OnDeath(string reason) {
             // TODO Die
             print("died for "+reason);
-            OnReborn();
+            if (!GetComponent<PlayerEntity>()) {
+                Destroy(gameObject);
+            } else {
+                OnReborn();
+            }
+            
         }
 
         private void OnReborn() {
