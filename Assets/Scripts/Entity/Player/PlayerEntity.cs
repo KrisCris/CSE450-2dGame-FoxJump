@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Item;
+using TMPro;
 using UnityEngine;
 
 namespace Entity.Player {
@@ -19,12 +20,14 @@ namespace Entity.Player {
         private static readonly int IsCrouching = Animator.StringToHash("IsCrouching");
         private static readonly int Speed = Animator.StringToHash("Speed");
 
+        public TextMeshProUGUI coinCountText;
+
         private new void Start() {
             base.Start();
             _inventory = new Dictionary<Items, int>();
             _isCrouching = false;
         }
-        
+
         protected new void FixedUpdate() {
             base.FixedUpdate();
             // This is synced with Physics Engine
@@ -36,7 +39,7 @@ namespace Entity.Player {
                 Animator.speed = 1f;
             }
         }
-        
+
         private new void Update() {
             base.Update();
             if (Input.GetKey(keyUp)) {
@@ -58,6 +61,7 @@ namespace Entity.Player {
                 if (FacingRight) {
                     FlipFacing();
                 }
+
                 Rigidbody2D.AddForce(Vector2.left * (12f * Time.deltaTime), ForceMode2D.Impulse);
             }
 
@@ -65,6 +69,7 @@ namespace Entity.Player {
                 if (!FacingRight) {
                     FlipFacing();
                 }
+
                 Rigidbody2D.AddForce(Vector2.right * (12f * Time.deltaTime), ForceMode2D.Impulse);
             }
 
@@ -84,11 +89,12 @@ namespace Entity.Player {
         }
 
         public void OnItemCollect(Items item, int num) {
-            if (_inventory.ContainsKey(item)) {
-                _inventory[item] += num;
+            if (!_inventory.ContainsKey(item)) {
+                _inventory[item] = 0;
             }
-            else {
-                _inventory.Add(item, num);
+            _inventory[item] += num;
+            if (item == Items.Coin) {
+                coinCountText.text = "" + _inventory[item];
             }
         }
 
