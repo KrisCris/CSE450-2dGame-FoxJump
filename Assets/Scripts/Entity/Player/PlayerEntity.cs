@@ -21,6 +21,7 @@ namespace Entity.Player {
         private static readonly int Speed = Animator.StringToHash("Speed");
 
         public TextMeshProUGUI coinCountText;
+        public TextMeshProUGUI keyCountText;
 
         private new void Start() {
             base.Start();
@@ -96,15 +97,27 @@ namespace Entity.Player {
             if (item == Items.Coin) {
                 coinCountText.text = "" + _inventory[item];
             }
+            if (item == Items.Key) {
+                keyCountText.text = "" + _inventory[item];
+            }
+            if (item == Items.FlyingShoes) {
+                UpdateMaxJump(num);
+            }
         }
 
-        public int OnItemUsed(Items item, int num) {
+        public bool OnItemUsed(Items item, int num) {
             if (_inventory.ContainsKey(item) && _inventory[item] >= num) {
                 _inventory[item] -= num;
-                return num;
+                
+                if (item == Items.Coin) {
+                    coinCountText.text = "" + _inventory[item];
+                }
+                if (item == Items.Key) {
+                    keyCountText.text = "" + _inventory[item];
+                }
+                return true;
             }
-
-            return 0;
+            return false;
         }
     }
 }

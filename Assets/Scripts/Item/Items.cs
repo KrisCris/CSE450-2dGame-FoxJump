@@ -2,5 +2,6 @@
     public enum Items{
         Key,
         Coin,
+        FlyingShoes
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3609568041955282478}
   - component: {fileID: 3609568041955282449}
   m_Layer: 8
-  m_Name: Base
+  m_Name: BaseLayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 3609568042804162608}
   - component: {fileID: 3609568042804162611}
   m_Layer: 8
-  m_Name: Effect
+  m_Name: BackgroundLayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 3609568042998498905}
   - component: {fileID: 3609568042998498904}
   m_Layer: 8
-  m_Name: Health
+  m_Name: ForegroundLayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d6b005a8470854e8868040f6268822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpImage: {fileID: 3609568042998498904}
-  hpEffect: {fileID: 3609568042804162611}
-  imgSpeed: 0.01
-  efxSpeed: 0.001
+  fgImage: {fileID: 3609568042998498904}
+  bgImage: {fileID: 3609568042804162611}
+  fgSpeed: 1
+  bgSpeed: 0.1

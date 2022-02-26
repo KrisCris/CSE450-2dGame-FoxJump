@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Entity {
     public class JumpableEntity : Entity {
@@ -16,6 +17,10 @@ namespace Entity {
         protected new void Update() {
             base.Update();
             Animator.SetBool("IsJumping", CurrJumps < maxJumps || passiveJumping);
+        }
+
+        public void UpdateMaxJump(int offset) {
+            maxJumps = Math.Max(maxJumps + offset, 0);
         }
 
         private void OnCollisionStay2D(Collision2D other) {
