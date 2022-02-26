@@ -4,105 +4,103 @@ using Entity.Player;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Ray : MonoBehaviour {
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private float maxDist;
-    public Transform firePoint;
-    private Transform target;
-    public float attack_value;
-    [SerializeField] private Transform targetA, targetB;
+namespace Entity.Enemy {
+    public class Ray : Entity {
+        [SerializeField] private float moveSpeed;
+        [SerializeField] private float maxDist;
+        public Transform firePoint;
+        private Transform _target;
+        public float attackDamage = 1;
+        [SerializeField] private Transform targetA, targetB;
 
-    private LineRenderer lineRenderer;
-    [SerializeField] private Gradient redColor, greenColor;
+        private LineRenderer _lineRenderer;
+        [SerializeField] private Gradient redColor, greenColor;
 
+        // private SpriteRenderer spriteRenderer;
+        // [SerializeField] private bool isLeft;
+        private int _indexNum;
 
-    private SpriteRenderer spriteRenderer;
+        private new void Start() {
+            base.Start();
+            Physics2D.queriesStartInColliders = false;
+            _target = targetB;
+            _lineRenderer = GetComponentInChildren<LineRenderer>();
+            
+            // spriteRenderer = GetComponent<SpriteRenderer>();
 
-
-    [SerializeField] private bool isLeft;
-    private int indexNum;
-
-
-    private void Start() {
-        Physics2D.queriesStartInColliders = false;
-        target = targetB;
-        lineRenderer = GetComponentInChildren<LineRenderer>();
-
-
-        spriteRenderer = GetComponent<SpriteRenderer>();
-
-        if (isLeft) {
-            spriteRenderer.flipX = true;
-            indexNum = -1;
-        }
-        else {
-            indexNum = 1;
-        }
-    }
-
-    private void Update() {
-        Move();
-
-        Detect();
-    }
-
-    private void Move() {
-        if (Vector2.Distance(transform.position, targetA.position) <= 0.1f) {
-            target = targetB;
-        }
-
-        if (Vector2.Distance(transform.position, targetB.position) <= 0.1f) {
-            target = targetA;
-        }
-
-        transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
-    }
-
-    private void SinMove() {
-        transform.position = new Vector2(transform.position.x, (Mathf.Sin(Time.time * moveSpeed) * 4.5f) + 1.5f);
-    }
-
-    private void Detect() {
-        RaycastHit2D hitInfo;
-
-        hitInfo = Physics2D.Raycast(firePoint.position, indexNum * transform.right, maxDist);
-
-        if (hitInfo.collider != null) {
-            if (hitInfo.collider.tag == "Block") {
-                Debug.DrawLine(firePoint.position, hitInfo.point, Color.green);
-
-                lineRenderer.SetPosition(1, hitInfo.point);
-                lineRenderer.colorGradient = greenColor;
+            if (!FacingRight) {
+                SpriteRenderer.flipX = true;
+                _indexNum = -1;
             }
-            else if (hitInfo.collider.CompareTag("Player")) {
-                Debug.DrawLine(firePoint.position, hitInfo.point, Color.red);
-
-                lineRenderer.SetPosition(1, hitInfo.point);
-                lineRenderer.colorGradient = redColor;
-                /// cur off health;
-                hitInfo.collider.gameObject.SendMessage("OnDamage", attack_value);
+            else {
+                _indexNum = 1;
             }
         }
-        else {
-            int temp = indexNum * 2;
-            lineRenderer.SetPosition(1,
-                new Vector2(firePoint.transform.position.x + temp, firePoint.transform.position.y));
-            lineRenderer.colorGradient = greenColor;
+
+        private new void Update() {
+            base.Update();
+            Move();
+            Detect();
         }
 
-        lineRenderer.SetPosition(0, firePoint.transform.position);
-    }
+        private void Move() {
+            if (Vector2.Distance(transform.position, targetA.position) <= 0.1f) {
+                _target = targetB;
+            }
 
-    private void OnCollisionStay2D(Collision2D collision) {
-        if (collision.collider.CompareTag("Player")) {
-            collision.gameObject.SendMessage("OnDamage", attack_value);
+            if (Vector2.Distance(transform.position, targetB.position) <= 0.1f) {
+                _target = targetA;
+            }
+
+            transform.position = Vector2.MoveTowards(transform.position, _target.position, moveSpeed * Time.deltaTime);
         }
 
-        if (target == targetA) {
-            target = targetB;
+        private void SinMove() {
+            transform.position = new Vector2(transform.position.x, (Mathf.Sin(Time.time * moveSpeed) * 4.5f) + 1.5f);
         }
-        else {
-            target = targetA;
+
+        private void Detect() {
+            RaycastHit2D hitInfo;
+
+            hitInfo = Physics2D.Raycast(firePoint.position, _indexNum * transform.right, maxDist);
+
+            if (hitInfo.collider != null) {
+                if (hitInfo.collider.tag == "Block") {
+                    Debug.DrawLine(firePoint.position, hitInfo.point, Color.green);
+
+                    _lineRenderer.SetPosition(1, hitInfo.point);
+                    _lineRenderer.colorGradient = greenColor;
+                }
+                else if (hitInfo.collider.CompareTag("Player")) {
+                    Debug.DrawLine(firePoint.position, hitInfo.point, Color.red);
+
+                    _lineRenderer.SetPosition(1, hitInfo.point);
+                    _lineRenderer.colorGradient = redColor;
+                    // cur off health;
+                    hitInfo.collider.gameObject.SendMessage("OnDamage", attackDamage);
+                }
+            }
+            else {
+                int temp = _indexNum * 2;
+                _lineRenderer.SetPosition(1,
+                    new Vector2(firePoint.transform.position.x + temp, firePoint.transform.position.y));
+                _lineRenderer.colorGradient = greenColor;
+            }
+
+            _lineRenderer.SetPosition(0, firePoint.transform.position);
+        }
+
+        private void OnCollisionStay2D(Collision2D collision) {
+            if (collision.collider.CompareTag("Player")) {
+                collision.gameObject.SendMessage("OnDamage", attackDamage);
+            }
+
+            if (_target == targetA) {
+                _target = targetB;
+            }
+            else {
+                _target = targetA;
+            }
         }
     }
 }
