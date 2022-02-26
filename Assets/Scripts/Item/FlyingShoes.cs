@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Entity.Player;
+using Item;
 using UnityEngine;
 
 public class FlyingShoes : MonoBehaviour {
@@ -13,6 +14,7 @@ public class FlyingShoes : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.GetComponent<PlayerEntity>()) {
+            other.gameObject.GetComponent<PlayerEntity>().OnItemCollect(Items.FlyingShoes, 1);
             Destroy(gameObject);
         }
     }

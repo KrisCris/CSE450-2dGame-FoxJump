@@ -100,8 +100,7 @@ namespace Entity.Player {
             if (item == Items.Key) {
                 coinCountText.text = "" + _inventory[item];
             }
-
-            if (item == Items.JumpShoes) {
+            if (item == Items.FlyingShoes) {
                 UpdateMaxJump(num);
             }
         }
