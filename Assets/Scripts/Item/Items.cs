@@ -2,6 +2,6 @@
     public enum Items{
         Key,
         Coin,
-        JumpShoes
+        FlyingShoes
     }
 }

@@ -14,7 +14,7 @@ namespace Item {
         public GameObject item;
         public float throwTime;
         public float throwDistance;
-        
+
         // Start is called before the first frame update
         private void Start() {
             animator = GetComponent<Animator>();
@@ -23,8 +23,11 @@ namespace Item {
         // Update is called once per frame
         private void Update() {
             if (isOpening && Time.fixedTime < startTime + throwTime) {
-                newitem.transform.position = startPosition + (isLeft ? 1 : -1) * (0.5f * (1 - Mathf.Cos((Time.fixedTime-startTime) / throwTime * Mathf.PI)) * throwDistance * transform.right
-                    + 0.5f * Mathf.Sin((Time.fixedTime-startTime) / throwTime * Mathf.PI) * throwDistance * transform.up);
+                newitem.transform.position = startPosition + (isLeft ? 1 : -1) * (0.5f *
+                    (1 - Mathf.Cos((Time.fixedTime - startTime) / throwTime * Mathf.PI)) * throwDistance *
+                    transform.right
+                    + 0.5f * Mathf.Sin((Time.fixedTime - startTime) / throwTime * Mathf.PI) * throwDistance *
+                    transform.up);
             }
             else {
                 if (isOpening) {
@@ -35,16 +38,18 @@ namespace Item {
         }
 
         private void OnTriggerEnter2D(Collider2D other) {
-            if (! hasOpen && other.gameObject.GetComponent<PlayerEntity>()) {
-                animator.SetBool("isOpen", true);
-                isOpening = true;
-                hasOpen = true;
-                newitem = Instantiate(item);
-                newitem.GetComponent<BoxCollider2D>().enabled = false;
-                startPosition = transform.position + transform.up * 0.4f;
-                newitem.transform.position = startPosition;
-                isLeft = other.transform.position.x < transform.position.x;
-                startTime = Time.fixedTime;
+            if (!hasOpen && other.gameObject.GetComponent<PlayerEntity>()) {
+                if (other.GetComponent<PlayerEntity>().OnItemUsed(Items.Key, 1)) {
+                    animator.SetBool("isOpen", true);
+                    isOpening = true;
+                    hasOpen = true;
+                    newitem = Instantiate(item);
+                    newitem.GetComponent<BoxCollider2D>().enabled = false;
+                    startPosition = transform.position + transform.up * 0.4f;
+                    newitem.transform.position = startPosition;
+                    isLeft = other.transform.position.x < transform.position.x;
+                    startTime = Time.fixedTime;
+                }
             }
         }
     }

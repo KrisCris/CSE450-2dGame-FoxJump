@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Entity.Player;
+using Item;
 using UnityEngine;
 
 public class Key : MonoBehaviour
@@ -18,6 +19,7 @@ public class Key : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.GetComponent<PlayerEntity>()) {
+            other.gameObject.GetComponent<PlayerEntity>().OnItemCollect(Items.Key, 1);
             Destroy(gameObject);
         }
     }
