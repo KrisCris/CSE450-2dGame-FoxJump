@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -5523,7 +5523,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      equipment-icons-tileset_217: 542040658
+      equipment-icons-tileset_175: -585779904
       equipment-icons-tileset_102: 1497790139
       equipment-icons-tileset_155: -1063809730
       equipment-icons-tileset_114: -687772520
@@ -5557,9 +5557,9 @@ TextureImporter:
       equipment-icons-tileset_140: -495115259
       equipment-icons-tileset_143: -1979445126
       equipment-icons-tileset_91: -1882721097
-      equipment-icons-tileset_172: 518184483
-      equipment-icons-tileset_35: -1408996712
       equipment-icons-tileset_247: -2078444076
+      equipment-icons-tileset_35: -1408996712
+      equipment-icons-tileset_172: 518184483
       equipment-icons-tileset_25: -588959430
       equipment-icons-tileset_207: -345497142
       equipment-icons-tileset_191: -1846169580
@@ -5598,11 +5598,11 @@ TextureImporter:
       equipment-icons-tileset_196: 508951079
       equipment-icons-tileset_60: -849943662
       equipment-icons-tileset_7: -886683415
-      equipment-icons-tileset_54: 937958278
-      equipment-icons-tileset_31: -1062508575
       equipment-icons-tileset_146: 1969824585
-      equipment-icons-tileset_151: -1560015329
+      equipment-icons-tileset_31: -1062508575
+      equipment-icons-tileset_54: 937958278
       equipment-icons-tileset_236: -945974532
+      equipment-icons-tileset_151: -1560015329
       equipment-icons-tileset_202: -1668132397
       equipment-icons-tileset_255: 596046851
       equipment-icons-tileset_242: -374846207
@@ -5673,9 +5673,9 @@ TextureImporter:
       equipment-icons-tileset_173: -591787318
       equipment-icons-tileset_169: -709929282
       equipment-icons-tileset_59: -1452505403
-      equipment-icons-tileset_103: 1019663363
       equipment-icons-tileset_220: -43002125
       equipment-icons-tileset_222: -977022642
+      equipment-icons-tileset_103: 1019663363
       equipment-icons-tileset_37: -1879731564
       equipment-icons-tileset_132: -1160346538
       equipment-icons-tileset_69: 1206401971
@@ -5779,7 +5779,7 @@ TextureImporter:
       equipment-icons-tileset_197: -1930257145
       equipment-icons-tileset_18: 1677465442
       equipment-icons-tileset_43: 1935084476
-      equipment-icons-tileset_175: -585779904
+      equipment-icons-tileset_217: 542040658
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
