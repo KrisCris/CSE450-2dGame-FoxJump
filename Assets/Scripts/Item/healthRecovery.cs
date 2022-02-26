@@ -18,7 +18,7 @@ public class healthRecovery : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.GetComponent<PlayerEntity>()) {
-            // other.GetComponent<PlayerEntity>().OnHealing(recoveryHealthAmount);
+            other.GetComponent<PlayerEntity>().SendMessage("OnHealing", recoveryHealthAmount);
             Destroy(gameObject);
         }
     }
