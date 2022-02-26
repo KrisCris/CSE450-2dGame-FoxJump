@@ -98,7 +98,7 @@ namespace Entity.Player {
                 coinCountText.text = "" + _inventory[item];
             }
             if (item == Items.Key) {
-                coinCountText.text = "" + _inventory[item];
+                keyCountText.text = "" + _inventory[item];
             }
             if (item == Items.FlyingShoes) {
                 UpdateMaxJump(num);
@@ -113,7 +113,7 @@ namespace Entity.Player {
                     coinCountText.text = "" + _inventory[item];
                 }
                 if (item == Items.Key) {
-                    coinCountText.text = "" + _inventory[item];
+                    keyCountText.text = "" + _inventory[item];
                 }
                 return true;
             }
