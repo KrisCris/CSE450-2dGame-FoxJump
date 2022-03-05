@@ -159,6 +159,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   damageable: 1
+  timer: 25
+  healthBar: {fileID: 0}
   maxJumps: 1
   keyUp: 119
   keyDown: 115
@@ -166,3 +168,7 @@ MonoBehaviour:
   keyRight: 100
   keyJump: 32
   keyInteraction: 101
+  keyAttack: 323
+  projectile: {fileID: 1010903080642773775, guid: 08a281eb893f6b9479022f82dab68cca, type: 3}
+  coinCountText: {fileID: 0}
+  keyCountText: {fileID: 0}

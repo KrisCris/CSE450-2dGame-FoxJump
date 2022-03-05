@@ -1,5 +1,6 @@
 ﻿using System;
 using Entity.Player;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Item {
@@ -20,9 +21,15 @@ namespace Item {
         }
 
         private void OnTriggerEnter2D(Collider2D other) {
-            if (other.gameObject.GetComponent<PlayerEntity>()) {
+            if (other.gameObject.GetComponent<PlayerEntity>() && (!GetComponent<Rigidbody2D>() || GetComponent<Rigidbody2D>().velocity.magnitude < 0.1f)) {
                 other.gameObject.GetComponent<PlayerEntity>().OnItemCollect(ItemClass, 1);
                 Destroy(gameObject);
+            }
+        }
+
+        private void OnCollisionEnter2D(Collision2D other) {
+            if (other.gameObject.tag == "Player") {
+                Physics2D.IgnoreCollision(other.gameObject.GetComponent<CapsuleCollider2D>(), GetComponent<BoxCollider2D>());
             }
         }
     }

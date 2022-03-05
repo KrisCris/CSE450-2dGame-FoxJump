@@ -12,6 +12,9 @@ namespace Entity.Player {
         public KeyCode keyRight = KeyCode.D;
         public KeyCode keyJump = KeyCode.Space;
         public KeyCode keyInteraction = KeyCode.E;
+        public KeyCode keyAttack = KeyCode.Mouse0;
+
+        public GameObject projectile;
 
         private Dictionary<Items, int> _inventory;
         private HashSet<Component> _interactable;
@@ -43,6 +46,12 @@ namespace Entity.Player {
 
         private new void Update() {
             base.Update();
+
+            if (Input.GetKeyDown(keyAttack)) {
+                GameObject newProjectile = Instantiate(projectile);
+                newProjectile.transform.position = transform.position;
+            }
+            
             if (Input.GetKey(keyUp)) {
                 // TODO climb?
             }
