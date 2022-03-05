@@ -575,6 +575,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2056958458}
     - target: {fileID: 3753124482848880624, guid: 3f83447b48bf2984ba7cd1f0a1f9776c, type: 3}
+      propertyPath: keyAttack
+      value: 105
+      objectReference: {fileID: 0}
+    - target: {fileID: 3753124482848880624, guid: 3f83447b48bf2984ba7cd1f0a1f9776c, type: 3}
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
