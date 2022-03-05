@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5579958494744382307}
   - component: {fileID: -8294295650010175892}
   - component: {fileID: 5782882884051847364}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ItemFlyingShoe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
