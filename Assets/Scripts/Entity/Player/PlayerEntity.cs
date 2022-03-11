@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Item;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Entity.Player {
     public class PlayerEntity : JumpableEntity {
@@ -127,6 +128,12 @@ namespace Entity.Player {
                 return true;
             }
             return false;
+        }
+
+        protected override void OnDeath(string reason)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);            
+            SceneManager.LoadScene("Player", LoadSceneMode.Additive);
         }
     }
 }
