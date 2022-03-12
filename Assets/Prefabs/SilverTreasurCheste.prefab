@@ -145,6 +145,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f40f89f82790284393575112fc676e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 0}
-  throwTime: 0
-  throwDistance: 0
+  item: {fileID: 846756170362088882, guid: 3e604444128e2b9428fcd0911162ab93, type: 3}
