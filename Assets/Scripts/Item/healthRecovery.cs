@@ -7,7 +7,7 @@ namespace Item {
     public class healthRecovery : Item {
         private void Awake() {
             IsFloat = false;
-            ItemClass = Items.FlyingShoes;
+            ItemClass = Items.RecoveryBlood;
         }
     }
 }
