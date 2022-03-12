@@ -14,6 +14,7 @@ namespace Entity.Player {
         public KeyCode keyJump = KeyCode.Space;
         public KeyCode keyInteraction = KeyCode.E;
         public KeyCode keyAttack = KeyCode.Mouse0;
+        private KeyCode menu = KeyCode.Escape;
 
         public GameObject projectile;
 
@@ -92,6 +93,19 @@ namespace Entity.Player {
                 }
             }
 
+            if (Input.GetKeyDown(menu))
+            {
+                if (SceneManager.GetSceneByName("Menu").isLoaded)
+                {
+                    SceneManager.UnloadSceneAsync("Menu");
+                    Time.timeScale = 1;
+                }
+                else
+                {
+                    Time.timeScale = 0;
+                    SceneManager.LoadScene("Menu", LoadSceneMode.Additive);
+                }
+            }
             Animator.SetBool(IsCrouching, _isCrouching);
         }
 
