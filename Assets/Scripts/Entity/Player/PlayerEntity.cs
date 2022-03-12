@@ -132,8 +132,7 @@ namespace Entity.Player {
 
         protected override void OnDeath(string reason)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);            
-            SceneManager.LoadScene("Player", LoadSceneMode.Additive);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }

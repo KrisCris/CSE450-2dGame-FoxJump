@@ -16,8 +16,7 @@ public class StartGameButton : MonoBehaviour
     void StartGame()
     {
         SceneManager.UnloadSceneAsync("MainUI");
-        // SceneManager.LoadScene("UI");
-        SceneManager.LoadScene("Test_2_hpc");
+        SceneManager.LoadScene("Test_2_hpc", LoadSceneMode.Additive);
         SceneManager.LoadScene("Player", LoadSceneMode.Additive);
     }
 }
