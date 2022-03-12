@@ -9,11 +9,9 @@ public class QuitGameButton : MonoBehaviour
     public Button quitGameButton;
     void Start()
     {
-        quitGameButton.onClick.AddListener(quitGame);
-    }
-
-    void quitGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        quitGameButton.onClick.AddListener(() =>
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        });
     }
 }
