@@ -6,22 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class StartGameButton : MonoBehaviour
 {
-	public Button startGame;
-    // Start is called before the first frame update
+    public Button startGame;
+
     void Start()
     {
-        startGame.onClick.AddListener(StartGame); 
+        startGame.onClick.AddListener(StartGame);
     }
 
-    // Update is called once per frame
-    void Update()
+    void StartGame()
     {
-        
-    }
-
-    void StartGame() {
         SceneManager.UnloadSceneAsync("MainUI");
-        // SceneManager.LoadScene("UI");
-        SceneManager.LoadScene("Test_2_hpc"); 
+        SceneManager.LoadScene("Test_2_hpc", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Player", LoadSceneMode.Additive);
     }
 }
