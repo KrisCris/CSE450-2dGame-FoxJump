@@ -180,7 +180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3753124482848880624, guid: 3f83447b48bf2984ba7cd1f0a1f9776c, type: 3}
       propertyPath: maxJumps
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3753124482848880624, guid: 3f83447b48bf2984ba7cd1f0a1f9776c, type: 3}
       propertyPath: healthBar
@@ -293,7 +293,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
