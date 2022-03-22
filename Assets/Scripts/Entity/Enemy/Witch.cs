@@ -43,7 +43,7 @@ public class Witch : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+        
         Attack();
         
     }
@@ -80,6 +80,7 @@ public class Witch : MonoBehaviour
        
         if (moveTimer > moveRate)
         {
+            
             transform.position = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), 0);
             moveTimer = 0;
         }
@@ -96,6 +97,11 @@ public class Witch : MonoBehaviour
             Instantiate(projectile, transform.position, Quaternion.identity);
             shotTimer = 0;
         }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        transform.position = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), 0);
     }
 
 }

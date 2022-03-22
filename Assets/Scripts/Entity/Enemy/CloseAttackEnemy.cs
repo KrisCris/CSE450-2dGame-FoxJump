@@ -8,9 +8,10 @@ namespace Entity.Enemy {
         private Transform _target;
         public float attackDamage = 2;
         [SerializeField] private Transform targetA, targetB;
-        
+        public SpriteRenderer _spriteRenderer;
+
         // private SpriteRenderer _spriteRenderer;
-        
+
         // [SerializeField] private bool isLeft;
         protected new void Start() {
             base.Start();
@@ -26,15 +27,14 @@ namespace Entity.Enemy {
         private void Move() {
             if (Vector2.Distance(transform.position, targetA.position) <= 0.1f) {
                 _target = targetB;
-                // _spriteRenderer.flipX = false;
-                FlipFacing();
+                _spriteRenderer.flipX = false;
                 
             }
     
             if (Vector2.Distance(transform.position, targetB.position) <= 0.1f) {
                 _target = targetA;
-                // _spriteRenderer.flipX = true;
-                FlipFacing();
+                _spriteRenderer.flipX = true;
+    
             }
     
             transform.position = Vector2.MoveTowards(transform.position, _target.position, moveSpeed * Time.deltaTime);
@@ -47,13 +47,12 @@ namespace Entity.Enemy {
     
             if (_target == targetA) {
                 _target = targetB;
-                // _spriteRenderer.flipX = false;
-                FlipFacing();
+                _spriteRenderer.flipX = false;
             }
             else {
                 _target = targetA;
-                // _spriteRenderer.flipX = true;
-                FlipFacing();
+                _spriteRenderer.flipX = true;
+
             }
         }
     }
