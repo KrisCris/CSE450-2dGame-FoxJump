@@ -11,6 +11,7 @@ namespace Entity.Enemy
         [SerializeField] private float moveSpeed;
         private Transform target;
         public float attackDamage = 2;
+        public SpriteRenderer _sprite;
 
 
         // private SpriteRenderer _spriteRenderer;
@@ -30,8 +31,15 @@ namespace Entity.Enemy
         protected new void Update()
         {
             base.Update();
-            transform.position = Vector2.MoveTowards(transform.position, target.position, Time.deltaTime);
-
+            transform.position = Vector2.MoveTowards(transform.position, new Vector3(target.position.x, -1.4f, target.position.z), Time.deltaTime);
+            if(transform.position.x > target.position.x)
+            {
+                _sprite.flipX = true;
+            }
+            else
+            {
+                _sprite.flipX = false;
+            }
         }
 
         
