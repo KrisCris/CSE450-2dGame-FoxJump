@@ -11,8 +11,6 @@ namespace Entity.Enemy
         [SerializeField] private float moveSpeed;
         private Transform target;
         public float attackDamage = 2;
-        public SpriteRenderer _sprite;
-
 
         // private SpriteRenderer _spriteRenderer;
 
@@ -35,11 +33,11 @@ namespace Entity.Enemy
             
             if(transform.position.x > target.position.x)
             {
-                _sprite.flipX = true;
+                SpriteRenderer.flipX = true;
             }
             else
             {
-                _sprite.flipX = false;
+                SpriteRenderer.flipX = false;
             }
         }
 
@@ -51,8 +49,6 @@ namespace Entity.Enemy
             {
                 collision.gameObject.SendMessage("OnDamage", attackDamage);
             }
-            
-           
         }
         
     }
