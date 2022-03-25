@@ -32,6 +32,7 @@ namespace Entity.Enemy
         {
             base.Update();
             transform.position = Vector2.MoveTowards(transform.position, new Vector3(target.position.x, -1.4f, target.position.z), Time.deltaTime);
+            
             if(transform.position.x > target.position.x)
             {
                 _sprite.flipX = true;
