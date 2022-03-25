@@ -30,7 +30,7 @@ namespace Entity.Enemy
         protected new void Update()
         {
             base.Update();
-            transform.position = Vector2.MoveTowards(transform.position, target.position, Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, new Vector3(target.position.x, -1.4f, target.position.z), Time.deltaTime);
 
         }
 
