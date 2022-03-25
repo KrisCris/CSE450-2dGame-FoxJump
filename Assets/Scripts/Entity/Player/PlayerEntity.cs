@@ -51,7 +51,7 @@ namespace Entity.Player {
 
             if (Input.GetKeyDown(keyAttack)) {
                 GameObject newProjectile = Instantiate(projectile);
-                newProjectile.transform.position = transform.position;
+                newProjectile.GetComponent<DefaultProjectile>().Init(transform.position, 10f, FacingRight);
             }
             
             if (Input.GetKey(keyUp)) {
