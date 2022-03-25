@@ -8,17 +8,25 @@ namespace Entity {
         public float raycastOffset = 0f;
         protected int CurrJumps;
 
-        private bool passiveJumping;
+        private bool _isGrounded = true;
+
 
         protected new void Start() {
             base.Start();
             CurrJumps = maxJumps;
-            passiveJumping = false;
         }
 
         protected new void Update() {
             base.Update();
-            Animator.SetBool("IsJumping", CurrJumps < maxJumps || passiveJumping);
+            _isGrounded = CurrJumps == maxJumps && Mathf.Abs(Rigidbody2D.velocity.y) <= 0.5;
+            if (_isGrounded) {
+                Animator.SetBool("IsGrounded", _isGrounded);
+            } else {
+                Animator.SetBool("IsGrounded", _isGrounded);
+                Animator.SetBool("IsJumping", Rigidbody2D.velocity.y > 0);
+                Animator.SetBool("IsFalling", Rigidbody2D.velocity.y < 0);
+            }
+
         }
 
         public void UpdateMaxJump(int offset) {

@@ -37,7 +37,7 @@ namespace Entity.Player {
         protected new void FixedUpdate() {
             base.FixedUpdate();
             // This is synced with Physics Engine
-            Animator.SetFloat(Speed, Rigidbody2D.velocity.magnitude);
+            Animator.SetFloat("HorizontalSpeed", Mathf.Abs(Rigidbody2D.velocity.x));
             if (Rigidbody2D.velocity.magnitude > 0) {
                 Animator.speed = Rigidbody2D.velocity.magnitude / 3f;
             }
