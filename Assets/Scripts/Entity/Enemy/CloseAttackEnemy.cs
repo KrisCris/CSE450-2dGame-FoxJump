@@ -8,7 +8,6 @@ namespace Entity.Enemy {
         private Transform _target;
         public float attackDamage = 2;
         [SerializeField] private Transform targetA, targetB;
-        public SpriteRenderer _spriteRenderer;
 
         // private SpriteRenderer _spriteRenderer;
 
@@ -27,13 +26,13 @@ namespace Entity.Enemy {
         private void Move() {
             if (Vector2.Distance(transform.position, targetA.position) <= 0.1f) {
                 _target = targetB;
-                _spriteRenderer.flipX = false;
+                SpriteRenderer.flipX = false;
                 
             }
     
             if (Vector2.Distance(transform.position, targetB.position) <= 0.1f) {
                 _target = targetA;
-                _spriteRenderer.flipX = true;
+                SpriteRenderer.flipX = true;
     
             }
     
@@ -47,11 +46,11 @@ namespace Entity.Enemy {
     
             if (_target == targetA) {
                 _target = targetB;
-                _spriteRenderer.flipX = false;
+                SpriteRenderer.flipX = false;
             }
             else {
                 _target = targetA;
-                _spriteRenderer.flipX = true;
+                SpriteRenderer.flipX = true;
 
             }
         }
