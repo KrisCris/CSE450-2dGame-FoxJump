@@ -20,8 +20,8 @@ namespace Item {
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D other) {
-            if (other.gameObject.GetComponent<PlayerEntity>() && (!GetComponent<Rigidbody2D>() || GetComponent<Rigidbody2D>().velocity.magnitude < 0.1f)) {
+        private void OnTriggerStay2D(Collider2D other) {
+            if (other.gameObject.GetComponent<PlayerEntity>() && (!GetComponent<Rigidbody2D>() || GetComponent<Rigidbody2D>().velocity.magnitude < 1f)) {
                 other.gameObject.GetComponent<PlayerEntity>().OnItemCollect(ItemClass, 1);
                 Destroy(gameObject);
             }
