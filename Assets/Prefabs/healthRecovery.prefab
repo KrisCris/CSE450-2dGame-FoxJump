@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4535748811414557425}
   - component: {fileID: 3891042106823987217}
   - component: {fileID: 2939500292549632921}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: healthRecovery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 217785585
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 1268559450, guid: 056145e57c3cfe74198d7dacc827d90b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

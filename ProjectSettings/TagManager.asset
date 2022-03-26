@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Enemy
   - EnemyProjectile
   - Background
-  - 
+  - Items
   - 
   - 
   - 
@@ -41,9 +42,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: background
+    uniqueID: 2014695469
+    locked: 0
   - name: shadow
     uniqueID: 4205761511
     locked: 0
   - name: ground
     uniqueID: 2393782569
+    locked: 0
+  - name: entities
+    uniqueID: 217785585
     locked: 0
