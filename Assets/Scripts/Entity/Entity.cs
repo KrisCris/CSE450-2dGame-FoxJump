@@ -97,6 +97,7 @@ namespace Entity {
         // }
         
         protected void FlipFacing() {
+            if (!Rigidbody2D) return;
             SpriteRenderer.flipX = FacingRight;
             FacingRight = !FacingRight;
         }
