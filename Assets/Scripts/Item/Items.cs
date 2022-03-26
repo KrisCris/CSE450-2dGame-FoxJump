@@ -3,6 +3,7 @@
         Default,
         Key,
         Coin,
-        FlyingShoes
+        FlyingShoes,
+        RecoveryBlood
     }
 }
