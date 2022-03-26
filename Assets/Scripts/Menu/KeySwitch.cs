@@ -9,6 +9,7 @@ public class KeySwitch : MonoBehaviour
     private void Start()
     {
         player = FindObjectOfType<PlayerEntity>();
+        inputField.text = player.key[key].ToString();
         inputField.onValidateInput += (text, index, addedChar) =>
         {
             if (addedChar != '\n')
