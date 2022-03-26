@@ -32,6 +32,8 @@ namespace Entity.Player {
         private void OnCollisionEnter2D(Collision2D col) {
             if (col.collider.CompareTag("Enemy")) {
                 Destroy(col.gameObject.transform.parent.gameObject);
+            } else if(col.collider.CompareTag("Enemy2")) {
+                Destroy(col.gameObject);
             }
             Destroy(gameObject);
         }

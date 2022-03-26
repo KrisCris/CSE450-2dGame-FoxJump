@@ -15,7 +15,7 @@ public class Objective : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D other) {
         if (other.GetComponent<PlayerEntity>()) {
-            SceneManager.LoadSceneAsync(sceneName);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }

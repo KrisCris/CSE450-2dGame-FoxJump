@@ -17,12 +17,12 @@ namespace Entity.Enemy
         // [SerializeField] private bool isLeft;
         private void Awake()
         {
-            target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+            
         }
         protected new void Start()
         {
             base.Start();
-          
+            target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
             // _spriteRenderer = GetComponent<SpriteRenderer>();
         }
 

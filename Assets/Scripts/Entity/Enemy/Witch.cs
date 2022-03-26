@@ -32,7 +32,7 @@ public class Witch : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         sp = GetComponent<SpriteRenderer>();
 
-        Introduction();
+        // Introduction();
     }
 
     private void Update()
@@ -88,7 +88,7 @@ public class Witch : MonoBehaviour
 
     protected void Attack()
     {
-        Debug.Log(enemyName + " is Attacking");
+        // Debug.Log(enemyName + " is Attacking");
 
         shotTimer += Time.deltaTime;
 
