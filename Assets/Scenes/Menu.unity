@@ -1292,9 +1292,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f571f1f79b1e4a98b9280f56c5db53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveUp: {fileID: 1749896603}
-  player: {fileID: 0}
-  jump: {fileID: 201933967}
 --- !u!1 &789967683
 GameObject:
   m_ObjectHideFlags: 0
