@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Item;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Entity.Player {
     public class PlayerEntity : JumpableEntity {
@@ -12,6 +13,10 @@ namespace Entity.Player {
         public KeyCode keyRight = KeyCode.D;
         public KeyCode keyJump = KeyCode.Space;
         public KeyCode keyInteraction = KeyCode.E;
+        public KeyCode keyAttack = KeyCode.Mouse0;
+        private KeyCode menu = KeyCode.Escape;
+
+        public GameObject projectile;
 
         private Dictionary<Items, int> _inventory;
         private HashSet<Component> _interactable;
@@ -32,7 +37,7 @@ namespace Entity.Player {
         protected new void FixedUpdate() {
             base.FixedUpdate();
             // This is synced with Physics Engine
-            Animator.SetFloat(Speed, Rigidbody2D.velocity.magnitude);
+            Animator.SetFloat("HorizontalSpeed", Mathf.Abs(Rigidbody2D.velocity.x));
             if (Rigidbody2D.velocity.magnitude > 0) {
                 Animator.speed = Rigidbody2D.velocity.magnitude / 3f;
             }
@@ -43,6 +48,12 @@ namespace Entity.Player {
 
         private new void Update() {
             base.Update();
+
+            if (Input.GetKeyDown(keyAttack)) {
+                GameObject newProjectile = Instantiate(projectile);
+                newProjectile.transform.position = transform.position;
+            }
+            
             if (Input.GetKey(keyUp)) {
                 // TODO climb?
             }
@@ -82,6 +93,19 @@ namespace Entity.Player {
                 }
             }
 
+            if (Input.GetKeyDown(menu))
+            {
+                if (SceneManager.GetSceneByName("Menu").isLoaded)
+                {
+                    SceneManager.UnloadSceneAsync("Menu");
+                    Time.timeScale = 1;
+                }
+                else
+                {
+                    Time.timeScale = 0;
+                    SceneManager.LoadScene("Menu", LoadSceneMode.Additive);
+                }
+            }
             Animator.SetBool(IsCrouching, _isCrouching);
         }
 
@@ -118,6 +142,11 @@ namespace Entity.Player {
                 return true;
             }
             return false;
+        }
+
+        protected override void OnDeath(string reason)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }

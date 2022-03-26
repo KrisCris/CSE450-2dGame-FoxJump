@@ -35,7 +35,6 @@ namespace Entity {
             InitProperties();
         }
         
-
         protected void FixedUpdate() {
             if (timer == 0) {
                 if (GetComponent<PlayerEntity>()) {
@@ -51,8 +50,7 @@ namespace Entity {
 
         protected void Update() {
             // TODO Entity  Movement? 
-            // TODO health management?
-            
+            // TODO health management?            
         }
 
         private void OnDamage(float dmg) {
@@ -82,22 +80,24 @@ namespace Entity {
             return _health;
         }
 
-        private void OnDeath(string reason) {
+        protected virtual void OnDeath(string reason) {
+            Destroy(gameObject);
             // TODO Die
-            print("died for "+reason);
-            if (!GetComponent<PlayerEntity>()) {
-                Destroy(gameObject);
-            } else {
-                OnReborn();
-            }
-            
+            // print("died for "+reason);
+            // if (!GetComponent<PlayerEntity>()) {
+            //     Destroy(gameObject);
+            // } else {
+            //     OnReborn();
+            // }            
         }
 
-        private void OnReborn() {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
+        // private void OnReborn() {
+        //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);            
+        //     SceneManager.LoadScene("Player", LoadSceneMode.Additive);
+        // }
         
         protected void FlipFacing() {
+            if (!Rigidbody2D) return;
             SpriteRenderer.flipX = FacingRight;
             FacingRight = !FacingRight;
         }

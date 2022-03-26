@@ -8,6 +8,7 @@ namespace Entity.Enemy {
     public class Ray : Entity {
         [SerializeField] private float moveSpeed;
         [SerializeField] private float maxDist;
+        [SerializeField] private float dist;
         public Transform firePoint;
         private Transform _target;
         public float attackDamage = 1;
@@ -19,9 +20,11 @@ namespace Entity.Enemy {
         // private SpriteRenderer spriteRenderer;
         // [SerializeField] private bool isLeft;
         private int _indexNum;
+        private float moveTimer;
 
         private new void Start() {
             base.Start();
+            dist = 0.5f;
             Physics2D.queriesStartInColliders = false;
             _target = targetB;
             _lineRenderer = GetComponentInChildren<LineRenderer>();
@@ -41,6 +44,16 @@ namespace Entity.Enemy {
             base.Update();
             Move();
             Detect();
+           
+        }
+
+        private new void FixedUpdate()
+        {
+            dist += 0.01f;
+            if (dist > maxDist)
+            {
+                dist = 0.5f;
+            }
         }
 
         private void Move() {
@@ -62,7 +75,7 @@ namespace Entity.Enemy {
         private void Detect() {
             RaycastHit2D hitInfo;
 
-            hitInfo = Physics2D.Raycast(firePoint.position, _indexNum * transform.right, maxDist);
+            hitInfo = Physics2D.Raycast(firePoint.position, _indexNum * transform.right, dist);
 
             if (hitInfo.collider != null) {
                 if (hitInfo.collider.tag == "Block") {
@@ -81,7 +94,7 @@ namespace Entity.Enemy {
                 }
             }
             else {
-                int temp = _indexNum * 2;
+                float temp = _indexNum * dist;
                 _lineRenderer.SetPosition(1,
                     new Vector2(firePoint.transform.position.x + temp, firePoint.transform.position.y));
                 _lineRenderer.colorGradient = greenColor;
