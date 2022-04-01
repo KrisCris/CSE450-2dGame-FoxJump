@@ -12,33 +12,52 @@ namespace Entity.Enemy
         private Transform target;
         public float attackDamage = 2;
 
+        private bool found = false;
+
+        private float original_y;
+       
+
         // private SpriteRenderer _spriteRenderer;
 
         // [SerializeField] private bool isLeft;
         private void Awake()
         {
             target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+            
         }
         protected new void Start()
         {
             base.Start();
-          
-            // _spriteRenderer = GetComponent<SpriteRenderer>();
-        }
+
+
+
+           original_y = GetComponent<Transform>().position.y;
+        // _spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
         protected new void Update()
         {
-            base.Update();
-            transform.position = Vector2.MoveTowards(transform.position, new Vector3(target.position.x, -1.4f, target.position.z), Time.deltaTime);
             
-            if(transform.position.x > target.position.x)
+            base.Update();
+            if (found == true)
             {
-                SpriteRenderer.flipX = true;
+                transform.position = Vector2.MoveTowards(transform.position, new Vector3(target.position.x, -1.4f, target.position.z), Time.deltaTime);
+
+                if (transform.position.x > target.position.x)
+                {
+                    SpriteRenderer.flipX = true;
+                }
+                else
+                {
+                    SpriteRenderer.flipX = false;
+                }
             }
-            else
+
+            if (transform.position.y != original_y)
             {
-                SpriteRenderer.flipX = false;
+                Destroy(this);
             }
+            
         }
 
         
@@ -50,6 +69,14 @@ namespace Entity.Enemy
                 collision.gameObject.SendMessage("OnDamage", attackDamage);
             }
         }
-        
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.CompareTag("Player"))
+            {
+                found = true;
+            }
+        }
+
     }
 }
