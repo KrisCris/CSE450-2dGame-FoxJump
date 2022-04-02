@@ -93,7 +93,7 @@ public class Witch : MonoBehaviour
         if (moveTimer > moveRate)
         {
             
-            transform.position = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), 0);
+            transform.position = new Vector3(target.position.x+Random.Range(minX, maxX), target.position.y + Random.Range(minY, maxY), 0);
             moveTimer = 0;
         }
     }
