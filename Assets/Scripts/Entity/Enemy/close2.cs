@@ -14,19 +14,25 @@ namespace Entity.Enemy
 
         private bool found = false;
 
+        private float original_y;
+
         // private SpriteRenderer _spriteRenderer;
 
         // [SerializeField] private bool isLeft;
         private void Awake()
         {
             target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+            
         }
         protected new void Start()
         {
             base.Start();
-          
-            // _spriteRenderer = GetComponent<SpriteRenderer>();
-        }
+
+
+
+           original_y = GetComponent<Transform>().position.y;
+        // _spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
         protected new void Update()
         {
@@ -44,6 +50,11 @@ namespace Entity.Enemy
                 {
                     SpriteRenderer.flipX = false;
                 }
+            }
+
+            if (transform.position.y != original_y)
+            {
+                Destroy(this);
             }
             
         }
