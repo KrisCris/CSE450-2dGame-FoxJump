@@ -15,7 +15,7 @@ public class Objective : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D other) {
         if (other.GetComponent<PlayerEntity>()) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneController.instance.SwitchScene("MainUI");
         }
     }
 }
