@@ -9,7 +9,8 @@ namespace Ground {
         // Outlet
         public Transform upCheckPoint;
         public Transform downCheckPoint;
-        public float speed;
+        public float speed = 1;
+        public bool isTriggered = true;
         
         public float upBound;
         public float downBound;
@@ -17,11 +18,13 @@ namespace Ground {
         private bool _isUp;
         private Vector3 _position;
         private Vector3 _shift;
+        private GameObject _ground;
         
         // Start is called before the first frame update
         void Start() {
             _isUp = true;
-            _position = transform.position;
+            _ground = gameObject.transform.Find("LiftGround").gameObject;
+            _position = _ground.transform.position;
             _shift = new Vector3(0f, 0f, 0f);
             upBound = upCheckPoint.position.y;
             downBound = downCheckPoint.position.y;
@@ -29,11 +32,18 @@ namespace Ground {
 
         // Update is called once per frame
         void Update() {
-            if (transform.position.y > upBound || transform.position.y < downBound) {
-                _isUp = !_isUp;
+            if (isTriggered) {
+                if (_ground.transform.position.y > upBound || _ground.transform.position.y < downBound) {
+                    _isUp = !_isUp;
+                }
+
+                _shift += (_isUp ? 1f : -1f) * _ground.transform.up * speed * 0.001f;
+                _ground.transform.position = _position + _shift;
             }
-            _shift += (_isUp ? 1f : -1f) * transform.up * speed * 0.001f;
-            transform.position = _position + _shift;
+        }
+
+        void Triggered() {
+            isTriggered = true;
         }
     }
 }

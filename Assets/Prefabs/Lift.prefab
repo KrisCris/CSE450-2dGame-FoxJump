@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4508012797787627275}
   - component: {fileID: 8363733529692584787}
-  - component: {fileID: 7759266935123439097}
   m_Layer: 6
   m_Name: LiftGround
   m_TagString: Untagged
@@ -62,23 +61,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3, y: 0.45989573}
   m_EdgeRadius: 0
---- !u!114 &7759266935123439097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4237801745121323189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 981ee35e776280e48b1ccab9d091a236, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  upCheckPoint: {fileID: 4492756283027769495}
-  downCheckPoint: {fileID: 4492756282588581860}
-  speed: 1
-  upBound: 0
-  downBound: 0
 --- !u!1 &4492756282588581863
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,6 +216,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4492756283274263535}
+  - component: {fileID: 1359517952}
   m_Layer: 6
   m_Name: Lift
   m_TagString: Untagged
@@ -259,6 +242,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1359517952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4492756283274263504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 981ee35e776280e48b1ccab9d091a236, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upCheckPoint: {fileID: 4492756283027769495}
+  downCheckPoint: {fileID: 4492756282588581860}
+  speed: 1
+  isTriggered: 1
+  upBound: 0
+  downBound: 0
 --- !u!1 &4492756284104171647
 GameObject:
   m_ObjectHideFlags: 0
