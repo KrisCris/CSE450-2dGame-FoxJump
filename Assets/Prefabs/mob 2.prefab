@@ -84,6 +84,7 @@ GameObject:
   - component: {fileID: 6491023892528001622}
   - component: {fileID: 6491023892528001608}
   - component: {fileID: 1949733643458356115}
+  - component: {fileID: 2821379342773502982}
   m_Layer: 0
   m_Name: charac
   m_TagString: Enemy
@@ -203,6 +204,22 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   moveSpeed: 0
   attackDamage: 2
+--- !u!58 &2821379342773502982
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6491023892528001611}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.21983624, y: 0}
+  serializedVersion: 2
+  m_Radius: 7.982888
 --- !u!1 &6491023892630149897
 GameObject:
   m_ObjectHideFlags: 0
