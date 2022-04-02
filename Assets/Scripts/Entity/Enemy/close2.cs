@@ -15,7 +15,6 @@ namespace Entity.Enemy
         private bool found = false;
 
         private float original_y;
-       
 
         // private SpriteRenderer _spriteRenderer;
 
