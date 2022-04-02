@@ -12,8 +12,6 @@ namespace Entity.Enemy
         private Transform target;
         public float attackDamage = 2;
 
-        private bool found = false;
-
         // private SpriteRenderer _spriteRenderer;
 
         // [SerializeField] private bool isLeft;
@@ -30,22 +28,17 @@ namespace Entity.Enemy
 
         protected new void Update()
         {
-            
             base.Update();
-            if (found == true)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, new Vector3(target.position.x, -1.4f, target.position.z), Time.deltaTime);
-
-                if (transform.position.x > target.position.x)
-                {
-                    SpriteRenderer.flipX = true;
-                }
-                else
-                {
-                    SpriteRenderer.flipX = false;
-                }
-            }
+            transform.position = Vector2.MoveTowards(transform.position, new Vector3(target.position.x, -1.4f, target.position.z), Time.deltaTime);
             
+            if(transform.position.x > target.position.x)
+            {
+                SpriteRenderer.flipX = true;
+            }
+            else
+            {
+                SpriteRenderer.flipX = false;
+            }
         }
 
         
@@ -57,14 +50,6 @@ namespace Entity.Enemy
                 collision.gameObject.SendMessage("OnDamage", attackDamage);
             }
         }
-
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (collision.CompareTag("Player"))
-            {
-                found = true;
-            }
-        }
-
+        
     }
 }

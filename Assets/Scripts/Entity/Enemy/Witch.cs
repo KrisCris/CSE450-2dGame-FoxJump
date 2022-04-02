@@ -25,7 +25,6 @@ public class Witch : MonoBehaviour
 
     public Image hpImage;//Red Health Bar
     public Image hpEffectImage;//White Health Bar Hurting Effect
-    private bool found = false;
 
     private void Start()
     {
@@ -34,7 +33,6 @@ public class Witch : MonoBehaviour
         sp = GetComponent<SpriteRenderer>();
 
         Introduction();
-        
     }
 
     private void Update()
@@ -46,21 +44,13 @@ public class Witch : MonoBehaviour
             Destroy(gameObject);
         }
         
-        if(found == true)
-        {
-            Attack();
-        }
-       
+        Attack();
         
     }
 
     private void FixedUpdate()
     {
-        if (found == true)
-        {
-            Move();
-        }
-
+        Move();
     }
     private void TurnDirection()
     {
@@ -112,14 +102,6 @@ public class Witch : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision)
     {
         transform.position = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), 0);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            found = true;
-        }
     }
 
 }
