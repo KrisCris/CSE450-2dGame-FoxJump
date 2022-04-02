@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Enemy2
+  - Coin
   layers:
   - Default
   - TransparentFX
@@ -54,4 +55,7 @@ TagManager:
     locked: 0
   - name: entities
     uniqueID: 217785585
+    locked: 0
+  - name: top
+    uniqueID: 2008286801
     locked: 0
