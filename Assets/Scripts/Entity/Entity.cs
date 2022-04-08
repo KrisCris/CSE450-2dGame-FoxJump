@@ -54,7 +54,7 @@ namespace Entity {
         }
 
         private void OnDamage(float dmg) {
-            if (damageable) {
+            if (damageable && _health > 0) {
                 _health = Mathf.Max(_health - dmg, 0);
                 damageable = false;
                 if (healthBar) {
