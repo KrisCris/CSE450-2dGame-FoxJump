@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class Witch : MonoBehaviour {
     private float moveRate = 2.0f;
-    private float moveTimer;
+    private float _moveTimer;
 
-    private float shotRate = 2.1f;
-    private float shotTimer;
+    public float shootDelay = 4f;
+    private float _shootTimer;
     public GameObject projectile;
 
     [SerializeField] private float minX, maxX, minY, maxY;
@@ -75,23 +75,23 @@ public class Witch : MonoBehaviour {
     }
 
     private void RandomMove() {
-        moveTimer += Time.deltaTime;
+        _moveTimer += Time.deltaTime;
 
-        if (moveTimer > moveRate) {
+        if (_moveTimer > moveRate) {
             transform.position = new Vector3(target.position.x + Random.Range(minX, maxX),
                 target.position.y + Random.Range(minY, maxY), 0);
-            moveTimer = 0;
+            _moveTimer = 0;
         }
     }
 
     protected void Attack() {
         // Debug.Log(enemyName + " is Attacking");
 
-        shotTimer += Time.deltaTime;
+        _shootTimer += Time.deltaTime;
 
-        if (shotTimer > shotRate) {
+        if (_shootTimer > shootDelay) {
             Instantiate(projectile, transform.position, Quaternion.identity);
-            shotTimer = 0;
+            _shootTimer = 0;
         }
     }
     
