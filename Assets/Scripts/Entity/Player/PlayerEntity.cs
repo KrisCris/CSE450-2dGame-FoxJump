@@ -150,7 +150,7 @@ namespace Entity.Player {
 
         protected override void OnDeath(string reason)
         {
-            Time.timeScale = 0;
+            // Time.timeScale = 0;
             SceneManager.LoadScene("Info", LoadSceneMode.Additive);
         }
     }
