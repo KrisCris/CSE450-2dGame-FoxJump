@@ -56,7 +56,8 @@ namespace Entity.Player {
 
         private new void Update() {
             base.Update();
-            if (SceneManager.GetSceneByName("Menu").isLoaded)
+            if (SceneManager.GetSceneByName("Menu").isLoaded
+                || SceneManager.GetSceneByName("info").isLoaded)
             {
                 return;
             }
@@ -149,7 +150,8 @@ namespace Entity.Player {
 
         protected override void OnDeath(string reason)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            // Time.timeScale = 0;
+            SceneManager.LoadScene("Info", LoadSceneMode.Additive);
         }
     }
 }

@@ -14,8 +14,11 @@ public class Objective : MonoBehaviour {
     }
 
     private void OnTriggerStay2D(Collider2D other) {
-        if (other.GetComponent<PlayerEntity>()) {
-            SceneManager.LoadSceneAsync(sceneName);
+        if (Input.GetKey(KeyCode.E)) {
+            if (other.GetComponent<PlayerEntity>()) {
+                SceneController.Instance.SwitchMap(sceneName);
+            }
         }
+
     }
 }
