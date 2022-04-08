@@ -11,11 +11,11 @@ namespace Ground {
         
         // Outlet
         public Sprite afterswitch;
-        public GameObject target;
+        public GameObject[] targets;
         
         // State Track
         public bool isOnSwitch = false;
-        
+
         // Start is called before the first frame update
         void Start() {
             _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -25,7 +25,9 @@ namespace Ground {
         void Update() {
             if (isOnSwitch && Input.GetKey(KeyCode.E)) {
                 _spriteRenderer.sprite = afterswitch;
-                target.SendMessage("Triggered");
+                for (int i = 0; i < targets.Length; i++){
+                    targets[i].SendMessage("Triggered");
+                }
             }
         }
 
