@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/UI.unity
     guid: 75924a84cf79e3346b0e4c8432e48098
   - enabled: 1
-    path: Assets/Scenes/Test_2_hpc.unity
+    path: Assets/Scenes/Scene_1.unity
     guid: 19067922d34b8b941bd6cf6a92a1d8ad
   - enabled: 1
     path: Assets/Scenes/Test_2_hpc 1.unity
