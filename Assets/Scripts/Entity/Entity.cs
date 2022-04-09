@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 namespace Entity {
     public class Entity : MonoBehaviour {
+        // Outlets
         protected Rigidbody2D Rigidbody2D;
         protected Collider2D Collider2D;
         protected SpriteRenderer SpriteRenderer;
@@ -72,6 +73,9 @@ namespace Entity {
             
         }
 
+        public void UpdatePos(Vector3 pos) {
+            transform.position = pos;
+        }
         private float OnHealing(float heal) {
             _health = Mathf.Min(heal + _health, maxHealth);
             if (healthBar) {
