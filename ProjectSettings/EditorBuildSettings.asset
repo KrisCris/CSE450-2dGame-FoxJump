@@ -15,21 +15,27 @@ EditorBuildSettings:
     path: Assets/Scenes/UI.unity
     guid: 75924a84cf79e3346b0e4c8432e48098
   - enabled: 1
-    path: Assets/Scenes/Scene_1.unity
-    guid: 19067922d34b8b941bd6cf6a92a1d8ad
-  - enabled: 1
-    path: Assets/Scenes/Test_2_hpc 1.unity
-    guid: 6a14189e82e175242b0b1bcbc3cc8a0e
-  - enabled: 1
-    path: Assets/Scenes/Scene_0.unity
-    guid: 5bcad0c24f20d8f42ab99bb9388bc2cb
-  - enabled: 1
-    path: Assets/Scenes/Player.unity
-    guid: 4917ca6febec3854f8f5ccb4f5bf5b1a
-  - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: b47b188876d6c4fe3ab4b869f0b3c155
   - enabled: 1
     path: Assets/Scenes/Info.unity
     guid: 1f40471908ba94e9fb797d4aff50a675
+  - enabled: 1
+    path: Assets/Scenes/Player.unity
+    guid: 4917ca6febec3854f8f5ccb4f5bf5b1a
+  - enabled: 1
+    path: Assets/Scenes/Scene_0.unity
+    guid: 5bcad0c24f20d8f42ab99bb9388bc2cb
+  - enabled: 1
+    path: Assets/Scenes/Indoor_0.unity
+    guid: 44ae8a5f16e49f248a54609687eaecd6
+  - enabled: 1
+    path: Assets/Scenes/Map_1.unity
+    guid: c6397867c315375489b59c6d42c8e2bb
+  - enabled: 1
+    path: Assets/Scenes/Scene_2.unity
+    guid: 19067922d34b8b941bd6cf6a92a1d8ad
+  - enabled: 1
+    path: Assets/Scenes/Test_2_hpc 1.unity
+    guid: 6a14189e82e175242b0b1bcbc3cc8a0e
   m_configObjects: {}
