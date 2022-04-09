@@ -15481,7 +15481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934b448686f14f5dac6c500a2a91ec8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Scene_1
+  sceneName: Map_1
   requireKeyInteraction: 0
 --- !u!61 &499109603
 BoxCollider2D:
@@ -15493,7 +15493,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.67752314, y: 0.30597878}
