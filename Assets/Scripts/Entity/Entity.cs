@@ -5,17 +5,19 @@ using UnityEngine.SceneManagement;
 
 namespace Entity {
     public class Entity : MonoBehaviour {
-        // Outlets
+        [Header("Outlets")]
         protected Rigidbody2D Rigidbody2D;
         protected Collider2D Collider2D;
         protected SpriteRenderer SpriteRenderer;
         protected Animator Animator;
+        public GameObject healthBar;
 
+        [Header("State")]
         public float maxHealth = 10;
         public bool damageable = true;
         public int timer = 25;
+        public float speed = 12;
 
-        public GameObject healthBar;
         private float _health;
         protected bool FacingRight;
         
@@ -35,7 +37,7 @@ namespace Entity {
         protected void Start() {
             InitProperties();
         }
-        
+
         protected void FixedUpdate() {
             if (timer == 0) {
                 if (GetComponent<PlayerEntity>()) {
@@ -54,6 +56,17 @@ namespace Entity {
             // TODO health management?            
         }
 
+        protected void Move(Vector2 direction, float speed) {
+            if (FacingRight == direction.x < 0) {
+                FlipFacing();
+            }
+            Rigidbody2D.AddForce(direction * (speed * Time.deltaTime), ForceMode2D.Impulse);
+        }
+
+        protected void Move(Vector2 direction) {
+            Move(direction, speed);
+        }
+        
         private void OnDamage(float dmg) {
             if (damageable && _health > 0) {
                 _health = Mathf.Max(_health - dmg, 0);
@@ -74,7 +87,7 @@ namespace Entity {
         }
 
         public void UpdatePos(Vector3 pos) {
-            transform.position = pos;
+            gameObject.transform.position = pos;
         }
         private float OnHealing(float heal) {
             _health = Mathf.Min(heal + _health, maxHealth);

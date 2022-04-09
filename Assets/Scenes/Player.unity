@@ -295,7 +295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3753124482848880624, guid: 3f83447b48bf2984ba7cd1f0a1f9776c, type: 3}
       propertyPath: timer
-      value: 25
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 3753124482848880624, guid: 3f83447b48bf2984ba7cd1f0a1f9776c, type: 3}
       propertyPath: maxJumps
@@ -332,18 +332,6 @@ PrefabInstance:
     - target: {fileID: 3753124482848880625, guid: 3f83447b48bf2984ba7cd1f0a1f9776c, type: 3}
       propertyPath: m_TagString
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3753124482848880630, guid: 3f83447b48bf2984ba7cd1f0a1f9776c, type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3753124482848880630, guid: 3f83447b48bf2984ba7cd1f0a1f9776c, type: 3}
-      propertyPath: m_GravityScale
-      value: 1.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3753124482848880631, guid: 3f83447b48bf2984ba7cd1f0a1f9776c, type: 3}
-      propertyPath: m_Size.y
-      value: 1.32
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f83447b48bf2984ba7cd1f0a1f9776c, type: 3}
