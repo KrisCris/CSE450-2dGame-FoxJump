@@ -56,6 +56,7 @@ namespace Entity.Player {
 
         private new void Update() {
             base.Update();
+            
             if (SceneManager.GetSceneByName("Menu").isLoaded
                 || SceneManager.GetSceneByName("info").isLoaded) {
                 return;
