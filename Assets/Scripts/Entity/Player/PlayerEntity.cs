@@ -47,7 +47,8 @@ namespace Entity.Player {
             // This is synced with Physics Engine
             Animator.SetFloat("HorizontalSpeed", Mathf.Abs(Rigidbody2D.velocity.x));
             if (Rigidbody2D.velocity.magnitude > 0) {
-                Animator.speed = Rigidbody2D.velocity.magnitude / 3f;
+                // Debug.Log(Mathf.Abs(Rigidbody2D.velocity.x) / 2.2f);
+                Animator.speed = Mathf.Abs(Rigidbody2D.velocity.x) / 2.2f;
             }
             else {
                 Animator.speed = 1f;
@@ -71,10 +72,7 @@ namespace Entity.Player {
             }
 
             if (Input.GetKey(key["down"])) {
-                // TODO climb down?
-                // TODO crouch?
                 _isCrouching = true;
-                // TODO maybe some skills
             }
 
             if (Input.GetKeyUp(key["down"])) {
@@ -82,26 +80,27 @@ namespace Entity.Player {
             }
 
             if (Input.GetKey(key["left"])) {
-                if (FacingRight) {
-                    FlipFacing();
-                }
-
-                Rigidbody2D.AddForce(Vector2.left * (12f * Time.deltaTime), ForceMode2D.Impulse);
+                Move(Vector2.left);
+                // if (FacingRight) {
+                //     FlipFacing();
+                // }
+                // Rigidbody2D.AddForce(Vector2.left * (12f * Time.deltaTime), ForceMode2D.Impulse);
             }
 
             if (Input.GetKey(key["right"])) {
-                if (!FacingRight) {
-                    FlipFacing();
-                }
-
-                Rigidbody2D.AddForce(Vector2.right * (12f * Time.deltaTime), ForceMode2D.Impulse);
+                Move(Vector2.right);
+                // if (!FacingRight) {
+                //     FlipFacing();
+                // }
+                //
+                // Rigidbody2D.AddForce(Vector2.right * (12f * Time.deltaTime), ForceMode2D.Impulse);
             }
 
-            // jump
             if (Input.GetKeyDown(key["jump"])) {
                 PerformJump();
             }
-
+            
+            //TODO Move to somewhere else
             if (Input.GetKeyDown(KeyCode.Escape) && !SceneManager.GetSceneByName("Menu").isLoaded) {
                 Time.timeScale = 0;
                 SceneManager.LoadScene("Menu", LoadSceneMode.Additive);

@@ -74,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 217785585
-  m_SortingLayer: 4
+  m_SortingLayerID: 2008286801
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 1077302519, guid: 419b6e76ddee329499c01ad04f5445c6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -121,9 +121,9 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 2.5
+  m_LinearDrag: 2
   m_AngularDrag: 0.05
-  m_GravityScale: 1.3
+  m_GravityScale: 1.2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -143,7 +143,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.01662755, y: 0}
-  m_Size: {x: 0.7472596, y: 1.375}
+  m_Size: {x: 0.7472596, y: 1.32}
   m_Direction: 0
 --- !u!114 &3753124482848880624
 MonoBehaviour:
@@ -157,10 +157,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5eebf1150674f51bc758e5ed9010eaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
   maxHealth: 10
   damageable: 1
   timer: 25
-  healthBar: {fileID: 0}
+  speed: 12
+  jumpForce: 10
   maxJumps: 1
   raycastOffset: 0.3
   projectile: {fileID: 1010903080642773775, guid: 08a281eb893f6b9479022f82dab68cca, type: 3}

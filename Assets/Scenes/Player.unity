@@ -235,7 +235,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 137616545}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.0518682, y: 1.1547008, z: -10}
+  m_LocalPosition: {x: 2.0510454, y: 1.1547008, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -295,7 +295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3753124482848880624, guid: 3f83447b48bf2984ba7cd1f0a1f9776c, type: 3}
       propertyPath: timer
-      value: 25
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 3753124482848880624, guid: 3f83447b48bf2984ba7cd1f0a1f9776c, type: 3}
       propertyPath: maxJumps
@@ -332,18 +332,6 @@ PrefabInstance:
     - target: {fileID: 3753124482848880625, guid: 3f83447b48bf2984ba7cd1f0a1f9776c, type: 3}
       propertyPath: m_TagString
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3753124482848880630, guid: 3f83447b48bf2984ba7cd1f0a1f9776c, type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3753124482848880630, guid: 3f83447b48bf2984ba7cd1f0a1f9776c, type: 3}
-      propertyPath: m_GravityScale
-      value: 1.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3753124482848880631, guid: 3f83447b48bf2984ba7cd1f0a1f9776c, type: 3}
-      propertyPath: m_Size.y
-      value: 1.32
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f83447b48bf2984ba7cd1f0a1f9776c, type: 3}
@@ -488,7 +476,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7769701, y: 1}
+    m_SensorSize: {x: 1.7762576, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -505,7 +493,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1497822208}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.0518682, y: 1.1547008, z: -10}
+  m_LocalPosition: {x: 2.0510454, y: 1.1547008, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -525,6 +513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 177110e47a07434cbe3bafc3ba8e412c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  realCamera: {fileID: 137616545}
 --- !u!114 &1497822212
 MonoBehaviour:
   m_ObjectHideFlags: 0

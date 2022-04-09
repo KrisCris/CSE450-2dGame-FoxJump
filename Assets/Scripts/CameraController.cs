@@ -1,10 +1,10 @@
-﻿using System;
-using Cinemachine;
+﻿using Cinemachine;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour {
     public static CameraController Instance;
     private CinemachineConfiner2D _confiner;
+    public GameObject realCamera;
 
     private void Awake() {
         Instance = this;
@@ -18,7 +18,11 @@ public class CameraController : MonoBehaviour {
         if (_confiner) {
             _confiner.m_BoundingShape2D = boundingShape;
         }
+    }
 
+    public Vector2 GetCamPos2D() {
+        var position = realCamera.transform.position;
+        return new Vector2(position.x, position.y);
     }
     
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace Entity {
     public class JumpableEntity : Entity {
+        [Header("State")] 
+        public float jumpForce = 10f;
         public int maxJumps = 1;
         public float raycastOffset = 0f;
         protected int CurrJumps;
@@ -34,7 +36,7 @@ namespace Entity {
         protected void PerformJump() {
             if (CurrJumps > 0) {
                 --CurrJumps;
-                Rigidbody2D.AddForce(Vector2.up * 10f, ForceMode2D.Impulse);
+                Rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
                 _touchingGround = false;
             }
         }
