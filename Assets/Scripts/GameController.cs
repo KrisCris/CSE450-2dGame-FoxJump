@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour {
     public static GameController Instance;
     public string currentLevel;
+    public Vector2 lastSavePoint;
 
     public List<string> selectableLevel;
     // public HashSet<string> selectableLevel;
@@ -14,13 +15,16 @@ public class GameController : MonoBehaviour {
         Instance = this;
         Load();
     }
-
-    private void Start() { }
     
     public void SetLevelClear(string sceneName) {
         if (!selectableLevel.Contains(sceneName)) {
             selectableLevel.Add(sceneName);
         }
+        Save();
+    }
+
+    public void SetLastSavePoint(Vector2 pos) {
+        lastSavePoint = pos;
         Save();
     }
 
