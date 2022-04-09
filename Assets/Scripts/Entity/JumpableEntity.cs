@@ -9,6 +9,7 @@ namespace Entity {
         protected int CurrJumps;
 
         private bool _isGrounded = true;
+        private bool _touchingGround = true;
 
 
         protected new void Start() {
@@ -18,7 +19,9 @@ namespace Entity {
 
         protected new void Update() {
             base.Update();
-            _isGrounded = CurrJumps == maxJumps && Mathf.Abs(Rigidbody2D.velocity.y) <= 0.5;
+            _isGrounded = CurrJumps == maxJumps && _touchingGround;
+            // Animator.SetFloat("VerticalSpeed", Rigidbody2D.velocity.y);
+            // _isGrounded = CurrJumps == maxJumps;
             if (_isGrounded) {
                 Animator.SetBool("IsGrounded", _isGrounded);
             } else {
@@ -26,7 +29,14 @@ namespace Entity {
                 Animator.SetBool("IsJumping", Rigidbody2D.velocity.y > 0);
                 Animator.SetBool("IsFalling", Rigidbody2D.velocity.y < 0);
             }
+        }
 
+        protected void PerformJump() {
+            if (CurrJumps > 0) {
+                --CurrJumps;
+                Rigidbody2D.AddForce(Vector2.up * 10f, ForceMode2D.Impulse);
+                _touchingGround = false;
+            }
         }
 
         public void UpdateMaxJump(int offset) {
@@ -41,6 +51,7 @@ namespace Entity {
                 foreach (RaycastHit2D hit in hits) {
                     if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground")) {
                         CurrJumps = maxJumps;
+                        _touchingGround = true;
                     }
                 }
             }

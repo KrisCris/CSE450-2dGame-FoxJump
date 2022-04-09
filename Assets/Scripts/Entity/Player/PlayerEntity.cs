@@ -14,16 +14,16 @@ namespace Entity.Player {
         // public KeyCode keyJump = KeyCode.Space;
         // public KeyCode keyInteraction = KeyCode.E;
         // public KeyCode keyAttack = KeyCode.Mouse0;
-        public Dictionary<string, KeyCode> key = new()
-        {
-            { "up", KeyCode.W },
-            { "down", KeyCode.S },
-            { "left", KeyCode.A },
-            { "right", KeyCode.D },
-            { "jump", KeyCode.Space },
-            { "interaction", KeyCode.E },
-            { "attack", KeyCode.Mouse0 }
+        public Dictionary<string, KeyCode> key = new() {
+            {"up", KeyCode.W},
+            {"down", KeyCode.S},
+            {"left", KeyCode.A},
+            {"right", KeyCode.D},
+            {"jump", KeyCode.Space},
+            {"interaction", KeyCode.E},
+            {"attack", KeyCode.Mouse0}
         };
+
         public GameObject projectile;
 
         private Dictionary<Items, int> _inventory;
@@ -57,15 +57,15 @@ namespace Entity.Player {
         private new void Update() {
             base.Update();
             if (SceneManager.GetSceneByName("Menu").isLoaded
-                || SceneManager.GetSceneByName("info").isLoaded)
-            {
+                || SceneManager.GetSceneByName("info").isLoaded) {
                 return;
             }
+
             if (Input.GetKeyDown(key["attack"])) {
                 GameObject newProjectile = Instantiate(projectile);
                 newProjectile.GetComponent<DefaultProjectile>().Init(transform.position, 10f, FacingRight);
             }
-            
+
             if (Input.GetKey(key["up"])) {
                 // TODO climb?
             }
@@ -99,17 +99,14 @@ namespace Entity.Player {
 
             // jump
             if (Input.GetKeyDown(key["jump"])) {
-                if (CurrJumps > 0) {
-                    --CurrJumps;
-                    Rigidbody2D.AddForce(Vector2.up * 10f, ForceMode2D.Impulse);
-                }
+                PerformJump();
             }
 
-            if (Input.GetKeyDown(KeyCode.Escape) && !SceneManager.GetSceneByName("Menu").isLoaded)
-            {
+            if (Input.GetKeyDown(KeyCode.Escape) && !SceneManager.GetSceneByName("Menu").isLoaded) {
                 Time.timeScale = 0;
                 SceneManager.LoadScene("Menu", LoadSceneMode.Additive);
             }
+
             Animator.SetBool(IsCrouching, _isCrouching);
         }
 
@@ -121,13 +118,16 @@ namespace Entity.Player {
             if (!_inventory.ContainsKey(item)) {
                 _inventory[item] = 0;
             }
+
             _inventory[item] += num;
             if (item == Items.Coin) {
                 coinCountText.text = "" + _inventory[item];
             }
+
             if (item == Items.Key) {
                 keyCountText.text = "" + _inventory[item];
             }
+
             if (item == Items.FlyingShoes) {
                 UpdateMaxJump(num);
             }
@@ -136,20 +136,22 @@ namespace Entity.Player {
         public bool OnItemUsed(Items item, int num) {
             if (_inventory.ContainsKey(item) && _inventory[item] >= num) {
                 _inventory[item] -= num;
-                
+
                 if (item == Items.Coin) {
                     coinCountText.text = "" + _inventory[item];
                 }
+
                 if (item == Items.Key) {
                     keyCountText.text = "" + _inventory[item];
                 }
+
                 return true;
             }
+
             return false;
         }
 
-        protected override void OnDeath(string reason)
-        {
+        protected override void OnDeath(string reason) {
             // Time.timeScale = 0;
             SceneManager.LoadScene("Info", LoadSceneMode.Additive);
         }
