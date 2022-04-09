@@ -9368,7 +9368,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5350630365052681551, guid: e2e914f052729554ba34a2bcb04a3a4e, type: 3}
       propertyPath: sceneName
-      value: Scene_1
+      value: Indoor_0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5350630365052681551, guid: e2e914f052729554ba34a2bcb04a3a4e, type: 3}
+      propertyPath: requireKeyInteraction
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2e914f052729554ba34a2bcb04a3a4e, type: 3}
