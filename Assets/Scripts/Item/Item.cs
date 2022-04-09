@@ -21,7 +21,7 @@ namespace Item {
             }
         }
 
-        private void OnTriggerStay2D(Collider2D other) {
+        protected void OnTriggerStay2D(Collider2D other) {
             if (other.gameObject.GetComponent<PlayerEntity>() && (!GetComponent<Rigidbody2D>() || GetComponent<Rigidbody2D>().velocity.magnitude < 1f)) {
                 other.gameObject.GetComponent<PlayerEntity>().OnItemCollect(ItemClass, 1);
                 SoundManager.instance.playSound(soundWhenEaten);
