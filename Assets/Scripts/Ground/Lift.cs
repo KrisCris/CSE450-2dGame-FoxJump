@@ -37,7 +37,7 @@ namespace Ground {
                     _isUp = !_isUp;
                 }
 
-                _shift += (_isUp ? 1f : -1f) * _ground.transform.up * speed * 0.001f;
+                _shift += (_isUp ? 1f : -1f) * _ground.transform.up * speed * Time.deltaTime * 1f;
                 _ground.transform.position = _position + _shift;
             }
         }
