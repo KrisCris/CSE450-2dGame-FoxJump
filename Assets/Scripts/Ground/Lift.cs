@@ -43,6 +43,7 @@ namespace Ground {
         }
 
         void Triggered() {
+            gameObject.transform.Find("LiftGround").gameObject.SetActive(true);
             isTriggered = true;
         }
     }
