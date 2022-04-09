@@ -13,7 +13,12 @@ public class ActiveSceneController : MonoBehaviour
     {
         if (startPoint)
         {
-            FindObjectOfType<PlayerEntity>().gameObject.transform.position = startPoint.transform.position;
+            var position = startPoint.transform.position;
+            FindObjectOfType<PlayerEntity>().gameObject.transform.position = new Vector3 (
+                position.x, 
+                position.y, 
+                0
+            );
         }
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(scene));
     }
