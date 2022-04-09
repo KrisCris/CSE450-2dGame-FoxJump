@@ -6,6 +6,7 @@ using UnityEngine;
 namespace Item {
     public class Item : MonoBehaviour{
         public int frequency;
+        public AudioClip soundWhenEaten;
         protected Vector3 Position;
         protected bool IsFloat = true;
         protected Items ItemClass = Items.Default;
@@ -23,6 +24,7 @@ namespace Item {
         private void OnTriggerStay2D(Collider2D other) {
             if (other.gameObject.GetComponent<PlayerEntity>() && (!GetComponent<Rigidbody2D>() || GetComponent<Rigidbody2D>().velocity.magnitude < 1f)) {
                 other.gameObject.GetComponent<PlayerEntity>().OnItemCollect(ItemClass, 1);
+                SoundController.Instance.PlaySound(soundWhenEaten);
                 Destroy(gameObject);
             }
         }

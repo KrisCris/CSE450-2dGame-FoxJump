@@ -125,3 +125,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frequency: 1
+  soundWhenEaten: {fileID: 8300000, guid: 775c69b80d1a4584d97219af389eb81a, type: 3}

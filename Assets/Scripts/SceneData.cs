@@ -10,7 +10,7 @@ public class SceneData: MonoBehaviour {
 
         PlayerEntity playerEntity;
         if (playerEntity = FindObjectOfType<PlayerEntity>()) {
-            // playerEntity.UpdatePos(spawnPoint.position);
+            playerEntity.UpdatePos(spawnPoint.position);
         }
     }
 }
