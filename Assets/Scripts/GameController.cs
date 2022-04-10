@@ -33,6 +33,10 @@ public class GameController : MonoBehaviour {
         Save();
     }
 
+    public void GetCurrentLevel() {
+        return currentLevel;
+    }
+
     private void Save() {
         PlayerPrefs.SetString("GameData", JsonUtility.ToJson(Instance));
     }
