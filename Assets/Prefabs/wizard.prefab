@@ -1,5 +1,66 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3484016353512771993
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8613109395912832036}
+  - component: {fileID: 4742791911733541112}
+  - component: {fileID: 1019624278623747928}
+  m_Layer: 10
+  m_Name: head
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8613109395912832036
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3484016353512771993}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7141974545024208579}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4742791911733541112
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3484016353512771993}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.32360184, z: 1}
+  m_Center: {x: 0, y: 0.52759045, z: 0}
+--- !u!114 &1019624278623747928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3484016353512771993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a03702272928304f912f34dd05f6ad4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mob: {fileID: 0}
+  hitsound: {fileID: 8300000, guid: 4354547f08626b14aa7844f0fdb998ef, type: 3}
+  audioSource: {fileID: 0}
 --- !u!1 &7141974545024208636
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,8 +73,8 @@ GameObject:
   - component: {fileID: 7141974545024208578}
   - component: {fileID: 7141974545024208576}
   - component: {fileID: -4046966005378212369}
-  - component: {fileID: 8964110656619341873}
-  m_Layer: 0
+  - component: {fileID: 1267710212893518877}
+  m_Layer: 10
   m_Name: wizard
   m_TagString: Enemy2
   m_Icon: {fileID: 0}
@@ -31,7 +92,8 @@ Transform:
   m_LocalPosition: {x: -8.19, y: -0.85, z: 0.16554931}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8613109395912832036}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -99,6 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abd584487b5cd0f49bbaff4d4da0852f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootDelay: 4
   projectile: {fileID: 1447824275480598103, guid: 177427b43b9044145bfe673fe9b874b9, type: 3}
   minX: 1
   maxX: 4
@@ -123,7 +186,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.031998634, y: -0.052569985}
+  m_Offset: {x: -0.2573967, y: -0.3616104}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -134,10 +197,10 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.77715683, y: 1.0377207}
+  m_Size: {x: 16.557186, y: 16.893661}
   m_EdgeRadius: 0
---- !u!58 &8964110656619341873
-CircleCollider2D:
+--- !u!70 &1267710212893518877
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -146,9 +209,9 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.2273674, y: -2.2122579}
-  serializedVersion: 2
-  m_Radius: 6.5572133
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.28, y: 1.28}
+  m_Direction: 0
