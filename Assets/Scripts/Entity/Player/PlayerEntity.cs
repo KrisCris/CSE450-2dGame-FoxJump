@@ -29,6 +29,7 @@ namespace Entity.Player {
         private Dictionary<Items, int> _inventory;
         private HashSet<Component> _interactable;
 
+        private bool _climbable;
         private bool _isCrouching;
         private static readonly int IsCrouching = Animator.StringToHash("IsCrouching");
         private static readonly int Speed = Animator.StringToHash("Speed");
@@ -42,7 +43,7 @@ namespace Entity.Player {
             base.Start();
             _inventory = new Dictionary<Items, int>();
             _isCrouching = false;
-            
+            _climbable = false;
         }
 
         protected new void FixedUpdate() {
@@ -70,8 +71,8 @@ namespace Entity.Player {
                 newProjectile.GetComponent<DefaultProjectile>().Init(transform.position, 10f, FacingRight);
             }
 
-            if (Input.GetKey(key["up"])) {
-                // TODO climb?
+            if (Input.GetKey(key["up"]) && _climbable) {
+                Move(Vector2.up, 20f);
             }
 
             if (Input.GetKey(key["down"])) {
@@ -84,19 +85,10 @@ namespace Entity.Player {
 
             if (Input.GetKey(key["left"])) {
                 Move(Vector2.left);
-                // if (FacingRight) {
-                //     FlipFacing();
-                // }
-                // Rigidbody2D.AddForce(Vector2.left * (12f * Time.deltaTime), ForceMode2D.Impulse);
             }
 
             if (Input.GetKey(key["right"])) {
                 Move(Vector2.right);
-                // if (!FacingRight) {
-                //     FlipFacing();
-                // }
-                //
-                // Rigidbody2D.AddForce(Vector2.right * (12f * Time.deltaTime), ForceMode2D.Impulse);
             }
 
             if (Input.GetKeyDown(key["jump"])) {
@@ -156,6 +148,18 @@ namespace Entity.Player {
         protected override void OnDeath(string reason) {
             // Time.timeScale = 0;
             SceneManager.LoadScene("Info", LoadSceneMode.Additive);
+        }
+
+        private void OnTriggerEnter2D(Collider2D other) {
+            if (other.gameObject.layer == LayerMask.NameToLayer("Ladder")) {
+                _climbable = true;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D other) {
+            if (other.gameObject.layer == LayerMask.NameToLayer("Ladder")) {
+                _climbable = false;
+            }
         }
     }
 }
