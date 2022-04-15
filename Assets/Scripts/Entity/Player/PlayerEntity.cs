@@ -61,6 +61,7 @@ namespace Entity.Player {
 
         private new void Update() {
             base.Update();
+            Animator.SetFloat("VerticalSpeed", Mathf.Abs(Rigidbody2D.velocity.y));
             if (SceneManager.GetSceneByName("Menu").isLoaded
                 || SceneManager.GetSceneByName("info").isLoaded) {
                 return;
@@ -73,6 +74,7 @@ namespace Entity.Player {
 
             if (Input.GetKey(key["up"]) && _climbable) {
                 Move(Vector2.up, 20f);
+                // TouchingGround = false;
             }
 
             if (Input.GetKey(key["down"])) {
@@ -153,12 +155,14 @@ namespace Entity.Player {
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.gameObject.layer == LayerMask.NameToLayer("Ladder")) {
                 _climbable = true;
+                Animator.SetBool("Climbable", _climbable);
             }
         }
 
         private void OnTriggerExit2D(Collider2D other) {
             if (other.gameObject.layer == LayerMask.NameToLayer("Ladder")) {
                 _climbable = false;
+                Animator.SetBool("Climbable", _climbable);
             }
         }
     }
