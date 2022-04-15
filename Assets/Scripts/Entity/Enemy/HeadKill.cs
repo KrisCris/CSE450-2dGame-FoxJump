@@ -4,7 +4,6 @@ namespace Entity.Enemy {
     public class HeadKill : MonoBehaviour {
         public GameObject mob;
         public AudioClip hitsound;
-        public AudioSource audioSource;
 
 
         private new void Start()
