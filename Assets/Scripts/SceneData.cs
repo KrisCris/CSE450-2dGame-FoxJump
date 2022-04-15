@@ -1,5 +1,4 @@
-﻿using System;
-using Entity.Player;
+﻿using Entity.Player;
 using UnityEngine;
 public class SceneData: MonoBehaviour {
     public Transform spawnPoint;
@@ -10,7 +9,8 @@ public class SceneData: MonoBehaviour {
 
         PlayerEntity playerEntity;
         if (playerEntity = FindObjectOfType<PlayerEntity>()) {
-            playerEntity.UpdatePos(spawnPoint.position);
+            var pos = spawnPoint.position;
+            playerEntity.UpdatePos(new Vector3(pos.x, pos.y, 0));
         }
     }
 }

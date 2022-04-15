@@ -35,7 +35,7 @@ public class SceneController : MonoBehaviour {
     public void ReloadCurrentScene() {
         UnloadAll();
         SceneManager.LoadScene("Player", LoadSceneMode.Additive);
-        SceneManager.LoadScene(PlayerPrefs.GetString("CurrentMap"), LoadSceneMode.Additive);
+        SceneManager.LoadScene(GameController.Instance.GetCurrentLevel(), LoadSceneMode.Additive);
     }
 
     public void UnloadAll() {
