@@ -33,7 +33,7 @@ public class GameController : MonoBehaviour {
         Save();
     }
 
-    public void GetCurrentLevel() {
+    public String GetCurrentLevel() {
         return currentLevel;
     }
 

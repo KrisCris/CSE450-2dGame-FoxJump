@@ -13,6 +13,9 @@ namespace Entity.Enemy
         public float attackDamage = 2;
         private bool found;
         public Transform firePoint;
+
+
+        Rigidbody2D _rigidbody2D;
         // private SpriteRenderer _spriteRenderer;
 
         // [SerializeField] private bool isLeft;
@@ -25,6 +28,8 @@ namespace Entity.Enemy
             base.Start();
             target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
             found = false;
+
+            _rigidbody2D = GetComponent<Rigidbody2D>();
             // _spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
@@ -33,30 +38,17 @@ namespace Entity.Enemy
             base.Update();
             if (found == true)
             {
-                transform.position = Vector2.MoveTowards(transform.position, new Vector3(target.position.x, transform.position.y, target.position.z), Time.deltaTime);
 
                 if (transform.position.x > target.position.x)
                 {
                     SpriteRenderer.flipX = true;
+                    _rigidbody2D.AddForce(Vector2.left * (8f * Time.deltaTime), ForceMode2D.Impulse);
                 }
                 else
                 {
                     SpriteRenderer.flipX = false;
+                    _rigidbody2D.AddForce(Vector2.right * (8f * Time.deltaTime), ForceMode2D.Impulse);
                 }
-            }
-
-            RaycastHit2D hitInfo;
-
-            hitInfo = Physics2D.Raycast(transform.position, -1*transform.up, 1f);
-
-            if (hitInfo.collider != null)
-            {
-                Debug.DrawLine(transform.position, hitInfo.point, Color.green);
-            }
-            else
-            {
-                transform.position = new Vector3(transform.position.x, transform.position.y - 1.5f*Time.deltaTime, 0);
-                found = false;
             }
 
 
