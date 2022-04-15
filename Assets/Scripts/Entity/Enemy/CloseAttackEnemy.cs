@@ -12,15 +12,21 @@ namespace Entity.Enemy {
         // private SpriteRenderer _spriteRenderer;
 
         // [SerializeField] private bool isLeft;
+
+        Animator _animator;
         protected new void Start() {
             base.Start();
             _target = targetB;
             // _spriteRenderer = GetComponent<SpriteRenderer>();
+
+            _animator = GetComponent<Animator>();
         }
     
         protected new void Update() {
             base.Update();
             Move();
+
+            ///bool run = 
         }
     
         private void Move() {

@@ -36,10 +36,13 @@ namespace Entity.Player {
         public TextMeshProUGUI coinCountText;
         public TextMeshProUGUI keyCountText;
 
+       
+
         private new void Start() {
             base.Start();
             _inventory = new Dictionary<Items, int>();
             _isCrouching = false;
+            
         }
 
         protected new void FixedUpdate() {
