@@ -66,6 +66,18 @@ namespace Entity {
             Move(direction, speed);
         }
         
+        public int GetFaceDirection() {
+            return FacingRight ? 1 : -1;
+        }
+
+        public float GetX() {
+            return Rigidbody2D.transform.position.x;
+        }
+        
+        public float GetY() {
+            return Rigidbody2D.transform.position.y;
+        }
+        
         private void OnDamage(float dmg) {
             if (damageable && _health > 0) {
                 _health = Mathf.Max(_health - dmg, 0);

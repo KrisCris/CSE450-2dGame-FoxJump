@@ -1,76 +1,101 @@
 ﻿using System;
 using System.Linq;
+using Entity.Player;
 using UnityEngine;
 
 namespace Entity {
     public class JumpableEntity : Entity {
-        [Header("State")] 
-        public float jumpForce = 10f;
+        [Header("State")] public float jumpForce = 10f;
         public int maxJumps = 1;
-        public float raycastOffset = 0f;
-        [SerializeField]
-        protected int CurrJumps;
+        public int currJumps;
 
         protected bool IsGrounded = true;
-        // protected bool TouchingGround = true;
-
+        public int jumpIFrames = 4;
+        public int iFramesCountdown;
+        
 
         protected new void Start() {
             base.Start();
-            CurrJumps = maxJumps;
+            currJumps = maxJumps;
+            iFramesCountdown = jumpIFrames;
         }
 
         protected new void Update() {
             base.Update();
-            IsGrounded = CurrJumps == maxJumps && DetectGround();
-            // Animator.SetFloat("VerticalSpeed", Rigidbody2D.velocity.y);
-            // _isGrounded = CurrJumps == maxJumps;
-            // if (IsGrounded) {
-            //     Animator.SetBool("IsGrounded", IsGrounded);
-            // } else {
-                Animator.SetBool("IsGrounded", IsGrounded);
-                Animator.SetBool("IsJumping", Rigidbody2D.velocity.y > 0.3 && CurrJumps < maxJumps);
-                Animator.SetBool("IsFalling", Rigidbody2D.velocity.y < -0.3);
-            // }
+            IsGrounded = currJumps == maxJumps && DetectGround();
+
+            Animator.SetBool("IsGrounded", IsGrounded);
+            Animator.SetBool("IsJumping", Rigidbody2D.velocity.y > 0.3 && currJumps < maxJumps);
+            Animator.SetBool("IsFalling", Rigidbody2D.velocity.y < -0.3);
+        }
+
+        protected new void FixedUpdate() {
+            base.FixedUpdate();
+            
+            // Jump Invincible
+            if (GetComponent<PlayerEntity>()) {
+                if (currJumps < maxJumps && iFramesCountdown > 0) {
+                    damageable = false;
+                    iFramesCountdown--;
+                } else {
+                    iFramesCountdown = jumpIFrames;
+                    damageable = true;
+                }
+            }
         }
 
         protected bool PerformJump() {
-            if (CurrJumps > 0) {
-                --CurrJumps;
+            if (currJumps > 0) {
+                --currJumps;
                 Rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-                // TouchingGround = false;
                 return true;
             }
-
             return false;
         }
 
         public void UpdateMaxJump(int offset) {
             maxJumps = Math.Max(maxJumps + offset, 0);
-            CurrJumps = Math.Max(CurrJumps + offset, 0);
+            currJumps = Math.Max(currJumps + offset, 0);
         }
 
         public void SetJumps(int j) {
             maxJumps = j;
-            CurrJumps = j;
+            currJumps = j;
         }
 
         private void OnCollisionStay2D(Collision2D other) {
             if (other.gameObject.layer == LayerMask.NameToLayer("Ground") && DetectGround()) {
-                CurrJumps = maxJumps;
+                currJumps = maxJumps;
             }
         }
 
         private bool DetectGround() {
-            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position + new Vector3(raycastOffset, 0f, 0f), -transform.up, .8f);
-            hits = hits.Concat(Physics2D.RaycastAll(transform.position + new Vector3(-raycastOffset, 0f, 0f),
-                -transform.up, .8f)).ToArray();
-            foreach (RaycastHit2D hit in hits) {
-                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground")) {
+            if (GetComponent<PlayerEntity>()) {
+                PlayerEntity that = (PlayerEntity) this;
+                RaycastHit2D ptBack =
+                    RayCastHelper.RayCast(that.GetBackFoot(), Vector2.down, that.checkDistance, "Ground");
+                RaycastHit2D ptFront =
+                    RayCastHelper.RayCast(that.GetFrontFoot(), Vector2.down, that.checkDistance, "Ground");
+                if (ptBack || ptFront) {
+                    return true;
+                }
+            } else {
+                RaycastHit2D pt = RayCastHelper.RayCast(transform.position, -transform.up, .8f, "Ground");
+                if (pt) {
                     return true;
                 }
             }
+
             return false;
+            // RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position + new Vector3(raycastOffset, 0f, 0f), -transform.up, .8f);
+            // hits = hits.Concat(Physics2D.RaycastAll(transform.position + new Vector3(-raycastOffset, 0f, 0f),
+            //     -transform.up, .8f)).ToArray();
+            // foreach (RaycastHit2D hit in hits) {
+            //     if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground")) {
+            //         return true;
+            //     }
+            // }
+            // return false;
         }
 
         // private void OnCollisionExit2D(Collision2D other) {

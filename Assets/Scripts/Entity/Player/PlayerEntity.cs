@@ -8,13 +8,6 @@ using UnityEngine.SceneManagement;
 
 namespace Entity.Player {
     public class PlayerEntity : JumpableEntity {
-        // public KeyCode keyUp = KeyCode.W;
-        // public KeyCode keyDown = KeyCode.S;
-        // public KeyCode keyLeft = KeyCode.A;
-        // public KeyCode keyRight = KeyCode.D;
-        // public KeyCode keyJump = KeyCode.Space;
-        // public KeyCode keyInteraction = KeyCode.E;
-        // public KeyCode keyAttack = KeyCode.Mouse0;
         public Dictionary<string, KeyCode> key = new() {
             {"up", KeyCode.W},
             {"down", KeyCode.S},
@@ -40,6 +33,10 @@ namespace Entity.Player {
 
         public AudioSource playerJump;
         public AudioSource playerWalk;
+        
+        public float footDistance = 0.3f;
+        public float checkDistance = 0.1f;
+        public float footYOffset = -0.6f;
 
         private new void Start() {
             base.Start();
@@ -122,7 +119,19 @@ namespace Entity.Player {
                 playerWalk.Stop();
             }
         }
-
+        public Vector2 GetFrontFoot()
+        {
+            float foreX = GetX() + (footDistance * GetFaceDirection());
+            Vector2 foreFoot = new Vector2(foreX, GetY() + footYOffset);
+            return foreFoot;
+        }
+        public Vector2 GetBackFoot()
+        {
+            float behindX = GetX() - ((footDistance + 0.15f) * GetFaceDirection());
+            Vector2 behindFoot = new Vector2(behindX, GetY() + footYOffset);
+            return behindFoot;
+        }
+        
         public Dictionary<Items, int> GetInventory() {
             return _inventory;
         }
