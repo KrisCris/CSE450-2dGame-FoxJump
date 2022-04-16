@@ -15,7 +15,8 @@ namespace Entity {
         [Header("State")]
         public float maxHealth = 10;
         public bool damageable = true;
-        public int timer = 25;
+        public int dmgIFrames = 10;
+        public int dmgIFrameCountdown = 0;
         public float speed = 12;
 
         private float _health;
@@ -38,15 +39,13 @@ namespace Entity {
         }
 
         protected void FixedUpdate() {
-            if (timer == 0) {
+            if (dmgIFrameCountdown > 0) {
+                --dmgIFrameCountdown;
+            } else {
                 if (GetComponent<PlayerEntity>()) {
                     Animator.SetBool("IsDamaging", false);
                 }
                 damageable = true;
-                timer = 25;
-            }
-            if (!damageable && timer > 0) {
-                --timer;
             }
         }
 
@@ -82,6 +81,7 @@ namespace Entity {
             if (damageable && _health > 0) {
                 _health = Mathf.Max(_health - dmg, 0);
                 damageable = false;
+                dmgIFrameCountdown = dmgIFrames;
                 if (healthBar) {
                     healthBar.GetComponent<HealthBar>().UpdateHealthBar(_health, maxHealth);
                 }

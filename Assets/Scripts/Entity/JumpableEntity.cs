@@ -11,13 +11,12 @@ namespace Entity {
 
         protected bool IsGrounded = true;
         public int jumpIFrames = 4;
-        public int iFramesCountdown;
+        public int jumpIFrameCountdown = 0;
         
 
         protected new void Start() {
             base.Start();
             currJumps = maxJumps;
-            iFramesCountdown = jumpIFrames;
         }
 
         protected new void Update() {
@@ -34,11 +33,10 @@ namespace Entity {
             
             // Jump Invincible
             if (GetComponent<PlayerEntity>()) {
-                if (currJumps < maxJumps && iFramesCountdown > 0) {
+                if (jumpIFrameCountdown > 0) {
                     damageable = false;
-                    iFramesCountdown--;
+                    --jumpIFrameCountdown;
                 } else {
-                    iFramesCountdown = jumpIFrames;
                     damageable = true;
                 }
             }
@@ -48,6 +46,7 @@ namespace Entity {
             if (currJumps > 0) {
                 --currJumps;
                 Rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                jumpIFrameCountdown = jumpIFrames;
                 return true;
             }
             return false;
@@ -56,6 +55,7 @@ namespace Entity {
         public void UpdateMaxJump(int offset) {
             maxJumps = Math.Max(maxJumps + offset, 0);
             currJumps = Math.Max(currJumps + offset, 0);
+            GameController.Instance.AddJumps(offset);
         }
 
         public void SetJumps(int j) {

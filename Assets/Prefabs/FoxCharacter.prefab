@@ -162,13 +162,15 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   maxHealth: 10
   damageable: 1
-  timer: 35
+  dmgIFrames: 10
+  dmgIFrameCountdown: 0
   speed: 12
   FacingRight: 1
   jumpForce: 10
   maxJumps: 1
-  raycastOffset: 0.3
-  CurrJumps: 0
+  currJumps: 0
+  jumpIFrames: 4
+  jumpIFrameCountdown: 0
   projectile: {fileID: 1010903080642773775, guid: 08a281eb893f6b9479022f82dab68cca, type: 3}
   coinCountText: {fileID: 0}
   keyCountText: {fileID: 0}
