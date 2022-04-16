@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 24e781986f5729f4f8bd2f678989f1fd
+guid: d68fc946797b30e4585ca36f65cd12e1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: grass_front_0
+      name: brige_destroy_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 14
-        height: 11
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,20 +130,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e8a267078962cd741801b79f894632f5
-      internalID: -2088864909
+      spriteID: a09514000b1639a4896bdae61465c92c
+      internalID: 501011883
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grass_front_1
+      name: brige_destroy_1
       rect:
         serializedVersion: 2
-        x: 24
+        x: 16
         y: 0
-        width: 15
-        height: 11
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -151,20 +151,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 534624ed328048f4387126c452b26bd3
-      internalID: -1124779024
+      spriteID: dcb373e8a25dddd4a98dbdbf5da8fbd9
+      internalID: 415346060
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grass_front_2
+      name: brige_destroy_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: becf2159e6618d740bb373cf002055b5
+      internalID: -1548167015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brige_destroy_3
       rect:
         serializedVersion: 2
         x: 48
         y: 0
-        width: 15
-        height: 11
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,20 +193,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48a7fa01ea2d4a74093b3e2e2d08b725
-      internalID: -564783352
+      spriteID: ef630c3ec43d274448c30ce0939012f4
+      internalID: -441971497
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grass_front_3
+      name: brige_destroy_4
       rect:
         serializedVersion: 2
-        x: 72
+        x: 64
         y: 0
         width: 16
-        height: 11
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,20 +214,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82428e2788427fd4c8aca9f4be40a408
-      internalID: 1253051511
+      spriteID: ef85bf52c8d17eb428cc0ca685a9719d
+      internalID: -1062789832
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grass_front_4
+      name: brige_destroy_5
       rect:
         serializedVersion: 2
-        x: 96
+        x: 80
         y: 0
         width: 16
-        height: 11
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -214,8 +235,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ba63926e5f7a274a87c705217cb5e6f
-      internalID: 1529201961
+      spriteID: ac0b6b002f71ec941bf5f511ed82b16f
+      internalID: -77590253
       vertices: []
       indices: 
       edges: []
@@ -231,11 +252,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      grass_front_2: -564783352
-      grass_front_0: -2088864909
-      grass_front_3: 1253051511
-      grass_front_4: 1529201961
-      grass_front_1: -1124779024
+      brige_destroy_0: 501011883
+      brige_destroy_4: -1062789832
+      brige_destroy_1: 415346060
+      brige_destroy_3: -441971497
+      brige_destroy_2: -1548167015
+      brige_destroy_5: -77590253
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
