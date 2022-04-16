@@ -49,14 +49,17 @@ namespace Entity.Player {
         protected new void FixedUpdate() {
             base.FixedUpdate();
             // This is synced with Physics Engine
+            
             Animator.SetFloat("HorizontalSpeed", Mathf.Abs(Rigidbody2D.velocity.x));
-            if (Rigidbody2D.velocity.magnitude > 0) {
-                // Debug.Log(Mathf.Abs(Rigidbody2D.velocity.x) / 2.2f);
-                Animator.speed = Mathf.Abs(Rigidbody2D.velocity.x) / 2.2f;
-            }
-            else {
-                Animator.speed = 1f;
-            }
+            Animator.SetBool("Climbable", _climbable);
+
+            // if (Rigidbody2D.velocity.magnitude > 0) {
+            //     // Debug.Log(Mathf.Abs(Rigidbody2D.velocity.x) / 2.2f);
+            //     Animator.speed = Mathf.Abs(Rigidbody2D.velocity.x) / 2.2f;
+            // }
+            // else {
+            //     Animator.speed = 1f;
+            // }
         }
 
         private new void Update() {
@@ -155,14 +158,12 @@ namespace Entity.Player {
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.gameObject.layer == LayerMask.NameToLayer("Ladder")) {
                 _climbable = true;
-                Animator.SetBool("Climbable", _climbable);
             }
         }
 
         private void OnTriggerExit2D(Collider2D other) {
             if (other.gameObject.layer == LayerMask.NameToLayer("Ladder")) {
                 _climbable = false;
-                Animator.SetBool("Climbable", _climbable);
             }
         }
     }

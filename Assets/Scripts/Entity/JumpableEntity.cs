@@ -24,13 +24,13 @@ namespace Entity {
             IsGrounded = CurrJumps == maxJumps && TouchingGround;
             // Animator.SetFloat("VerticalSpeed", Rigidbody2D.velocity.y);
             // _isGrounded = CurrJumps == maxJumps;
-            if (IsGrounded) {
+            // if (IsGrounded) {
+            //     Animator.SetBool("IsGrounded", IsGrounded);
+            // } else {
                 Animator.SetBool("IsGrounded", IsGrounded);
-            } else {
-                Animator.SetBool("IsGrounded", IsGrounded);
-                Animator.SetBool("IsJumping", Rigidbody2D.velocity.y > 0 && CurrJumps < maxJumps);
-                Animator.SetBool("IsFalling", Rigidbody2D.velocity.y < 0);
-            }
+                Animator.SetBool("IsJumping", Rigidbody2D.velocity.y > 0.3 && CurrJumps < maxJumps);
+                Animator.SetBool("IsFalling", Rigidbody2D.velocity.y < -0.3);
+            // }
         }
 
         protected void PerformJump() {
