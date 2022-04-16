@@ -33,7 +33,7 @@ namespace Entity.Player {
 
         public AudioSource playerJump;
         public AudioSource playerWalk;
-        
+
         public float footDistance = 0.3f;
         public float checkDistance = 0.1f;
         public float footYOffset = -0.6f;
@@ -119,19 +119,19 @@ namespace Entity.Player {
                 playerWalk.Stop();
             }
         }
-        public Vector2 GetFrontFoot()
-        {
+
+        public Vector2 GetFrontFoot() {
             float foreX = GetX() + (footDistance * GetFaceDirection());
             Vector2 foreFoot = new Vector2(foreX, GetY() + footYOffset);
             return foreFoot;
         }
-        public Vector2 GetBackFoot()
-        {
+
+        public Vector2 GetBackFoot() {
             float behindX = GetX() - ((footDistance + 0.15f) * GetFaceDirection());
             Vector2 behindFoot = new Vector2(behindX, GetY() + footYOffset);
             return behindFoot;
         }
-        
+
         // public Dictionary<Items, int> GetInventory() {
         //     return _inventory;
         // }
@@ -154,16 +154,21 @@ namespace Entity.Player {
 
         public bool OnItemUsed(Items item, int num) {
             if (item == Items.Coin) {
-                GameController.Instance.AddCoins(-num);
-                coinCountText.text = GameController.Instance.coins.ToString();
-                return true;
+                if (GameController.Instance.coins >= num) {
+                    GameController.Instance.AddCoins(-num);
+                    coinCountText.text = GameController.Instance.coins.ToString();
+                    return true;
+                }
             }
-            
+
             if (item == Items.Key) {
-                GameController.Instance.AddKeys(-num);
-                keyCountText.text = GameController.Instance.keys.ToString();
-                return true;
+                if (GameController.Instance.coins >= num) {
+                    GameController.Instance.AddKeys(-num);
+                    keyCountText.text = GameController.Instance.keys.ToString();
+                    return true;
+                }
             }
+
             return false;
         }
 
