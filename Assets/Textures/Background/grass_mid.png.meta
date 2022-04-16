@@ -119,10 +119,10 @@ TextureImporter:
       name: grass_mid_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
-        width: 15
-        height: 15
+        width: 24
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,10 +140,10 @@ TextureImporter:
       name: grass_mid_1
       rect:
         serializedVersion: 2
-        x: 25
+        x: 24
         y: 0
-        width: 15
-        height: 15
+        width: 24
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,10 +161,10 @@ TextureImporter:
       name: grass_mid_2
       rect:
         serializedVersion: 2
-        x: 49
+        x: 48
         y: 0
-        width: 16
-        height: 15
+        width: 24
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,10 +182,10 @@ TextureImporter:
       name: grass_mid_3
       rect:
         serializedVersion: 2
-        x: 73
+        x: 72
         y: 0
-        width: 16
-        height: 15
+        width: 24
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,10 +203,10 @@ TextureImporter:
       name: grass_mid_4
       rect:
         serializedVersion: 2
-        x: 97
+        x: 96
         y: 0
-        width: 16
-        height: 15
+        width: 24
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
