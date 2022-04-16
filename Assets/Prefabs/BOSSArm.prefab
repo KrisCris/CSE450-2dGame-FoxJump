@@ -177,6 +177,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotSpeed: 3
   attackDamage: 2
-  maxLife: 2
+  maxLife: 5
+  damageable: 1
+  timer: 10
   destoryEffect: {fileID: 0}
   health: 0

@@ -28,20 +28,24 @@ namespace Entity.Enemy {
 
         IEnumerator AttackFinished() {
             yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length - 0.18f);
-            GameObject.FindGameObjectWithTag("Boss").gameObject.SendMessage("AttackFinished");
+            GameObject.FindGameObjectWithTag("Boss").gameObject.SendMessage("LaserAttackFinished");
             Destroy(gameObject);
         }
 
         private void OnCollisionEnter2D(Collision2D collision) {
-            print(1);
             if (collision.collider.CompareTag("Player"))
             {
                 //Instantiate(destoryEffect, transform.position, Quaternion.identity);
 
                 collision.gameObject.SendMessage("OnDamage", attackDamage);
+                GameObject.FindGameObjectWithTag("Boss").gameObject.SendMessage("LaserAttackFinished");
 
                 Destroy(gameObject);
             }
+        }
+        
+        
+        public void OnDamage(float dmg) {
         }
     }
 }
