@@ -37,7 +37,7 @@ namespace Entity.Player {
             }
             else if (col.collider.CompareTag("Boss"))
             {
-                col.gameObject.SendMessage("OnDamage");
+                col.gameObject.SendMessage("OnDamage", 1f);
             }
             Destroy(gameObject);
         }
