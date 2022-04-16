@@ -11,54 +11,64 @@ namespace Entity.Enemy {
         public GameObject arm;
         public Transform armPosition;
         public GameObject laser;
-        public float attackFrequent;
+        public float armAttackFrequent;
+        public float laserAttackFrequent;
         private static readonly int Dead = Animator.StringToHash("Dead");
         private static readonly int Attacking = Animator.StringToHash("Attacking");
         private static readonly int Finished = Animator.StringToHash("AttackFinished");
 
         // State Track
-        public int attackType = 0;
         private bool _isDead = false;
-        private GameObject _currentAttack;
+        private GameObject _currentArmAttack;
+        private GameObject _currentLaserAttack;
 
-        protected void Start() {
-            base.Start();
-            StartCoroutine("AttackTimer", 1);
+        void StartAttack() {
+            StartCoroutine("ArmAttackTimer");
+            StartCoroutine("LaserAttackTimer");
         }
 
-        IEnumerator AttackTimer() {
-            yield return new WaitForSeconds(attackFrequent);
-            attackType += 1;
+        IEnumerator LaserAttackTimer() {
+            yield return new WaitForSeconds(laserAttackFrequent);
 
             if (!_isDead) {
-                if (attackType % 4 == 0) {
-                    Animator.SetBool(Attacking, true);
-                    yield return new WaitForSeconds(Animator.GetCurrentAnimatorStateInfo(0).length - 0.18f);
-                    ArmAttack();
-                }
-                else {
-                    LaserAttack();
-                }
+                LaserAttack();
+            }
+        }
+
+        IEnumerator ArmAttackTimer() {
+            yield return new WaitForSeconds(armAttackFrequent);
+
+            if (!_isDead) {
+                Animator.SetBool(Attacking, true);
+                yield return new WaitForSeconds(Animator.GetCurrentAnimatorStateInfo(0).length - 0.18f);
+                ArmAttack();
             }
         }
 
         void ArmAttack() {
-            _currentAttack = Instantiate(arm, armPosition.position, Quaternion.identity);
+            _currentArmAttack = Instantiate(arm, armPosition.position, Quaternion.identity);
         }
 
         void LaserAttack() {
-            _currentAttack = Instantiate(laser, transform.position, Quaternion.identity);
+            _currentLaserAttack = Instantiate(laser, transform.position, Quaternion.identity);
         }
 
-        public void AttackFinished() {
+        public void ArmAttackFinished() {
             Animator.SetBool(Attacking, false);
             Animator.SetTrigger(Finished);
-            StartCoroutine("AttackTimer");
+            StartCoroutine("ArmAttackTimer");
+        }
+
+        public void LaserAttackFinished() {
+            StartCoroutine("LaserAttackTimer");
         }
 
         protected override void OnDeath(string reason) {
-            if (_currentAttack) {
-                Destroy(_currentAttack);
+            if (_currentLaserAttack) {
+                Destroy(_currentLaserAttack);
+            }
+            if (_currentArmAttack) {
+                Destroy(_currentArmAttack);
             }
             Animator.SetTrigger(Dead);
             Collider2D.enabled = false;
