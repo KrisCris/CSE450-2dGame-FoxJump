@@ -7,6 +7,8 @@ public class GameController : MonoBehaviour {
     public static GameController Instance;
     public string currentLevel;
     public int maxJumps;
+    public int coins;
+    public int keys;
     public Vector2 lastSavePoint;
 
     public List<string> selectableLevel;
@@ -15,6 +17,31 @@ public class GameController : MonoBehaviour {
     private void Awake() {
         Instance = this;
         Load();
+    }
+
+    public void NewGame() {
+        // Init
+        currentLevel = "Scene_0";
+        selectableLevel = new List<string>();
+        maxJumps = 1;
+        coins = 0;
+        keys = 0;
+        Save();
+    }
+
+    public void AddCoins(int num) {
+        coins += num;
+        Save();
+    }
+
+    public void AddKeys(int num) {
+        keys += num;
+        Save();
+    }
+
+    public void AddJumps(int num) {
+        maxJumps += num;
+        Save();
     }
     
     public void SetLevelClear(string sceneName) {
@@ -51,6 +78,7 @@ public class GameController : MonoBehaviour {
             // Init
             currentLevel = "Scene_0";
             selectableLevel = new List<string>();
+            maxJumps = 1;
         } else {
             JsonUtility.FromJsonOverwrite(
                 PlayerPrefs.GetString("GameData"),

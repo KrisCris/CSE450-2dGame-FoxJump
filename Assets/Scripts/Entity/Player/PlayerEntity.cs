@@ -20,8 +20,8 @@ namespace Entity.Player {
 
         public GameObject projectile;
 
-        private Dictionary<Items, int> _inventory;
-        private HashSet<Component> _interactable;
+        // private Dictionary<Items, int> _inventory;
+        // private HashSet<Component> _interactable;
 
         private bool _climbable;
         private bool _isCrouching;
@@ -40,7 +40,7 @@ namespace Entity.Player {
 
         private new void Start() {
             base.Start();
-            _inventory = new Dictionary<Items, int>();
+            // _inventory = new Dictionary<Items, int>();
             _isCrouching = false;
             _climbable = false;
             if (GameController.Instance) {
@@ -132,22 +132,19 @@ namespace Entity.Player {
             return behindFoot;
         }
         
-        public Dictionary<Items, int> GetInventory() {
-            return _inventory;
-        }
+        // public Dictionary<Items, int> GetInventory() {
+        //     return _inventory;
+        // }
 
         public void OnItemCollect(Items item, int num) {
-            if (!_inventory.ContainsKey(item)) {
-                _inventory[item] = 0;
-            }
-
-            _inventory[item] += num;
             if (item == Items.Coin) {
-                coinCountText.text = "" + _inventory[item];
+                GameController.Instance.AddCoins(num);
+                coinCountText.text = GameController.Instance.coins.ToString();
             }
 
             if (item == Items.Key) {
-                keyCountText.text = "" + _inventory[item];
+                GameController.Instance.AddKeys(num);
+                keyCountText.text = GameController.Instance.keys.ToString();
             }
 
             if (item == Items.FlyingShoes) {
@@ -156,20 +153,17 @@ namespace Entity.Player {
         }
 
         public bool OnItemUsed(Items item, int num) {
-            if (_inventory.ContainsKey(item) && _inventory[item] >= num) {
-                _inventory[item] -= num;
-
-                if (item == Items.Coin) {
-                    coinCountText.text = "" + _inventory[item];
-                }
-
-                if (item == Items.Key) {
-                    keyCountText.text = "" + _inventory[item];
-                }
-
+            if (item == Items.Coin) {
+                GameController.Instance.AddCoins(-num);
+                coinCountText.text = GameController.Instance.coins.ToString();
                 return true;
             }
-
+            
+            if (item == Items.Key) {
+                GameController.Instance.AddKeys(-num);
+                keyCountText.text = GameController.Instance.keys.ToString();
+                return true;
+            }
             return false;
         }
 

@@ -15,7 +15,9 @@ public class SceneController : MonoBehaviour {
     }
     private void Start()
     {
-        SceneManager.LoadScene("MainUI", LoadSceneMode.Additive);
+        if (!FindObjectOfType<SceneData>()) {
+            SceneManager.LoadScene("MainUI", LoadSceneMode.Additive);
+        }
     }
 
     public void LoadGame(string scene) {

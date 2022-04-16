@@ -16,6 +16,7 @@ namespace UI.MainMenu {
         }
 
         public void NewGame() {
+            GameController.Instance.NewGame();
             SceneController.Instance.LoadGame("Scene_0");
         }
 
