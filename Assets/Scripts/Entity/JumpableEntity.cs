@@ -10,8 +10,8 @@ namespace Entity {
         public float raycastOffset = 0f;
         protected int CurrJumps;
 
-        private bool _isGrounded = true;
-        private bool _touchingGround = true;
+        protected bool IsGrounded = true;
+        protected bool TouchingGround = true;
 
 
         protected new void Start() {
@@ -21,14 +21,14 @@ namespace Entity {
 
         protected new void Update() {
             base.Update();
-            _isGrounded = CurrJumps == maxJumps && _touchingGround;
+            IsGrounded = CurrJumps == maxJumps && TouchingGround;
             // Animator.SetFloat("VerticalSpeed", Rigidbody2D.velocity.y);
             // _isGrounded = CurrJumps == maxJumps;
-            if (_isGrounded) {
-                Animator.SetBool("IsGrounded", _isGrounded);
+            if (IsGrounded) {
+                Animator.SetBool("IsGrounded", IsGrounded);
             } else {
-                Animator.SetBool("IsGrounded", _isGrounded);
-                Animator.SetBool("IsJumping", Rigidbody2D.velocity.y > 0);
+                Animator.SetBool("IsGrounded", IsGrounded);
+                Animator.SetBool("IsJumping", Rigidbody2D.velocity.y > 0 && CurrJumps < maxJumps);
                 Animator.SetBool("IsFalling", Rigidbody2D.velocity.y < 0);
             }
         }
@@ -37,7 +37,7 @@ namespace Entity {
             if (CurrJumps > 0) {
                 --CurrJumps;
                 Rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-                _touchingGround = false;
+                TouchingGround = false;
             }
         }
 
@@ -53,9 +53,15 @@ namespace Entity {
                 foreach (RaycastHit2D hit in hits) {
                     if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground")) {
                         CurrJumps = maxJumps;
-                        _touchingGround = true;
+                        TouchingGround = true;
                     }
                 }
+            }
+        }
+
+        private void OnCollisionExit2D(Collision2D other) {
+            if (other.gameObject.layer == LayerMask.NameToLayer("Ground")) {
+                TouchingGround = false;
             }
         }
     }
