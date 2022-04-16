@@ -19,7 +19,8 @@ namespace Entity.Enemy {
 
         // State Track
         private bool _isDead = false;
-        private GameObject _currentAttack;
+        private GameObject _currentArmAttack;
+        private GameObject _currentLaserAttack;
 
         void StartAttack() {
             StartCoroutine("ArmAttackTimer");
@@ -45,11 +46,11 @@ namespace Entity.Enemy {
         }
 
         void ArmAttack() {
-            _currentAttack = Instantiate(arm, armPosition.position, Quaternion.identity);
+            _currentArmAttack = Instantiate(arm, armPosition.position, Quaternion.identity);
         }
 
         void LaserAttack() {
-            _currentAttack = Instantiate(laser, transform.position, Quaternion.identity);
+            _currentLaserAttack = Instantiate(laser, transform.position, Quaternion.identity);
         }
 
         public void ArmAttackFinished() {
@@ -63,8 +64,11 @@ namespace Entity.Enemy {
         }
 
         protected override void OnDeath(string reason) {
-            if (_currentAttack) {
-                Destroy(_currentAttack);
+            if (_currentLaserAttack) {
+                Destroy(_currentLaserAttack);
+            }
+            if (_currentArmAttack) {
+                Destroy(_currentArmAttack);
             }
             Animator.SetTrigger(Dead);
             Collider2D.enabled = false;
