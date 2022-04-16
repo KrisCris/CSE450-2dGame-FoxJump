@@ -19,7 +19,7 @@ namespace Entity {
         public float speed = 12;
 
         private float _health;
-        protected bool FacingRight;
+        public bool FacingRight = true;
         
         private void InitProperties() {
             Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -27,7 +27,6 @@ namespace Entity {
             SpriteRenderer = GetComponent<SpriteRenderer>();
             Animator = GetComponent<Animator>();
             _health = maxHealth;
-            FacingRight = true;
             SpriteRenderer.flipX = !FacingRight;
             if (healthBar) {
                 healthBar.GetComponent<HealthBar>().Init(maxHealth);
