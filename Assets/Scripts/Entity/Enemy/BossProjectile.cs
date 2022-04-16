@@ -58,7 +58,7 @@ namespace Entity.Enemy {
 
                 Destroy(gameObject);
 
-                GameObject.FindGameObjectWithTag("Boss").gameObject.SendMessage("AttackFinished");
+                GameObject.FindGameObjectWithTag("Boss").gameObject.SendMessage("ArmAttackFinished");
             }
         }
 
@@ -69,7 +69,7 @@ namespace Entity.Enemy {
                 if (health <= 0) {
                     Destroy(gameObject);
 
-                    GameObject.FindGameObjectWithTag("Boss").gameObject.SendMessage("AttackFinished");
+                    GameObject.FindGameObjectWithTag("Boss").gameObject.SendMessage("ArmAttackFinished");
                 }
             }
         }
