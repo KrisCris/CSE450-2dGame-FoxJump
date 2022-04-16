@@ -9464,6 +9464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 2012474020}
+  sceneName: Scene_0
 --- !u!60 &1981566071
 PolygonCollider2D:
   m_ObjectHideFlags: 0

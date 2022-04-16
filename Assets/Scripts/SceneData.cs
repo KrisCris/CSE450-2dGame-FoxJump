@@ -2,6 +2,7 @@
 using UnityEngine;
 public class SceneData: MonoBehaviour {
     public Transform spawnPoint;
+    public string sceneName;
     private void Start() {
         if (CameraController.Instance && gameObject.TryGetComponent(out PolygonCollider2D vcamBoundingBox)) {
             CameraController.Instance.UpdateConfiner(vcamBoundingBox);
