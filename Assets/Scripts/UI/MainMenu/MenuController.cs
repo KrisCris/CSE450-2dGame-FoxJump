@@ -9,9 +9,10 @@ namespace UI.MainMenu {
         private void Start() {
             if (GameController.Instance.selectableLevel.Count == 0) {
                 continueButton.SetActive(false);
-                selectLevelButton.SetActive(false);
-            }
-
+                
+            } 
+            // disable this btn
+            selectLevelButton.SetActive(false);
             Debug.Log(PlayerPrefs.GetString("GameData"));
         }
 
