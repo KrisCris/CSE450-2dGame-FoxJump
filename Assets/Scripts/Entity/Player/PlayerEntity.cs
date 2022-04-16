@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Entity.Enemy;
 using Item;
 using TMPro;
 using Unity.VisualScripting;
@@ -99,9 +100,7 @@ namespace Entity.Player {
             }
 
             if (Input.GetKeyDown(key["jump"])) {
-                if (PerformJump() && !playerJump.isPlaying) {
-                    playerJump.Play();
-                }
+                PerformJump();
             }
 
             //TODO Move to somewhere else
@@ -118,6 +117,14 @@ namespace Entity.Player {
             } else {
                 playerWalk.Stop();
             }
+        }
+
+        protected override bool PerformJump(bool free = false) {
+            if (base.PerformJump(free) && !playerJump.isPlaying) {
+                playerJump.Play();
+                return true;
+            }
+            return false;
         }
 
         public Vector2 GetFrontFoot() {
@@ -180,6 +187,11 @@ namespace Entity.Player {
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.gameObject.layer == LayerMask.NameToLayer("Ladder")) {
                 _climbable = true;
+            }
+
+            if (other.gameObject.GetComponent<HeadKill>()) {
+                PerformJump(true);
+                Animator.SetBool("IsJumping", true);
             }
         }
 

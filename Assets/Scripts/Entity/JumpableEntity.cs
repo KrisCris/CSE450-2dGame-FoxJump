@@ -13,7 +13,7 @@ namespace Entity {
         public int jumpIFrames = 4;
         public int jumpIFrameCountdown = 0;
         public bool jumpProtection = false;
-        
+
 
         protected new void Start() {
             base.Start();
@@ -25,13 +25,13 @@ namespace Entity {
             IsGrounded = currJumps == maxJumps && DetectGround();
 
             Animator.SetBool("IsGrounded", IsGrounded);
-            Animator.SetBool("IsJumping", Rigidbody2D.velocity.y > 0.3 && currJumps < maxJumps);
+            Animator.SetBool("IsJumping", Rigidbody2D.velocity.y > 0.3 && (currJumps < maxJumps));
             Animator.SetBool("IsFalling", Rigidbody2D.velocity.y < -0.3);
         }
 
         protected new void FixedUpdate() {
             base.FixedUpdate();
-            
+
             // Jump Invincible
             if (GetComponent<PlayerEntity>()) {
                 if (jumpIFrameCountdown > 0) {
@@ -45,13 +45,14 @@ namespace Entity {
             }
         }
 
-        protected bool PerformJump() {
-            if (currJumps > 0) {
-                --currJumps;
+        protected virtual bool PerformJump(bool free = false) {
+            if (currJumps > 0 || free) {
+                if (!free) --currJumps;
                 Rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
                 jumpIFrameCountdown = jumpIFrames;
                 return true;
             }
+
             return false;
         }
 
