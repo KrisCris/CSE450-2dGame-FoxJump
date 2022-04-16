@@ -166,7 +166,8 @@ MonoBehaviour:
   dmgIFrameCountdown: 0
   dmgProtection: 0
   speed: 12
-  health: 0
+  knockBackForce: 1
+  health: 15
   FacingRight: 1
   jumpForce: 10
   maxJumps: 1

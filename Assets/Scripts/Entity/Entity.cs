@@ -17,6 +17,7 @@ namespace Entity {
         public int dmgIFrameCountdown = 0;
         public bool dmgProtection = false;
         public float speed = 12;
+        public float knockBackForce = 1;
 
         public float health;
         public bool FacingRight = true;
@@ -82,6 +83,7 @@ namespace Entity {
 
         private void OnDamage(float dmg) {
             if (damageable && health > 0) {
+                KnockBack();
                 health = Mathf.Max(health - dmg, 0);
                 damageable = false;
                 dmgIFrameCountdown = dmgIFrames;
@@ -97,6 +99,10 @@ namespace Entity {
                     OnDeath("Killed by Game Design.");
                 }
             }
+        }
+
+        public void KnockBack() {
+            Rigidbody2D.AddForce(new Vector2(0,10f) * knockBackForce, ForceMode2D.Impulse);
         }
 
         public void UpdatePos(Vector3 pos) {
