@@ -160,17 +160,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
-  maxHealth: 10
+  maxHealth: 15
   damageable: 1
-  dmgIFrames: 10
+  dmgIFrames: 30
   dmgIFrameCountdown: 0
+  dmgProtection: 0
   speed: 12
+  health: 0
   FacingRight: 1
   jumpForce: 10
   maxJumps: 1
   currJumps: 0
-  jumpIFrames: 4
+  jumpIFrames: 5
   jumpIFrameCountdown: 0
+  jumpProtection: 0
   projectile: {fileID: 1010903080642773775, guid: 08a281eb893f6b9479022f82dab68cca, type: 3}
   coinCountText: {fileID: 0}
   keyCountText: {fileID: 0}

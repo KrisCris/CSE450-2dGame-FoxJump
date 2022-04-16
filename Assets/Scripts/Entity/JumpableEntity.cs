@@ -12,6 +12,7 @@ namespace Entity {
         protected bool IsGrounded = true;
         public int jumpIFrames = 4;
         public int jumpIFrameCountdown = 0;
+        public bool jumpProtection = false;
         
 
         protected new void Start() {
@@ -35,9 +36,11 @@ namespace Entity {
             if (GetComponent<PlayerEntity>()) {
                 if (jumpIFrameCountdown > 0) {
                     damageable = false;
+                    jumpProtection = true;
                     --jumpIFrameCountdown;
-                } else {
+                } else if (jumpProtection) {
                     damageable = true;
+                    jumpProtection = false;
                 }
             }
         }

@@ -5,29 +5,28 @@ using UnityEngine.SceneManagement;
 
 namespace Entity {
     public class Entity : MonoBehaviour {
-        [Header("Outlets")]
-        protected Rigidbody2D Rigidbody2D;
+        [Header("Outlets")] protected Rigidbody2D Rigidbody2D;
         protected Collider2D Collider2D;
         protected SpriteRenderer SpriteRenderer;
         protected Animator Animator;
         public GameObject healthBar;
 
-        [Header("State")]
-        public float maxHealth = 10;
+        [Header("State")] public float maxHealth = 10;
         public bool damageable = true;
-        public int dmgIFrames = 10;
+        public int dmgIFrames = 30;
         public int dmgIFrameCountdown = 0;
+        public bool dmgProtection = false;
         public float speed = 12;
 
-        private float _health;
+        public float health;
         public bool FacingRight = true;
-        
+
         private void InitProperties() {
             Rigidbody2D = GetComponent<Rigidbody2D>();
             Collider2D = GetComponent<Collider2D>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
             Animator = GetComponent<Animator>();
-            _health = maxHealth;
+            health = maxHealth;
             SpriteRenderer.flipX = !FacingRight;
             if (healthBar) {
                 healthBar.GetComponent<HealthBar>().Init(maxHealth);
@@ -40,11 +39,14 @@ namespace Entity {
 
         protected void FixedUpdate() {
             if (dmgIFrameCountdown > 0) {
+                dmgProtection = true;
                 --dmgIFrameCountdown;
-            } else {
+            } else if (dmgProtection) {
                 if (GetComponent<PlayerEntity>()) {
                     Animator.SetBool("IsDamaging", false);
                 }
+
+                dmgProtection = false;
                 damageable = true;
             }
         }
@@ -58,13 +60,14 @@ namespace Entity {
             if (FacingRight == direction.x < 0) {
                 FlipFacing();
             }
+
             Rigidbody2D.AddForce(direction * (speed * Time.deltaTime), ForceMode2D.Impulse);
         }
 
         protected void Move(Vector2 direction) {
             Move(direction, speed);
         }
-        
+
         public int GetFaceDirection() {
             return FacingRight ? 1 : -1;
         }
@@ -72,40 +75,41 @@ namespace Entity {
         public float GetX() {
             return Rigidbody2D.transform.position.x;
         }
-        
+
         public float GetY() {
             return Rigidbody2D.transform.position.y;
         }
-        
+
         private void OnDamage(float dmg) {
-            if (damageable && _health > 0) {
-                _health = Mathf.Max(_health - dmg, 0);
+            if (damageable && health > 0) {
+                health = Mathf.Max(health - dmg, 0);
                 damageable = false;
                 dmgIFrameCountdown = dmgIFrames;
                 if (healthBar) {
-                    healthBar.GetComponent<HealthBar>().UpdateHealthBar(_health, maxHealth);
+                    healthBar.GetComponent<HealthBar>().UpdateHealthBar(health, maxHealth);
                 }
 
                 if (GetComponent<PlayerEntity>()) {
                     Animator.SetBool("IsDamaging", true);
                 }
-                
-                if (_health <= 0) {
+
+                if (health <= 0) {
                     OnDeath("Killed by Game Design.");
                 }
             }
-            
         }
 
         public void UpdatePos(Vector3 pos) {
             gameObject.transform.position = pos;
         }
+
         private float OnHealing(float heal) {
-            _health = Mathf.Min(heal + _health, maxHealth);
+            health = Mathf.Min(heal + health, maxHealth);
             if (healthBar) {
-                healthBar.GetComponent<HealthBar>().UpdateHealthBar(_health, maxHealth);
+                healthBar.GetComponent<HealthBar>().UpdateHealthBar(health, maxHealth);
             }
-            return _health;
+
+            return health;
         }
 
         protected virtual void OnDeath(string reason) {
@@ -123,7 +127,7 @@ namespace Entity {
         //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);            
         //     SceneManager.LoadScene("Player", LoadSceneMode.Additive);
         // }
-        
+
         protected void FlipFacing() {
             if (!Rigidbody2D) return;
             SpriteRenderer.flipX = FacingRight;
