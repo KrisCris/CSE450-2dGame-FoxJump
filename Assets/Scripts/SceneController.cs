@@ -26,9 +26,11 @@ public class SceneController : MonoBehaviour {
     }
 
     public void SwitchMap(String scene) {
-        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
+        SceneManager.UnloadSceneAsync(GameController.Instance.currentLevel);
+        // SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene(scene, LoadSceneMode.Additive);
-        GameController.Instance.SetLevelClear(SceneManager.GetActiveScene().name);
+        // GameController.Instance.SetLevelClear(SceneManager.GetActiveScene().name);
+        GameController.Instance.SetLevelClear();
         GameController.Instance.SetCurrentScene(scene);
     }
 
