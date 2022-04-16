@@ -6,5 +6,8 @@ namespace Item {
         private void Awake() {
             ItemClass = Items.Coin;
         }
+        protected override void PlayCollectionSound() {
+            SoundControlInst.PlaySound(SoundControlInst.coinCollected);
+        }
     }
 }

@@ -11,8 +11,13 @@ namespace Item {
         protected bool IsFloat = true;
         protected Items ItemClass = Items.Default;
 
+        protected SoundController SoundControlInst;
+
         private void Start() {
             Position = transform.position;
+            if (SoundController.Instance) {
+                SoundControlInst = SoundController.Instance;
+            }
         }
 
         private void Update() {
@@ -24,9 +29,14 @@ namespace Item {
         protected void OnTriggerStay2D(Collider2D other) {
             if (other.gameObject.GetComponent<PlayerEntity>() && (!GetComponent<Rigidbody2D>() || GetComponent<Rigidbody2D>().velocity.magnitude < 1f)) {
                 other.gameObject.GetComponent<PlayerEntity>().OnItemCollect(ItemClass, 1);
-                SoundController.Instance.PlaySound(soundWhenEaten);
+                // SoundControlInst.PlaySound(soundWhenEaten);
+                PlayCollectionSound();
                 Destroy(gameObject);
             }
+        }
+
+        protected virtual void PlayCollectionSound() {
+            SoundControlInst.PlaySound(SoundControlInst.defaultItemCollection);
         }
 
         private void OnCollisionEnter2D(Collision2D other) {

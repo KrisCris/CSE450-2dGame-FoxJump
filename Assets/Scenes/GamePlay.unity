@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevel: 
+  lastSavePoint: {x: 0, y: 0}
   selectableLevel: []
 --- !u!82 &1177959067
 AudioSource:
@@ -292,6 +293,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1554c00d519e24948932ecf5ffcd513a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultItemCollection: {fileID: 8300000, guid: a932d32fca391cd48b4a00bba29315cd, type: 3}
+  coinCollected: {fileID: 8300000, guid: e9e05087e78288b4a8b13ef565c0a60b, type: 3}
+  enemyCrushed: {fileID: 8300000, guid: 4354547f08626b14aa7844f0fdb998ef, type: 3}
 --- !u!1 &1317461274
 GameObject:
   m_ObjectHideFlags: 0
