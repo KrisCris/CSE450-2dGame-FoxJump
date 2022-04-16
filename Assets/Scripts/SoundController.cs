@@ -11,6 +11,8 @@ public class SoundController : MonoBehaviour {
     public AudioClip defaultItemCollection;
     public AudioClip coinCollected;
     public AudioClip enemyCrushed;
+    public AudioClip playerWalk;
+    public AudioClip playerJump;
 
     private void Awake() {
         Instance = this;

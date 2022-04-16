@@ -296,6 +296,8 @@ MonoBehaviour:
   defaultItemCollection: {fileID: 8300000, guid: a932d32fca391cd48b4a00bba29315cd, type: 3}
   coinCollected: {fileID: 8300000, guid: e9e05087e78288b4a8b13ef565c0a60b, type: 3}
   enemyCrushed: {fileID: 8300000, guid: 4354547f08626b14aa7844f0fdb998ef, type: 3}
+  playerWalk: {fileID: 8300000, guid: 07902d35c76dec04495ae89be0bca886, type: 3}
+  playerJump: {fileID: 8300000, guid: 3297b8e010ccde2469b5fcd29d3dd4b2, type: 3}
 --- !u!1 &1317461274
 GameObject:
   m_ObjectHideFlags: 0

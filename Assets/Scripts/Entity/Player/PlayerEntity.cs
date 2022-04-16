@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Item;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -37,19 +38,23 @@ namespace Entity.Player {
         public TextMeshProUGUI coinCountText;
         public TextMeshProUGUI keyCountText;
 
-       
+        public AudioSource playerJump;
+        public AudioSource playerWalk;
 
         private new void Start() {
             base.Start();
             _inventory = new Dictionary<Items, int>();
             _isCrouching = false;
             _climbable = false;
+            if (GameController.Instance) {
+                SetJumps(GameController.Instance.maxJumps);
+            }
         }
 
         protected new void FixedUpdate() {
             base.FixedUpdate();
             // This is synced with Physics Engine
-            
+
             Animator.SetFloat("HorizontalSpeed", Mathf.Abs(Rigidbody2D.velocity.x));
             Animator.SetBool("Climbable", _climbable);
 
@@ -97,9 +102,11 @@ namespace Entity.Player {
             }
 
             if (Input.GetKeyDown(key["jump"])) {
-                PerformJump();
+                if (PerformJump() && !playerJump.isPlaying) {
+                    playerJump.Play();
+                }
             }
-            
+
             //TODO Move to somewhere else
             if (Input.GetKeyDown(KeyCode.Escape) && !SceneManager.GetSceneByName("Menu").isLoaded) {
                 Time.timeScale = 0;
@@ -107,6 +114,13 @@ namespace Entity.Player {
             }
 
             Animator.SetBool(IsCrouching, _isCrouching);
+            if (Mathf.Abs(Rigidbody2D.velocity.x) > 0 && IsGrounded) {
+                if (!playerWalk.isPlaying) {
+                    playerWalk.Play();
+                }
+            } else {
+                playerWalk.Stop();
+            }
         }
 
         public Dictionary<Items, int> GetInventory() {

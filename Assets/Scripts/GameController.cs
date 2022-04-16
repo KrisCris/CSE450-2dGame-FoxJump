@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour {
     public static GameController Instance;
     public string currentLevel;
+    public int maxJumps;
     public Vector2 lastSavePoint;
 
     public List<string> selectableLevel;
@@ -21,6 +22,10 @@ public class GameController : MonoBehaviour {
             selectableLevel.Add(sceneName);
         }
         Save();
+    }
+    
+    public void SetLevelClear() {
+        SetLevelClear(currentLevel);
     }
 
     public void SetLastSavePoint(Vector2 pos) {
