@@ -31,7 +31,6 @@ namespace Entity.Enemy {
 
             // Home in on target
             Vector2 directionToTarget = target.position - transform.position;
-            print(_rigidbody2D.velocity);
             _rigidbody2D.MoveRotation(Mathf.Atan2(-_rigidbody2D.velocity.y, -_rigidbody2D.velocity.x)* Mathf.Rad2Deg);
             // Accelerate
             _rigidbody2D.AddForce(directionToTarget * acceleration);

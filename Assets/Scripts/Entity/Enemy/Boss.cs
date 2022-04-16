@@ -9,8 +9,9 @@ namespace Entity.Enemy {
     {
         // Outlet
         public GameObject arm;
-        public float attackFrequent;
         public Transform armPosition;
+        public GameObject laser;
+        public float attackFrequent;
         private static readonly int Dead = Animator.StringToHash("Dead");
         private static readonly int Attacking = Animator.StringToHash("Attacking");
         private static readonly int Finished = Animator.StringToHash("AttackFinished");
@@ -18,6 +19,7 @@ namespace Entity.Enemy {
         // State Track
         public int attackType = 0;
         private bool _isDead = false;
+        private GameObject _currentAttack;
 
         protected void Start() {
             base.Start();
@@ -28,15 +30,24 @@ namespace Entity.Enemy {
             yield return new WaitForSeconds(attackFrequent);
             attackType += 1;
 
-            if (attackType % 1 == 0 && !_isDead) {
-                Animator.SetBool(Attacking, true);
-                yield return new WaitForSeconds(Animator.GetCurrentAnimatorStateInfo(0).length - 0.18f);
-                ArmAttack();
+            if (!_isDead) {
+                if (attackType % 4 == 0) {
+                    Animator.SetBool(Attacking, true);
+                    yield return new WaitForSeconds(Animator.GetCurrentAnimatorStateInfo(0).length - 0.18f);
+                    ArmAttack();
+                }
+                else {
+                    LaserAttack();
+                }
             }
         }
 
         void ArmAttack() {
-            Instantiate(arm, armPosition.position, Quaternion.identity);
+            _currentAttack = Instantiate(arm, armPosition.position, Quaternion.identity);
+        }
+
+        void LaserAttack() {
+            _currentAttack = Instantiate(laser, transform.position, Quaternion.identity);
         }
 
         public void AttackFinished() {
@@ -46,6 +57,9 @@ namespace Entity.Enemy {
         }
 
         protected override void OnDeath(string reason) {
+            if (_currentAttack) {
+                Destroy(_currentAttack);
+            }
             Animator.SetTrigger(Dead);
             Collider2D.enabled = false;
             _isDead = true;
