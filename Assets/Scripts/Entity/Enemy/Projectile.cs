@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
-{
+public class Projectile : MonoBehaviour {
     private Transform target;
     [SerializeField] private float shotSpeed;
     public float attackDamage = 2;
@@ -11,30 +10,27 @@ public class Projectile : MonoBehaviour
     private float lifeBtwTimer;
     public GameObject destoryEffect;
 
-    private void Awake()
-    {
+    private void Awake() {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
-    private void Update()
-    {
-        //Always follow the player anytime
-        transform.position = Vector2.MoveTowards(transform.position, target.position, shotSpeed * Time.deltaTime);
+    private void Update() {
+        if (transform && target) {
+            //Always follow the player anytime
+            transform.position = Vector2.MoveTowards(transform.position, target.position, shotSpeed * Time.deltaTime);
 
-        lifeBtwTimer += Time.deltaTime;
+            lifeBtwTimer += Time.deltaTime;
 
-        if (lifeBtwTimer >= maxLife)
-        {
-            //Instantiate(destoryEffect, transform.position, Quaternion.identity);
+            if (lifeBtwTimer >= maxLife) {
+                //Instantiate(destoryEffect, transform.position, Quaternion.identity);
+            }
+        } else {
             Destroy(gameObject);
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-
-        if (collision.collider.CompareTag("Player"))
-        {
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.collider.CompareTag("Player")) {
             //Instantiate(destoryEffect, transform.position, Quaternion.identity);
 
             collision.gameObject.SendMessage("OnDamage", attackDamage);
@@ -42,7 +38,4 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
-   
-
 }
