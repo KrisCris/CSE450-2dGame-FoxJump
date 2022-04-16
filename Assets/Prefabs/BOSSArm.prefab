@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 8009930615284418307}
   - component: {fileID: 8032932127467038415}
   - component: {fileID: 1693620690425741167}
+  - component: {fileID: -4701456490230390226}
   - component: {fileID: -3260867609582497523}
   m_Layer: 11
   m_Name: BOSSArm
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,7 +125,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.375, y: 1.75}
+    oldSize: {x: 2.1875, y: 0.875}
     newSize: {x: 4.375, y: 1.75}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -132,13 +133,36 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -1.0182734, y: 0.879446}
-      - {x: -1.771328, y: 0.41072273}
-      - {x: -2.161707, y: -0.059518814}
-      - {x: -1.7941537, y: -0.50644875}
-      - {x: -0.98115444, y: -0.89434433}
-      - {x: 2.225831, y: -0.24253654}
-      - {x: 2.2162476, y: 0.07004738}
+    - - {x: 0.2654357, y: 0.33483124}
+      - {x: -0.48876858, y: 0.43925667}
+      - {x: -0.9100852, y: 0.1746788}
+      - {x: -1.109076, y: -0.04037857}
+      - {x: -0.907393, y: -0.2448864}
+      - {x: -0.4771676, y: -0.46053123}
+      - {x: 0.08244085, y: -0.38796997}
+      - {x: 1.1094046, y: -0.11494446}
+      - {x: 1.1189604, y: 0.012630463}
+--- !u!50 &-4701456490230390226
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5774351873630304936}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!114 &-3260867609582497523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,3 +175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3905841321bda5e4895b9792bc481463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shotSpeed: 3
+  attackDamage: 2
+  maxLife: 2
+  destoryEffect: {fileID: 0}
+  health: 0
