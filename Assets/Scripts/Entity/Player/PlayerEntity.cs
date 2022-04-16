@@ -169,7 +169,7 @@ namespace Entity.Player {
             }
 
             if (item == Items.Key) {
-                if (GameController.Instance.coins >= num) {
+                if (GameController.Instance.keys >= num) {
                     GameController.Instance.AddKeys(-num);
                     keyCountText.text = GameController.Instance.keys.ToString();
                     return true;
