@@ -182,3 +182,4 @@ MonoBehaviour:
   timer: 10
   destoryEffect: {fileID: 0}
   health: 0
+  explosionSound: {fileID: 0}

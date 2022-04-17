@@ -1,10 +1,7 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using Entity.Player;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
+
 
 namespace Entity.Enemy {
     public class Boss : Entity
@@ -18,6 +15,7 @@ namespace Entity.Enemy {
         private static readonly int Dead = Animator.StringToHash("Dead");
         private static readonly int Attacking = Animator.StringToHash("Attacking");
         private static readonly int Finished = Animator.StringToHash("AttackFinished");
+        public AudioSource armDestroySound;
 
         // State Track
         private bool _isDead = false;
@@ -78,6 +76,13 @@ namespace Entity.Enemy {
         public void LaserAttackFinished() {
             if (safeLock) {
                 StartCoroutine(nameof(LaserAttackTimer));
+            }
+        }
+
+        public void PlayArmDestroySound() {
+            if (armDestroySound) {
+                armDestroySound.Play();
+                // Debug.Log("play arm explode sound");
             }
         }
 

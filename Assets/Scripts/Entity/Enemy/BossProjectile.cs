@@ -17,7 +17,7 @@ namespace Entity.Enemy {
         private float lifeBtwTimer;
         public GameObject destoryEffect;
         public float health;
-
+        
         private void Start() {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -56,9 +56,12 @@ namespace Entity.Enemy {
 
                 collision.gameObject.SendMessage("OnDamage", attackDamage);
 
+                var bossController = GameObject.FindGameObjectWithTag("Boss").gameObject.GetComponent<Boss>();
+                bossController.PlayArmDestroySound();
+                
                 Destroy(gameObject);
 
-                GameObject.FindGameObjectWithTag("Boss").gameObject.SendMessage("ArmAttackFinished");
+                bossController.SendMessage("ArmAttackFinished");
             }
         }
 
