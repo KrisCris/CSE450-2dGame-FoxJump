@@ -1,3 +1,4 @@
+using UI;
 using UnityEngine;
 
 namespace Ground {
@@ -25,6 +26,9 @@ namespace Ground {
                 for (int i = 0; i < targets.Length; i++){
                     if (targets[i]) {
                         targets[i].SendMessage("Triggered");
+                        if (MessageController.Instance) {
+                            MessageController.Instance.ShowMessage("Something starts moving...");
+                        }
                     }
                 }
             }
@@ -33,12 +37,18 @@ namespace Ground {
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.gameObject.CompareTag("Player")) {
                 isOnSwitch = true;
+                if (MessageController.Instance) {
+                    MessageController.Instance.ShowMessage("Press E to interact with the switch!");
+                }
             }
         }
 
         private void OnTriggerExit2D(Collider2D other) {
             if (other.gameObject.CompareTag("Player")) {
                 isOnSwitch = false;
+                if (MessageController.Instance) {
+                    MessageController.Instance.HideMessage();
+                }
             }
         }
     }

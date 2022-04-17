@@ -1,5 +1,6 @@
 ﻿using System;
 using Entity.Player;
+using UI;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -69,10 +70,13 @@ namespace Entity.Enemy {
                 if (bossAudio) {
                     bossAudio.Stop();
                 }
-                // // enable backup trigger
-                // _player.SetEventTrigger(true);
-                // // let player fall
-                // _player.SetColliderState(false);
+
+                if (MessageController.Instance) {
+                    MessageController.Instance.ShowMessage("Fainted...\nThe stone giant is too powerful...", () => {
+                        SceneController.Instance.SwitchMap("Scene_0_1");
+                        _player.SendMessage("OnHealing", _player.maxHealth * .5f);
+                    });
+                }
             }
             
         }

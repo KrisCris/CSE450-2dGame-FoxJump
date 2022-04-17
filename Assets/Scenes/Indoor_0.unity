@@ -15438,6 +15438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: Map_1
   requireKeyInteraction: 0
+  recoverHealth: 0
 --- !u!61 &499109603
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28932,7 +28933,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1981566068}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.03, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -28979,12 +28980,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.21599388, y: 14.10189}
-      - {x: -7.351671, y: 10.202739}
-      - {x: -12.094149, y: 6.927333}
-      - {x: -11.791224, y: -12.24718}
-      - {x: 12.689318, y: -12.159715}
-      - {x: 12.476918, y: 6.7857924}
+    - - {x: 4.4752045, y: 9.301456}
+      - {x: 0.8792801, y: 9.331139}
+      - {x: -9.030707, y: 9.363089}
+      - {x: -8.981767, y: -10.385843}
+      - {x: 18.565226, y: -10.38584}
+      - {x: 18.254364, y: 9.172842}
 --- !u!114 &1981566072
 MonoBehaviour:
   m_ObjectHideFlags: 0

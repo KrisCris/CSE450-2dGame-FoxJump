@@ -11,18 +11,8 @@ namespace UI {
         private float _maxHealth;
         private float _curHealth;
 
-        // [HideInInspector] public float hp;
-        // [SerializeField] private float maxHp;
-        // [SerializeField] private float hurtsSpeed = 0.001f;
-
         public float fgSpeed = 1f;
         public float bgSpeed = 0.1f;
-
-        // Start is called before the first frame update
-        // void Start()
-        // {
-        //     hp = maxhp;
-        // }
 
         // Update is called once per frame
         public void Init(float maxHealth) {

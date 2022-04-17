@@ -9,10 +9,10 @@ public class GameController : MonoBehaviour {
     public int maxJumps;
     public int coins;
     public int keys;
+    public bool canWallClimb;
     public Vector2 lastSavePoint;
 
     public List<string> selectableLevel;
-    // public HashSet<string> selectableLevel;
 
     private void Awake() {
         Instance = this;
@@ -26,29 +26,36 @@ public class GameController : MonoBehaviour {
         maxJumps = 1;
         coins = 0;
         keys = 0;
+        canWallClimb = false;
+        lastSavePoint = new Vector2(-9999f, -9999f);
         Save();
-        Debug.Log("new game init");
+        // Debug.Log("new game init");
+    }
+
+    public bool ValidateSavePoint() {
+        return lastSavePoint.x > -9999 && lastSavePoint.y > -9999;
     }
 
     public void AddCoins(int num) {
         coins += num;
-        Save();
+        // Save();
     }
 
     public void AddKeys(int num) {
         keys += num;
-        Save();
+        // Save();
     }
 
     public void AddJumps(int num) {
         maxJumps += num;
-        Save();
+        // Save();
     }
     
     public void SetLevelClear(string sceneName) {
         if (!selectableLevel.Contains(sceneName)) {
             selectableLevel.Add(sceneName);
         }
+        lastSavePoint = new Vector2(-9999, -9999);
         Save();
     }
     
@@ -70,6 +77,10 @@ public class GameController : MonoBehaviour {
         return currentLevel;
     }
 
+    public Vector2 GetLastSavePoint() {
+        return lastSavePoint;
+    }
+
     private void Save() {
         PlayerPrefs.SetString("GameData", JsonUtility.ToJson(Instance));
     }
@@ -87,6 +98,4 @@ public class GameController : MonoBehaviour {
             );
         }
     }
-
-    private void Update() { }
 }
