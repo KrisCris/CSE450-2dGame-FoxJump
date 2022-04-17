@@ -7,6 +7,7 @@ public class Objective : MonoBehaviour {
     public string sceneName;
     public bool requireKeyInteraction = false;
     private Collider2D _collider2D;
+    public bool recoverHealth = false;
 
     private void Start() {
         if (!_collider2D) {
@@ -18,6 +19,10 @@ public class Objective : MonoBehaviour {
         if (!requireKeyInteraction || Input.GetKey(KeyCode.E)) {
             if (other.GetComponent<PlayerEntity>()) {
                 SceneController.Instance.SwitchMap(sceneName);
+                if (recoverHealth) {
+                    other.GetComponent<PlayerEntity>().SendMessage("OnHealing", other.GetComponent<PlayerEntity>().maxHealth * .5f);
+                }
+                
             }
         }
 

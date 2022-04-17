@@ -17,6 +17,7 @@ public class CameraController : MonoBehaviour {
     public void UpdateConfiner(Collider2D boundingShape) {
         if (_confiner) {
             _confiner.m_BoundingShape2D = boundingShape;
+            _confiner.InvalidateCache();
         }
     }
 

@@ -50,6 +50,10 @@ namespace Entity {
                 if (!free) --currJumps;
                 Rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
                 jumpIFrameCountdown = jumpIFrames;
+                if (free) {
+                    Animator.SetBool("IsJumping", true);
+                    currJumps = Mathf.Max(currJumps + 1, maxJumps);
+                }
                 return true;
             }
 
@@ -57,6 +61,7 @@ namespace Entity {
         }
 
         public void UpdateMaxJump(int offset) {
+            Debug.Log(offset);
             maxJumps = Math.Max(maxJumps + offset, 0);
             currJumps = Math.Max(currJumps + offset, 0);
             GameController.Instance.AddJumps(offset);

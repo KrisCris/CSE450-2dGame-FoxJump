@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour {
         coins = 0;
         keys = 0;
         Save();
+        Debug.Log("new game init");
     }
 
     public void AddCoins(int num) {

@@ -140,8 +140,12 @@ MonoBehaviour:
   healthBar: {fileID: 6080279655842563838}
   maxHealth: 20
   damageable: 1
-  timer: 25
+  dmgIFrames: 30
+  dmgIFrameCountdown: 0
+  dmgProtection: 0
   speed: 12
+  knockBackForce: 1
+  health: 0
   FacingRight: 0
   arm: {fileID: 5774351873630304936, guid: 14e348fe935b2754c961706b476a439c, type: 3}
   armPosition: {fileID: 987140768272815029}

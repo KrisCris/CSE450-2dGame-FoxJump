@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Entity.Player;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -21,10 +23,15 @@ namespace Entity.Enemy {
         private bool _isDead = false;
         private GameObject _currentArmAttack;
         private GameObject _currentLaserAttack;
+        
+        // modifier
+        public bool safeLock = true;
+        public int touchDamage = 2;
 
-        void StartAttack() {
-            StartCoroutine("ArmAttackTimer");
-            StartCoroutine("LaserAttackTimer");
+        public void StartAttack() {
+            arm.transform.localScale = gameObject.transform.localScale;
+            StartCoroutine(nameof(ArmAttackTimer));
+            StartCoroutine(nameof(LaserAttackTimer));
         }
 
         IEnumerator LaserAttackTimer() {
@@ -32,6 +39,10 @@ namespace Entity.Enemy {
 
             if (!_isDead) {
                 LaserAttack();
+            }
+
+            if (!safeLock) {
+                yield return LaserAttackTimer();
             }
         }
 
@@ -42,6 +53,9 @@ namespace Entity.Enemy {
                 Animator.SetBool(Attacking, true);
                 yield return new WaitForSeconds(Animator.GetCurrentAnimatorStateInfo(0).length - 0.18f);
                 ArmAttack();
+                if (!safeLock) {
+                    yield return ArmAttackTimer();
+                }
             }
         }
 
@@ -54,13 +68,17 @@ namespace Entity.Enemy {
         }
 
         public void ArmAttackFinished() {
-            Animator.SetBool(Attacking, false);
-            Animator.SetTrigger(Finished);
-            StartCoroutine("ArmAttackTimer");
+            if (safeLock) {
+                Animator.SetBool(Attacking, false);
+                Animator.SetTrigger(Finished);
+                StartCoroutine(nameof(ArmAttackTimer));
+            }
         }
 
         public void LaserAttackFinished() {
-            StartCoroutine("LaserAttackTimer");
+            if (safeLock) {
+                StartCoroutine(nameof(LaserAttackTimer));
+            }
         }
 
         protected override void OnDeath(string reason) {
@@ -73,6 +91,12 @@ namespace Entity.Enemy {
             Animator.SetTrigger(Dead);
             Collider2D.enabled = false;
             _isDead = true;
+        }
+
+        private void OnCollisionEnter2D(Collision2D col) {
+            if (col.gameObject.GetComponent<PlayerEntity>()) {
+                col.gameObject.GetComponent<PlayerEntity>().SendMessage("OnDamage", touchDamage);
+            }
         }
     }
     

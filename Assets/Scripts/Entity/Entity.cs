@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 namespace Entity {
     public class Entity : MonoBehaviour {
         [Header("Outlets")] protected Rigidbody2D Rigidbody2D;
-        protected Collider2D Collider2D;
+        public Collider2D Collider2D;
         protected SpriteRenderer SpriteRenderer;
-        protected Animator Animator;
+        public Animator Animator;
         public GameObject healthBar;
 
         [Header("State")] public float maxHealth = 10;
@@ -24,7 +24,9 @@ namespace Entity {
 
         private void InitProperties() {
             Rigidbody2D = GetComponent<Rigidbody2D>();
-            Collider2D = GetComponent<Collider2D>();
+            if (!Collider2D) {
+                Collider2D = GetComponent<Collider2D>();
+            }
             SpriteRenderer = GetComponent<SpriteRenderer>();
             Animator = GetComponent<Animator>();
             health = maxHealth;
@@ -57,6 +59,14 @@ namespace Entity {
             // TODO health management?            
         }
 
+        public void SetAnimationSpeed(float speed) {
+            Animator.speed = speed;
+        }
+
+        public void SetColliderState(bool state) {
+            Collider2D.enabled = state;
+        }
+
         protected void Move(Vector2 direction, float speed) {
             if (FacingRight == direction.x < 0) {
                 FlipFacing();
@@ -83,7 +93,9 @@ namespace Entity {
 
         private void OnDamage(float dmg) {
             if (damageable && health > 0) {
-                KnockBack();
+                if (GetComponent<PlayerEntity>()) {
+                    KnockBack();
+                }
                 health = Mathf.Max(health - dmg, 0);
                 damageable = false;
                 dmgIFrameCountdown = dmgIFrames;
@@ -114,7 +126,6 @@ namespace Entity {
             if (healthBar) {
                 healthBar.GetComponent<HealthBar>().UpdateHealthBar(health, maxHealth);
             }
-
             return health;
         }
 
