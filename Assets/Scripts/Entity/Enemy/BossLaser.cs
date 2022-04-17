@@ -1,40 +1,50 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Entity.Enemy {
     public class BossLaser : MonoBehaviour {
-        public Animator animator;
-        private Rigidbody2D _rigidbody2D;
-        private Transform target;
-        private Collider2D _collider2D;
+        public AudioSource laserSound;
         public float attackDamage;
 
-        // Start is called before the first frame update
+        private SpriteRenderer _spriteRenderer;
+        private Animator _animator;
+        private Rigidbody2D _rigidbody2D;
+
+        private Transform _target;
+        private bool _discharged;
+
         void Start() {
-            target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-            animator = GetComponent<Animator>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _animator = GetComponent<Animator>();
             _rigidbody2D = GetComponent<Rigidbody2D>();
-            _collider2D = GetComponent<Collider2D>();
-            Vector2 directionToTarget = - target.position + transform.position;
-            _rigidbody2D.MoveRotation(Mathf.Atan2(directionToTarget.y, directionToTarget.x)* Mathf.Rad2Deg);
-            StartCoroutine("AttackFinished");
+            _discharged = false;
+
+            if (GameObject.FindGameObjectWithTag("Player")) {
+                _target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+                Vector2 directionToTarget = -_target.position + transform.position;
+                _rigidbody2D.MoveRotation(Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg);
+                StartCoroutine(nameof(AttackFinished));
+            }
         }
 
-        // Update is called once per frame
-        void Update() { }
+        void LateUpdate() {
+            if (String.Equals(_spriteRenderer.sprite.name, "Laser_sheet_29")) {
+                if (laserSound && !laserSound.isPlaying &&!_discharged) {
+                    laserSound.Play();
+                    _discharged = true;
+                }
+            }
+        }
 
-        IEnumerator AttackFinished() {
-            yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length - 0.18f);
+        private IEnumerator AttackFinished() {
+            yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length - 0.18f);
             GameObject.FindGameObjectWithTag("Boss").gameObject.SendMessage("LaserAttackFinished");
             Destroy(gameObject);
         }
 
         private void OnCollisionEnter2D(Collision2D collision) {
-            if (collision.collider.CompareTag("Player"))
-            {
+            if (collision.collider.CompareTag("Player")) {
                 //Instantiate(destoryEffect, transform.position, Quaternion.identity);
 
                 collision.gameObject.SendMessage("OnDamage", attackDamage);
@@ -43,9 +53,8 @@ namespace Entity.Enemy {
                 Destroy(gameObject);
             }
         }
-        
-        
-        public void OnDamage(float dmg) {
-        }
+
+
+        public void OnDamage(float dmg) { }
     }
 }
