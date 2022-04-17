@@ -69174,7 +69174,7 @@ GameObject:
   - component: {fileID: 772655404}
   - component: {fileID: 772655403}
   - component: {fileID: 772655405}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Ladder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69927,8 +69927,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 2014695469
-  m_SortingLayer: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8e160a2a620644cd6afef9119dad1093, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -70514,11 +70514,23 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.55810165, y: 10.673758}
-      - {x: -29.507244, y: 10.633893}
-      - {x: -29.51604, y: -11.133892}
-      - {x: 69.23425, y: -11.040877}
-      - {x: 69.13244, y: 10.633892}
+    - - {x: 160.16463, y: -13.799559}
+      - {x: 186.1169, y: -12.500708}
+      - {x: 213.86359, y: -11.279325}
+      - {x: 227.23236, y: -1.8336658}
+      - {x: 230.68619, y: -2.2029305}
+      - {x: 246.82458, y: 0.8887863}
+      - {x: 230.86789, y: 62.852093}
+      - {x: 184.77165, y: 54.08613}
+      - {x: 94.26375, y: 54.13347}
+      - {x: 54.99896, y: 42.8067}
+      - {x: 10.738907, y: 44.824287}
+      - {x: 6.061798, y: 20.140118}
+      - {x: -1.7686119, y: 16.137589}
+      - {x: -2.2177124, y: -14.436108}
+      - {x: 65.02645, y: -13.012465}
+      - {x: 70.11485, y: -13.242354}
+      - {x: 89.16589, y: -12.92193}
 --- !u!114 &1981566072
 MonoBehaviour:
   m_ObjectHideFlags: 0
