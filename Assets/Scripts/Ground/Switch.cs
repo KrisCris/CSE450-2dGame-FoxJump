@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Ground {
@@ -26,7 +23,9 @@ namespace Ground {
             if (isOnSwitch && Input.GetKey(KeyCode.E)) {
                 _spriteRenderer.sprite = afterswitch;
                 for (int i = 0; i < targets.Length; i++){
-                    targets[i].SendMessage("Triggered");
+                    if (targets[i]) {
+                        targets[i].SendMessage("Triggered");
+                    }
                 }
             }
         }
