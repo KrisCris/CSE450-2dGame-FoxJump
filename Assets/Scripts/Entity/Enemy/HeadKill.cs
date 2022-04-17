@@ -7,7 +7,7 @@ namespace Entity.Enemy {
         
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.CompareTag("Player")) {
-                SoundController.Instance.PlaySound(SoundController.Instance.enemyCrushed);
+                SoundController.Instance.PlayEnemyCrushed();
                 Destroy(mob);
             }
         }

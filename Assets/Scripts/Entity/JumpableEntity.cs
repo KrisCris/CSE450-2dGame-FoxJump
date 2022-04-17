@@ -61,7 +61,6 @@ namespace Entity {
         }
 
         public void UpdateMaxJump(int offset) {
-            Debug.Log(offset);
             maxJumps = Math.Max(maxJumps + offset, 0);
             currJumps = Math.Max(currJumps + offset, 0);
             GameController.Instance.AddJumps(offset);

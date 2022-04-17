@@ -4,6 +4,8 @@
         Key,
         Coin,
         FlyingShoes,
-        RecoveryBlood
+        RecoveryBlood,
+        FoxTail,
+        Projectile
     }
 }

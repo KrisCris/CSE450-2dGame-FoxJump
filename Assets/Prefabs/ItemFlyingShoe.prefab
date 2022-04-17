@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 846756170362088892}
   - component: {fileID: 846756170362088883}
   - component: {fileID: 5579958494744382307}
-  - component: {fileID: -8294295650010175892}
   - component: {fileID: 5782882884051847364}
   m_Layer: 13
   m_Name: ItemFlyingShoe
@@ -130,27 +129,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.49974275
---- !u!50 &-8294295650010175892
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 846756170362088882}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0.1
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!114 &5782882884051847364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,5 +141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47d036c35e84f604eb7e48dd61dd3eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 0
-  soundWhenEaten: {fileID: 8300000, guid: 740f2cd0be5b57a418c532b39d4c5581, type: 3}
+  frequency: 1
+  isFloat: 1
+  destroySound: {fileID: 8300000, guid: 1b69365a47cf02c4dace1d726d6340d0, type: 3}
+  itemClass: 3
+  destroyFx: {fileID: 5348849424903803835, guid: ede3ee21b0d857d47acbe721ade67c84, type: 3}

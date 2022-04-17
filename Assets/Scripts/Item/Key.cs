@@ -10,7 +10,7 @@ namespace Item {
     {
 
         private void Awake() {
-            ItemClass = Items.Key;
+            itemClass = Items.Key;
         }
     } 
 }
