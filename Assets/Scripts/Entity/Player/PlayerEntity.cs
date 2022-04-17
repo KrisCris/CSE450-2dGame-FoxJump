@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Entity.Enemy;
+using Ground;
 using Item;
 using TMPro;
 using Unity.VisualScripting;
@@ -9,6 +10,7 @@ using UnityEngine.SceneManagement;
 
 namespace Entity.Player {
     public class PlayerEntity : JumpableEntity {
+        public BoxCollider2D eventTrigger;
         public Dictionary<string, KeyCode> key = new() {
             {"up", KeyCode.W},
             {"down", KeyCode.S},
@@ -34,10 +36,12 @@ namespace Entity.Player {
 
         public AudioSource playerJump;
         public AudioSource playerWalk;
+        public AudioSource playerDeath;
 
         public float footDistance = 0.3f;
         public float checkDistance = 0.1f;
         public float footYOffset = -0.6f;
+        public bool showDeath = true;
 
         private new void Start() {
             base.Start();
@@ -159,6 +163,10 @@ namespace Entity.Player {
             }
         }
 
+        public void SetEventTrigger(bool state) {
+            eventTrigger.enabled = state;
+        }
+
         public bool OnItemUsed(Items item, int num) {
             if (item == Items.Coin) {
                 if (GameController.Instance.coins >= num) {
@@ -180,8 +188,16 @@ namespace Entity.Player {
         }
 
         protected override void OnDeath(string reason) {
+            Animator.SetBool("IsDead", true);
             // Time.timeScale = 0;
-            SceneManager.LoadScene("Info", LoadSceneMode.Additive);
+            if (playerDeath && !playerDeath.isPlaying) {
+                playerDeath.Play();
+            }
+            SetEventTrigger(true);
+            SetColliderState(false);
+            if (showDeath) {
+                SceneManager.LoadScene("Info", LoadSceneMode.Additive);
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D other) {
@@ -191,13 +207,20 @@ namespace Entity.Player {
 
             if (other.gameObject.GetComponent<HeadKill>()) {
                 PerformJump(true);
-                Animator.SetBool("IsJumping", true);
+            }
+
+            if (other.gameObject.GetComponentInParent<Lift>()) {
+                Animator.SetBool("OnLift", true);
             }
         }
 
         private void OnTriggerExit2D(Collider2D other) {
             if (other.gameObject.layer == LayerMask.NameToLayer("Ladder")) {
                 _climbable = false;
+            }
+
+            if (other.gameObject.GetComponentInParent<Lift>()) {
+                Animator.SetBool("OnLift", false);
             }
         }
     }
