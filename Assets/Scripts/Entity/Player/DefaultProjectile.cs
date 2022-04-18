@@ -26,7 +26,7 @@ namespace Entity.Player {
         private void Update() {
             if (Time.time - _creationTime > 30) {
                 // No hit enemy, return the projectile
-                _player.OnItemCollect(Items.Projectile, 1);
+                // _player.OnItemCollect(Items.Projectile, 1);
                 Destroy(gameObject);
             }
         }
@@ -40,7 +40,7 @@ namespace Entity.Player {
                 col.gameObject.SendMessage("OnDamage", 1f);
             } else {
                 // No hit enemy, return the projectile
-                _player.OnItemCollect(Items.Projectile, 1);
+                // _player.OnItemCollect(Items.Projectile, 1);
             }
 
             Destroy(gameObject);
@@ -48,7 +48,7 @@ namespace Entity.Player {
 
         private void OnBecameInvisible() {
             // No hit enemy, return the projectile
-            _player.OnItemCollect(Items.Projectile, 1);
+            // _player.OnItemCollect(Items.Projectile, 1);
             Destroy(gameObject);
         }
     }

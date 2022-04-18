@@ -4,6 +4,7 @@ using Entity.Enemy;
 using Ground;
 using Item;
 using TMPro;
+using UI;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -54,6 +55,9 @@ namespace Entity.Player {
         public float wallJumpXForce = .5f;
         public float wallJumpYForce = 1f;
 
+        public int projectileDischargeInterval = 30;
+        public int projectileDischargeCooldown = 0;
+
         private GameController _gameController;
 
         private new void Start() {
@@ -94,10 +98,13 @@ namespace Entity.Player {
 
         protected new void FixedUpdate() {
             base.FixedUpdate();
-            // This is synced with Physics Engine
 
             Animator.SetFloat("HorizontalSpeed", Mathf.Abs(Rigidbody2D.velocity.x));
             Animator.SetBool("Climbable", _climbable);
+
+            if (projectileDischargeCooldown > 0) {
+                --projectileDischargeCooldown;
+            }
 
             // if (Rigidbody2D.velocity.magnitude > 0) {
             //     // Debug.Log(Mathf.Abs(Rigidbody2D.velocity.x) / 2.2f);
@@ -116,11 +123,13 @@ namespace Entity.Player {
                 return;
             }
 
-            if (Input.GetKeyDown(key["attack"])) {
-                if (_gameController.hasProjectile && _gameController.projectiles > 0) {
+            if (Input.GetKeyDown(key["attack"]) && !MessageController.Instance.isClickableOn()) {
+                if (_gameController.hasProjectile && _gameController.projectiles > 0 &&
+                    projectileDischargeCooldown <= 0) {
                     GameObject newProjectile = Instantiate(projectile);
                     newProjectile.GetComponent<DefaultProjectile>().Init(transform.position, 10f, FacingRight, this);
                     OnItemUsed(Items.Projectile, 1);
+                    projectileDischargeCooldown = projectileDischargeInterval;
                 }
             }
 
@@ -163,7 +172,8 @@ namespace Entity.Player {
             }
         }
 
-        protected override bool PerformJump(bool free = false, float directionX = 0f, float directionY = 1f, int freeReward = 0) {
+        protected override bool PerformJump(bool free = false, float directionX = 0f, float directionY = 1f,
+            int freeReward = 0) {
             var hit = RayCastHelper.RayCast(
                 Rigidbody2D.transform.position, FacingRight ? Vector2.right : Vector2.left, wallCheckDistance,
                 "Ground");
@@ -296,7 +306,7 @@ namespace Entity.Player {
             }
 
             if (other.gameObject.GetComponent<HeadKill>()) {
-                PerformJump(true, freeReward:1);
+                PerformJump(true, freeReward: 1);
             }
 
             if (other.gameObject.GetComponentInParent<Lift>()) {

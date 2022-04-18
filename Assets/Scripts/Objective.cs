@@ -1,5 +1,6 @@
 ﻿using System;
 using Entity.Player;
+using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,9 +16,19 @@ public class Objective : MonoBehaviour {
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D col) {
+        if (requireKeyInteraction && MessageController.Instance) {
+            MessageController.Instance.ShowMessage("Press [E] to interact with it...");
+        }
+    }
+
     private void OnTriggerStay2D(Collider2D other) {
         if (!requireKeyInteraction || Input.GetKey(KeyCode.E)) {
             if (other.GetComponent<PlayerEntity>()) {
+                if (MessageController.Instance) {
+                    MessageController.Instance.HideMessage(true);
+                    MessageController.Instance.HideClickable();
+                }
                 SceneController.Instance.SwitchMap(sceneName);
                 if (recoverHealth) {
                     other.GetComponent<PlayerEntity>().SendMessage("OnHealing", other.GetComponent<PlayerEntity>().maxHealth * .5f);
