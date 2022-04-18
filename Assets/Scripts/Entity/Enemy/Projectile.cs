@@ -22,7 +22,8 @@ public class Projectile : MonoBehaviour {
             lifeBtwTimer += Time.deltaTime;
 
             if (lifeBtwTimer >= maxLife) {
-                //Instantiate(destoryEffect, transform.position, Quaternion.identity);
+                Instantiate(destoryEffect, transform.position, Quaternion.identity);
+                Destroy(gameObject);
             }
         } else {
             Destroy(gameObject);
@@ -31,10 +32,11 @@ public class Projectile : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.collider.CompareTag("Player")) {
-            //Instantiate(destoryEffect, transform.position, Quaternion.identity);
-
+            Instantiate(destoryEffect, transform.position, Quaternion.identity);
             collision.gameObject.SendMessage("OnDamage", attackDamage);
-
+            Destroy(gameObject);
+        } else if (collision.gameObject.layer == LayerMask.NameToLayer("Ground")) {
+            Instantiate(destoryEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
