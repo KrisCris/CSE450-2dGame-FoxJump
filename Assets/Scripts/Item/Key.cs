@@ -1,16 +1,13 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Entity.Player;
-using Item;
-using UnityEngine;
+using UI;
 
 namespace Item {
-    public class Key : Item
-    {
-
-        private void Awake() {
-            itemClass = Items.Key;
+    public class Key : Item {
+        protected override void OnItemCollect(PlayerEntity player) {
+            if (MessageController.Instance && GameController.Instance && !GameController.Instance.hasKey) {
+                MessageController.Instance.ShowMessage("The missing key of a chest...");
+            }
+            base.OnItemCollect(player);
         }
-    } 
+    }
 }

@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6036385616957019577}
   - component: {fileID: 6036385616957019576}
-  - component: {fileID: 6036385616957019583}
   - component: {fileID: 6036385616957019582}
+  - component: {fileID: 502803729308087614}
   m_Layer: 13
   m_Name: SilverKey
   m_TagString: Untagged
@@ -86,32 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &6036385616957019583
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6036385616957019581}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.019673645}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.875, y: 0.875}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.79539394, y: 0.47274554}
-  m_EdgeRadius: 0
 --- !u!114 &6036385616957019582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,4 +99,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frequency: 1
-  soundWhenEaten: {fileID: 8300000, guid: 775c69b80d1a4584d97219af389eb81a, type: 3}
+  isFloat: 1
+  destroySound: {fileID: 8300000, guid: 6a8c60075137cfd4399c724d469adb9f, type: 3}
+  itemClass: 1
+  destroyFx: {fileID: 5348849424903803835, guid: ede3ee21b0d857d47acbe721ade67c84, type: 3}
+--- !u!58 &502803729308087614
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6036385616957019581}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.017031193, y: 0.034062386}
+  serializedVersion: 2
+  m_Radius: 0.35660195

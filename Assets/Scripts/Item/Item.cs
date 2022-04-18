@@ -44,9 +44,12 @@ namespace Item {
         }
 
         private void OnCollisionEnter2D(Collision2D other) {
-            if (other.gameObject.tag == "Player") {
-                Physics2D.IgnoreCollision(other.gameObject.GetComponent<CapsuleCollider2D>(), GetComponent<BoxCollider2D>());
+            if (GetComponent<BoxCollider2D>()) {
+                if (other.gameObject.CompareTag("Player")) {
+                    Physics2D.IgnoreCollision(other.gameObject.GetComponent<CapsuleCollider2D>(), GetComponent<BoxCollider2D>());
+                }
             }
+
         }
     }
 }
