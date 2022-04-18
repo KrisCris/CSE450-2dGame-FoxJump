@@ -29,5 +29,7 @@ public class SceneData: MonoBehaviour {
         if (messages.Length > 0 && MessageController.Instance) {
             MessageController.Instance.ShowMessage(messages);
         }
+
+        Time.timeScale = 1;
     }
 }

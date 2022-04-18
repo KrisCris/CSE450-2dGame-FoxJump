@@ -11,7 +11,7 @@ public class QuitGameButton : MonoBehaviour
     {
         quitGameButton.onClick.AddListener(() =>
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneController.Instance.ReturnMainPage();
         });
     }
 }

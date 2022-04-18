@@ -43,6 +43,11 @@ public class SceneController : MonoBehaviour {
         SceneManager.LoadScene(GameController.Instance.GetCurrentLevel(), LoadSceneMode.Additive);
     }
 
+    public void ReturnMainPage() {
+        UnloadAll();
+        SceneManager.LoadScene("MainUI", LoadSceneMode.Additive);
+    }
+
     public void UnloadAll() {
         for (int i = 1; i < SceneManager.sceneCount; i++) {
             SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(i));
