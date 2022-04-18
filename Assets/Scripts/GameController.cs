@@ -20,6 +20,8 @@ public class GameController : MonoBehaviour {
     public bool hasKey;
     public bool hasCoin;
 
+    public bool seenChest;
+
 
     private void Awake() {
         Instance = this;
@@ -41,6 +43,8 @@ public class GameController : MonoBehaviour {
         hasProjectile = false;
         hasKey = false;
         hasCoin = false;
+
+        seenChest = false;
         
         Save();
     }

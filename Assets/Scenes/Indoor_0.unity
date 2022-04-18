@@ -28955,6 +28955,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 2012474020}
   sceneName: Indoor_0
+  messages: 
 --- !u!60 &1981566071
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -29039,11 +29040,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4492756282588581860, guid: e8a8515fd7f97e541ba9cb092587dfa0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.37
+      value: -2.29
       objectReference: {fileID: 0}
     - target: {fileID: 4492756283027769495, guid: e8a8515fd7f97e541ba9cb092587dfa0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.75
+      value: 1.07
       objectReference: {fileID: 0}
     - target: {fileID: 4492756283274263504, guid: e8a8515fd7f97e541ba9cb092587dfa0, type: 3}
       propertyPath: m_Name
@@ -29059,7 +29060,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4492756283274263535, guid: e8a8515fd7f97e541ba9cb092587dfa0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.64
+      value: 1.17
       objectReference: {fileID: 0}
     - target: {fileID: 4492756283274263535, guid: e8a8515fd7f97e541ba9cb092587dfa0, type: 3}
       propertyPath: m_LocalPosition.z
