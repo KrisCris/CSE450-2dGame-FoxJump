@@ -44,14 +44,14 @@ namespace Entity {
             }
         }
 
-        protected virtual bool PerformJump(bool free = false) {
+        protected virtual bool PerformJump(bool free = false, float directionX = 0f, float directionY = 1f, int freeReward = 0) {
             if (currJumps > 0 || free) {
                 if (!free) --currJumps;
-                Rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                Rigidbody2D.AddForce(new Vector2(directionX, directionY) * jumpForce, ForceMode2D.Impulse);
                 jumpIFrameCountdown = jumpIFrames;
                 if (free) {
                     Animator.SetBool("IsJumping", true);
-                    currJumps = Mathf.Max(currJumps + 1, maxJumps);
+                    currJumps = Mathf.Max(currJumps + freeReward, maxJumps);
                 }
                 return true;
             }

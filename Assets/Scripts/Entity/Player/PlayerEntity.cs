@@ -51,6 +51,8 @@ namespace Entity.Player {
         public float footYOffset = -0.6f;
         public bool showDeath = true;
         public float wallCheckDistance = 0.4f;
+        public float wallJumpXForce = .5f;
+        public float wallJumpYForce = 1f;
 
         private GameController _gameController;
 
@@ -161,13 +163,13 @@ namespace Entity.Player {
             }
         }
 
-        protected override bool PerformJump(bool free = false) {
-            if (_gameController.hasFoxTail) {
-                var hit = RayCastHelper.RayCast(
-                    Rigidbody2D.transform.position, FacingRight ? Vector2.right : Vector2.left, wallCheckDistance,
-                    "Ground");
-                if (hit && base.PerformJump(true)) {
-                    if (playerJump.isPlaying) {
+        protected override bool PerformJump(bool free = false, float directionX = 0f, float directionY = 1f, int freeReward = 0) {
+            var hit = RayCastHelper.RayCast(
+                Rigidbody2D.transform.position, FacingRight ? Vector2.right : Vector2.left, wallCheckDistance,
+                "Ground");
+            if (hit && _gameController.hasFoxTail) {
+                if (base.PerformJump(true, FacingRight ? -wallJumpXForce : wallJumpXForce, wallJumpYForce)) {
+                    if (!playerJump.isPlaying) {
                         playerJump.Play();
                     }
 
@@ -175,7 +177,7 @@ namespace Entity.Player {
                 }
             } else {
                 if (base.PerformJump(free)) {
-                    if (playerJump.isPlaying) {
+                    if (!playerJump.isPlaying) {
                         playerJump.Play();
                     }
 
@@ -206,6 +208,7 @@ namespace Entity.Player {
                     _gameController.hasCoin = true;
                     hudCoin.SetActive(true);
                 }
+
                 coinCountText.text = _gameController.coins.ToString();
             }
 
@@ -215,6 +218,7 @@ namespace Entity.Player {
                     _gameController.hasKey = true;
                     hudKey.SetActive(true);
                 }
+
                 keyCountText.text = _gameController.keys.ToString();
             }
 
@@ -224,6 +228,7 @@ namespace Entity.Player {
                     _gameController.hasProjectile = true;
                     hudProjectile.SetActive(true);
                 }
+
                 projectileCountText.text = _gameController.projectiles.ToString();
             }
 
@@ -231,6 +236,11 @@ namespace Entity.Player {
                 _gameController.hasJumpShoes = true;
                 hudJumpShoes.SetActive(true);
                 UpdateMaxJump(1);
+            }
+
+            if (item == Items.FoxTail && !_gameController.hasFoxTail) {
+                _gameController.hasFoxTail = true;
+                hudFoxTail.SetActive(true);
             }
         }
 
@@ -286,7 +296,7 @@ namespace Entity.Player {
             }
 
             if (other.gameObject.GetComponent<HeadKill>()) {
-                PerformJump(true);
+                PerformJump(true, freeReward:1);
             }
 
             if (other.gameObject.GetComponentInParent<Lift>()) {
