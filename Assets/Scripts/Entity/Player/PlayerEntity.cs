@@ -11,6 +11,7 @@ using UnityEngine.SceneManagement;
 namespace Entity.Player {
     public class PlayerEntity : JumpableEntity {
         public BoxCollider2D eventTrigger;
+
         public Dictionary<string, KeyCode> key = new() {
             {"up", KeyCode.W},
             {"down", KeyCode.S},
@@ -33,6 +34,13 @@ namespace Entity.Player {
 
         public TextMeshProUGUI coinCountText;
         public TextMeshProUGUI keyCountText;
+        public TextMeshProUGUI projectileCountText;
+
+        public GameObject hudCoin;
+        public GameObject hudKey;
+        public GameObject hudProjectile;
+        public GameObject hudJumpShoes;
+        public GameObject hudFoxTail;
 
         public AudioSource playerJump;
         public AudioSource playerWalk;
@@ -42,14 +50,43 @@ namespace Entity.Player {
         public float checkDistance = 0.1f;
         public float footYOffset = -0.6f;
         public bool showDeath = true;
+        public float wallCheckDistance = 0.4f;
+
+        private GameController _gameController;
 
         private new void Start() {
             base.Start();
-            // _inventory = new Dictionary<Items, int>();
+
             _isCrouching = false;
             _climbable = false;
+
+            hudCoin.SetActive(false);
+            hudKey.SetActive(false);
+            hudProjectile.SetActive(false);
+            hudJumpShoes.SetActive(false);
+            hudFoxTail.SetActive(false);
+
+            // sync w/ GameController
             if (GameController.Instance) {
-                SetJumps(GameController.Instance.maxJumps);
+                _gameController = GameController.Instance;
+
+                if (_gameController.hasJumpShoes) {
+                    SetJumps(2);
+                    hudJumpShoes.SetActive(true);
+                } else {
+                    SetJumps(1);
+                }
+
+                coinCountText.text = _gameController.coins.ToString();
+                hudCoin.SetActive(_gameController.hasCoin);
+
+                keyCountText.text = _gameController.keys.ToString();
+                hudKey.SetActive(_gameController.hasKey);
+
+                projectileCountText.text = _gameController.projectiles.ToString();
+                hudProjectile.SetActive(_gameController.hasProjectile);
+
+                hudFoxTail.SetActive(_gameController.hasFoxTail);
             }
         }
 
@@ -78,13 +115,15 @@ namespace Entity.Player {
             }
 
             if (Input.GetKeyDown(key["attack"])) {
-                GameObject newProjectile = Instantiate(projectile);
-                newProjectile.GetComponent<DefaultProjectile>().Init(transform.position, 10f, FacingRight);
+                if (_gameController.hasProjectile && _gameController.projectiles > 0) {
+                    GameObject newProjectile = Instantiate(projectile);
+                    newProjectile.GetComponent<DefaultProjectile>().Init(transform.position, 10f, FacingRight, this);
+                    OnItemUsed(Items.Projectile, 1);
+                }
             }
 
             if (Input.GetKey(key["up"]) && _climbable) {
                 Move(Vector2.up, 20f);
-                // TouchingGround = false;
             }
 
             if (Input.GetKey(key["down"])) {
@@ -107,7 +146,6 @@ namespace Entity.Player {
                 PerformJump();
             }
 
-            //TODO Move to somewhere else
             if (Input.GetKeyDown(KeyCode.Escape) && !SceneManager.GetSceneByName("Menu").isLoaded) {
                 Time.timeScale = 0;
                 SceneManager.LoadScene("Menu", LoadSceneMode.Additive);
@@ -124,10 +162,27 @@ namespace Entity.Player {
         }
 
         protected override bool PerformJump(bool free = false) {
-            if (base.PerformJump(free) && !playerJump.isPlaying) {
-                playerJump.Play();
-                return true;
+            if (_gameController.hasFoxTail) {
+                var hit = RayCastHelper.RayCast(
+                    Rigidbody2D.transform.position, FacingRight ? Vector2.right : Vector2.left, wallCheckDistance,
+                    "Ground");
+                if (hit && base.PerformJump(true)) {
+                    if (playerJump.isPlaying) {
+                        playerJump.Play();
+                    }
+
+                    return true;
+                }
+            } else {
+                if (base.PerformJump(free)) {
+                    if (playerJump.isPlaying) {
+                        playerJump.Play();
+                    }
+
+                    return true;
+                }
             }
+
             return false;
         }
 
@@ -143,23 +198,39 @@ namespace Entity.Player {
             return behindFoot;
         }
 
-        // public Dictionary<Items, int> GetInventory() {
-        //     return _inventory;
-        // }
 
         public void OnItemCollect(Items item, int num) {
             if (item == Items.Coin) {
-                GameController.Instance.AddCoins(num);
-                coinCountText.text = GameController.Instance.coins.ToString();
+                _gameController.coins += num;
+                if (!_gameController.hasCoin) {
+                    _gameController.hasCoin = true;
+                    hudCoin.SetActive(true);
+                }
+                coinCountText.text = _gameController.coins.ToString();
             }
 
             if (item == Items.Key) {
-                GameController.Instance.AddKeys(num);
-                keyCountText.text = GameController.Instance.keys.ToString();
+                _gameController.keys += num;
+                if (!_gameController.hasKey) {
+                    _gameController.hasKey = true;
+                    hudKey.SetActive(true);
+                }
+                keyCountText.text = _gameController.keys.ToString();
             }
 
-            if (item == Items.FlyingShoes) {
-                UpdateMaxJump(num);
+            if (item == Items.Projectile) {
+                _gameController.projectiles += num;
+                if (!_gameController.hasProjectile) {
+                    _gameController.hasProjectile = true;
+                    hudProjectile.SetActive(true);
+                }
+                projectileCountText.text = _gameController.projectiles.ToString();
+            }
+
+            if (item == Items.FlyingShoes && !_gameController.hasJumpShoes) {
+                _gameController.hasJumpShoes = true;
+                hudJumpShoes.SetActive(true);
+                UpdateMaxJump(1);
             }
         }
 
@@ -169,17 +240,25 @@ namespace Entity.Player {
 
         public bool OnItemUsed(Items item, int num) {
             if (item == Items.Coin) {
-                if (GameController.Instance.coins >= num) {
-                    GameController.Instance.AddCoins(-num);
-                    coinCountText.text = GameController.Instance.coins.ToString();
+                if (_gameController.coins >= num) {
+                    _gameController.coins -= num;
+                    coinCountText.text = _gameController.coins.ToString();
                     return true;
                 }
             }
 
             if (item == Items.Key) {
-                if (GameController.Instance.keys >= num) {
-                    GameController.Instance.AddKeys(-num);
-                    keyCountText.text = GameController.Instance.keys.ToString();
+                if (_gameController.keys >= num) {
+                    _gameController.keys -= num;
+                    keyCountText.text = _gameController.keys.ToString();
+                    return true;
+                }
+            }
+
+            if (item == Items.Projectile) {
+                if (_gameController.projectiles >= num) {
+                    _gameController.projectiles -= num;
+                    projectileCountText.text = _gameController.projectiles.ToString();
                     return true;
                 }
             }
@@ -193,6 +272,7 @@ namespace Entity.Player {
             if (playerDeath && !playerDeath.isPlaying) {
                 playerDeath.Play();
             }
+
             SetEventTrigger(true);
             SetColliderState(false);
             if (showDeath) {

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Entity.Player;
 using UnityEngine;
 
@@ -56,14 +55,13 @@ namespace Entity {
                 }
                 return true;
             }
-
             return false;
         }
 
         public void UpdateMaxJump(int offset) {
             maxJumps = Math.Max(maxJumps + offset, 0);
             currJumps = Math.Max(currJumps + offset, 0);
-            GameController.Instance.AddJumps(offset);
+            GameController.Instance.maxJumps += offset;
         }
 
         public void SetJumps(int j) {

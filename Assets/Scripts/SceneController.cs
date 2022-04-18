@@ -38,6 +38,7 @@ public class SceneController : MonoBehaviour {
 
     public void ReloadCurrentScene() {
         UnloadAll();
+        GameController.Instance.Reload();
         SceneManager.LoadScene("Player", LoadSceneMode.Additive);
         SceneManager.LoadScene(GameController.Instance.GetCurrentLevel(), LoadSceneMode.Additive);
     }

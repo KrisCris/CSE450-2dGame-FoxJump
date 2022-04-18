@@ -1,23 +1,23 @@
-﻿using System;
+﻿using Item;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace Entity.Player {
     public class DefaultProjectile : MonoBehaviour {
         private Rigidbody2D _rb;
+        private PlayerEntity _player;
+
         private float _creationTime;
-        // private static Object _prefab = Resources.Load("Prefabs/DefaultProjectile.prefab");
 
-        // Start is called before the first frame update
-        private void Start() {
-
-        }
-
-        public void Init(Vector3 pos, float speed, bool isRight) {
+        public void Init(Vector3 pos, float speed, bool isRight, PlayerEntity player) {
             _creationTime = Time.time;
             if (!_rb) {
                 _rb = GetComponent<Rigidbody2D>();
             }
+
+            if (!_player) {
+                _player = player;
+            }
+
             transform.position = pos;
             _rb.velocity = transform.right * speed * (isRight ? 1f : -1f);
         }
@@ -25,6 +25,8 @@ namespace Entity.Player {
         // Self-Destroy after 30 seconds.
         private void Update() {
             if (Time.time - _creationTime > 30) {
+                // No hit enemy, return the projectile
+                _player.OnItemCollect(Items.Projectile, 1);
                 Destroy(gameObject);
             }
         }
@@ -32,13 +34,21 @@ namespace Entity.Player {
         private void OnCollisionEnter2D(Collision2D col) {
             if (col.collider.CompareTag("Enemy")) {
                 Destroy(col.gameObject.transform.parent.gameObject);
-            } else if(col.collider.CompareTag("Enemy2")) {
+            } else if (col.collider.CompareTag("Enemy2")) {
                 Destroy(col.gameObject);
-            }
-            else if (col.collider.CompareTag("Boss"))
-            {
+            } else if (col.collider.CompareTag("Boss")) {
                 col.gameObject.SendMessage("OnDamage", 1f);
+            } else {
+                // No hit enemy, return the projectile
+                _player.OnItemCollect(Items.Projectile, 1);
             }
+
+            Destroy(gameObject);
+        }
+
+        private void OnBecameInvisible() {
+            // No hit enemy, return the projectile
+            _player.OnItemCollect(Items.Projectile, 1);
             Destroy(gameObject);
         }
     }

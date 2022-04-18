@@ -6,13 +6,20 @@ using UnityEngine;
 public class GameController : MonoBehaviour {
     public static GameController Instance;
     public string currentLevel;
+    public Vector2 lastSavePoint;
+    public List<string> selectableLevel;
+
     public int maxJumps;
     public int coins;
     public int keys;
-    public bool canWallClimb;
-    public Vector2 lastSavePoint;
+    public int projectiles;
+    
+    public bool hasFoxTail;
+    public bool hasJumpShoes;
+    public bool hasProjectile;
+    public bool hasKey;
+    public bool hasCoin;
 
-    public List<string> selectableLevel;
 
     private void Awake() {
         Instance = this;
@@ -20,37 +27,28 @@ public class GameController : MonoBehaviour {
     }
 
     public void NewGame() {
-        // Init
         currentLevel = "Scene_0";
         selectableLevel = new List<string>();
+        lastSavePoint = new Vector2(-9999f, -9999f);
+
         maxJumps = 1;
         coins = 0;
         keys = 0;
-        canWallClimb = false;
-        lastSavePoint = new Vector2(-9999f, -9999f);
+        projectiles = 0;
+
+        hasFoxTail = false;
+        hasJumpShoes = false;
+        hasProjectile = false;
+        hasKey = false;
+        hasCoin = false;
+        
         Save();
-        // Debug.Log("new game init");
     }
 
     public bool ValidateSavePoint() {
         return lastSavePoint.x > -9999 && lastSavePoint.y > -9999;
     }
 
-    public void AddCoins(int num) {
-        coins += num;
-        // Save();
-    }
-
-    public void AddKeys(int num) {
-        keys += num;
-        // Save();
-    }
-
-    public void AddJumps(int num) {
-        maxJumps += num;
-        // Save();
-    }
-    
     public void SetLevelClear(string sceneName) {
         if (!selectableLevel.Contains(sceneName)) {
             selectableLevel.Add(sceneName);
@@ -83,6 +81,10 @@ public class GameController : MonoBehaviour {
 
     private void Save() {
         PlayerPrefs.SetString("GameData", JsonUtility.ToJson(Instance));
+    }
+
+    public void Reload() {
+        Load();
     }
 
     private void Load() {
