@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class KillZone : MonoBehaviour
-{
-    // Update is called once per frame
-    private void OnTriggerStay2D(Collider2D others)
-    {
-        if (others.CompareTag("Player")) others.gameObject.SendMessage("OnDamage", 3);
+namespace Bound {
+    public class KillZone : MonoBehaviour {
+        public float dmg = 10;
+        private void OnTriggerStay2D(Collider2D others) {
+            if (others.CompareTag("Player")) others.gameObject.SendMessage("OnDamage", dmg);
+        }
     }
 }
