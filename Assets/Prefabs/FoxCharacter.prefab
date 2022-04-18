@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Collider2D: {fileID: 3753124482848880631}
+  Animator: {fileID: 0}
   healthBar: {fileID: 0}
   maxHealth: 15
   damageable: 1
@@ -182,6 +183,12 @@ MonoBehaviour:
   projectile: {fileID: 1010903080642773775, guid: 08a281eb893f6b9479022f82dab68cca, type: 3}
   coinCountText: {fileID: 0}
   keyCountText: {fileID: 0}
+  projectileCountText: {fileID: 0}
+  hudCoin: {fileID: 0}
+  hudKey: {fileID: 0}
+  hudProjectile: {fileID: 0}
+  hudJumpShoes: {fileID: 0}
+  hudFoxTail: {fileID: 0}
   playerJump: {fileID: 5285571879358348344}
   playerWalk: {fileID: 1707645353507742386}
   playerDeath: {fileID: 5662286005645276078}
@@ -189,6 +196,9 @@ MonoBehaviour:
   checkDistance: 0.1
   footYOffset: -0.6
   showDeath: 1
+  wallCheckDistance: 0.4
+  wallJumpXForce: 0.5
+  wallJumpYForce: 1
 --- !u!82 &5285571879358348344
 AudioSource:
   m_ObjectHideFlags: 0
