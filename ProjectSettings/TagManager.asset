@@ -48,17 +48,14 @@ TagManager:
   - name: background
     uniqueID: 2014695469
     locked: 0
-  - name: shadow
-    uniqueID: 4205761511
-    locked: 0
-  - name: ground
-    uniqueID: 2393782569
-    locked: 0
   - name: entities
     uniqueID: 217785585
     locked: 0
   - name: player
     uniqueID: 2008286801
+    locked: 0
+  - name: ground
+    uniqueID: 2393782569
     locked: 0
   - name: top
     uniqueID: 2542088329
