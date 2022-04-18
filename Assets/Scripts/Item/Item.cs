@@ -42,14 +42,5 @@ namespace Item {
         protected virtual void OnItemCollect(PlayerEntity player) {
             player.OnItemCollect(itemClass, 1);
         }
-
-        private void OnCollisionEnter2D(Collision2D other) {
-            if (GetComponent<BoxCollider2D>()) {
-                if (other.gameObject.CompareTag("Player")) {
-                    Physics2D.IgnoreCollision(other.gameObject.GetComponent<CapsuleCollider2D>(), GetComponent<BoxCollider2D>());
-                }
-            }
-
-        }
     }
 }

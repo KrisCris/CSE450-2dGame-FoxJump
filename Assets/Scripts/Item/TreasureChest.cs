@@ -24,6 +24,8 @@ namespace Item {
                     GameObject itemInst = Instantiate(item);
                     BoxCollider2D col = itemInst.AddComponent<BoxCollider2D>();
                     col.size = new Vector2(.5f, .5f);
+                    Physics2D.IgnoreCollision(other.gameObject.GetComponent<CapsuleCollider2D>(),
+                        GetComponent<BoxCollider2D>());
                     Rigidbody2D rb = itemInst.AddComponent<Rigidbody2D>();
                     bool isLeft = other.transform.position.x < transform.position.x;
                     rb.AddForce(((isLeft ? 1 : -1) * transform.right + transform.up) * 150f, ForceMode2D.Force);
