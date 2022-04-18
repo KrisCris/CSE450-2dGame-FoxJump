@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Entity.Player;
 using Item;
 using UI;
@@ -7,15 +8,26 @@ using UnityEngine;
 namespace Entity {
     public class NPCEntity : Entity {
         public AudioSource echoSound;
+
         private MessageController _messageController;
         private PlayerEntity _player;
 
-        private Messages _message = new Messages(new List<string> {
-            "...",
-            "A new face...\nIt's dangerous outside, return home...",
-            "No? OK... I am Joe, an adventurer...",
-            "If you want to stay here, I have something to offer..."
-        });
+        [TextArea(3, 10)] 
+        public List<string> dialogues;
+
+        private Messages _message;
+
+        private void Awake() {
+            if (dialogues.Count < 1) {
+                dialogues = new List<string> {
+                    "...",
+                    "A new face...\nIt's dangerous outside, return home...",
+                    "No? OK... I am Joe, an adventurer...",
+                    "If you want to stay here, I have something to offer..."
+                };
+            }
+            _message = new Messages(dialogues);
+        }
 
         protected new void Start() {
             base.Start();
@@ -48,7 +60,7 @@ namespace Entity {
                     echoSound.Play();
                 }
 
-                _messageController.ShowMessage(_message, () => { ShowShop(Items.Coin, 1, Items.Projectile, 5); });
+                _messageController.ShowMessage(_message, () => { ShowShop(Items.Coin, 5, Items.Projectile, 4); });
             }
         }
 
