@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2939500292549632918}
   - component: {fileID: 2939500292549632919}
-  - component: {fileID: 2939500292549632916}
   - component: {fileID: 4535748811414557425}
   - component: {fileID: 2939500292549632921}
   m_Layer: 13
@@ -87,32 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &2939500292549632916
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2939500292549632917}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.625, y: 0.71875}
-    newSize: {x: 0.625, y: 0.71875}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.625, y: 0.71875}
-  m_EdgeRadius: 0
 --- !u!58 &4535748811414557425
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -144,6 +117,6 @@ MonoBehaviour:
   frequency: 1
   isFloat: 1
   destroySound: {fileID: 8300000, guid: b9ce50e47edfda7438ffb09943771758, type: 3}
-  itemClass: 0
+  itemClass: 4
   destroyFx: {fileID: 5348849424903803835, guid: ede3ee21b0d857d47acbe721ade67c84, type: 3}
   health: 3

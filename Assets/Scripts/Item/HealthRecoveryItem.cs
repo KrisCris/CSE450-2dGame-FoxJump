@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using Entity.Player;
-using UnityEngine;
 
 namespace Item {
     public class HealthRecoveryItem : Item {
