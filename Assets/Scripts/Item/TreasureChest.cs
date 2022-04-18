@@ -11,6 +11,9 @@ namespace Item {
         private Vector3 _startPosition;
         private bool _inRange;
 
+        public float mass = 1;
+        public float force = 150;
+
         private PlayerEntity _player;
 
         public GameObject item;
@@ -38,11 +41,17 @@ namespace Item {
                         Physics2D.IgnoreCollision(_player.gameObject.GetComponent<CapsuleCollider2D>(),
                             GetComponent<BoxCollider2D>());
                         // Let item fall by gravity
-                        Rigidbody2D rb = itemInst.AddComponent<Rigidbody2D>();
+                        Rigidbody2D rb;
+                        if (!itemInst.GetComponent<Rigidbody2D>()) {
+                            rb = itemInst.AddComponent<Rigidbody2D>();
+                            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+                            rb.mass = mass;
+                        } else {
+                            rb = itemInst.GetComponent<Rigidbody2D>();
+                        }
                         bool isLeft = _player.gameObject.transform.position.x < transform.position.x;
-                        rb.AddForce(((isLeft ? 1 : -1) * transform.right + transform.up) * 150f, ForceMode2D.Force);
+                        rb.AddForce(((isLeft ? 1 : -1) * transform.right + transform.up) * force, ForceMode2D.Force);
                         itemInst.transform.position = transform.position + transform.up * 0.4f;
-
                         // Some GameState Change
                         if (GameController.Instance) {
                             GameController.Instance.seenChest = true;

@@ -115,10 +115,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fdd47097a3c9ef4999a49efbea42348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotSpeed: 2
+  shotSpeed: 4
   attackDamage: 1
-  maxLife: 6
-  destoryEffect: {fileID: 0}
+  maxLife: 3
+  destoryEffect: {fileID: 5348849424903803835, guid: ede3ee21b0d857d47acbe721ade67c84, type: 3}
 --- !u!82 &7352074934069388114
 AudioSource:
   m_ObjectHideFlags: 0

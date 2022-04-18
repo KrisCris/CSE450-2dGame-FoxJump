@@ -9544,6 +9544,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1033486693}
   - component: {fileID: 1033486692}
+  - component: {fileID: 1033486694}
+  - component: {fileID: 1033486695}
   m_Layer: 0
   m_Name: tree
   m_TagString: Untagged
@@ -9618,6 +9620,79 @@ Transform:
   m_Father: {fileID: 1706336368}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1033486694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033486691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 934b448686f14f5dac6c500a2a91ec8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: Scene_0_2
+  requireKeyInteraction: 1
+  recoverHealth: 1
+--- !u!60 &1033486695
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033486691}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 6.5625, y: 5.8125}
+    newSize: {x: 6.5625, y: 5.8125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.8574209, y: -1.7846678}
+      - {x: 1.03125, y: -1.46875}
+      - {x: 1.40625, y: -1.03125}
+      - {x: 2.59375, y: -0.46875}
+      - {x: 2.65625, y: -0.09375}
+      - {x: 3.03125, y: -0.09375}
+      - {x: 3.28125, y: 0.03125}
+      - {x: 3.28125, y: 1.21875}
+      - {x: 3.15625, y: 1.59375}
+      - {x: 2.65625, y: 1.71875}
+      - {x: 2.03125, y: 1.96875}
+      - {x: 1.34375, y: 2.59375}
+      - {x: 0.90625, y: 2.90625}
+      - {x: -0.59375, y: 2.90625}
+      - {x: -0.96875, y: 2.59375}
+      - {x: -1.53125, y: 2.34375}
+      - {x: -2.09375, y: 2.03125}
+      - {x: -2.21875, y: 1.34375}
+      - {x: -2.96875, y: 1.15625}
+      - {x: -3.28125, y: 0.84375}
+      - {x: -3.28125, y: -0.03125}
+      - {x: -2.78125, y: -0.34375}
+      - {x: -2.46875, y: -0.59375}
+      - {x: -0.84375, y: -1.34375}
+      - {x: -0.34375, y: -1.46875}
+      - {x: -0.3017559, y: -1.65625}
+      - {x: -0.35522175, y: -1.96875}
+      - {x: -0.6506338, y: -2.46875}
+      - {x: -0.90625, y: -2.90625}
+      - {x: 1.21875, y: -2.90625}
+      - {x: 0.9665508, y: -2.46875}
+      - {x: 0.84838676, y: -2.40625}
+      - {x: 0.9040508, y: -2.0642087}
 --- !u!1001 &1035676166
 PrefabInstance:
   m_ObjectHideFlags: 0

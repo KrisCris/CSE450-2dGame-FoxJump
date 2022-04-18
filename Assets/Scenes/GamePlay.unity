@@ -194,6 +194,7 @@ MonoBehaviour:
   hasProjectile: 0
   hasKey: 0
   hasCoin: 0
+  seenChest: 0
 --- !u!82 &1177959067
 AudioSource:
   m_ObjectHideFlags: 0
