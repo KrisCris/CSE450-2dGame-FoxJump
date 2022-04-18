@@ -183,12 +183,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevel: 
+  lastSavePoint: {x: 0, y: 0}
+  selectableLevel: []
   maxJumps: 0
   coins: 0
   keys: 0
-  canWallClimb: 0
-  lastSavePoint: {x: 0, y: 0}
-  selectableLevel: []
+  projectiles: 0
+  hasFoxTail: 0
+  hasJumpShoes: 0
+  hasProjectile: 0
+  hasKey: 0
+  hasCoin: 0
 --- !u!82 &1177959067
 AudioSource:
   m_ObjectHideFlags: 0
