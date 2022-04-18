@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7781776155295065790}
   - component: {fileID: 680981027724118168}
   - component: {fileID: 1757116093743752229}
+  - component: {fileID: 8242350797454944938}
   m_Layer: 0
   m_Name: DestroyFx_0
   m_TagString: Untagged
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 217785585
-  m_SortingLayer: 4
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 05ecd4986a608c24187c835419236cee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -105,3 +106,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8242350797454944938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8952758437602722228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf778fa3d6aa4d1da925389e55b2cbb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
