@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace Entity {
     public class JumpableEntity : Entity {
-        [Header("State")] public float jumpForce = 10f;
+        [Header("State")] 
+        public float jumpForce = 10f;
         public int maxJumps = 1;
         public int currJumps;
 
