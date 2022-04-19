@@ -27,6 +27,7 @@ namespace Entity {
             if (!Collider2D) {
                 Collider2D = GetComponent<Collider2D>();
             }
+
             SpriteRenderer = GetComponent<SpriteRenderer>();
             Animator = GetComponent<Animator>();
             health = maxHealth;
@@ -71,7 +72,14 @@ namespace Entity {
             if (FacingRight == direction.x < 0) {
                 FlipFacing();
             }
-
+            
+            Vector2 slopeDirection = GetSlopeDirection();
+            if (Mathf.Abs(slopeDirection.y) > 0 && Mathf.Abs(slopeDirection.y) < 1) {
+                RayCastHelper.RayCast(transform.position,slopeDirection, .5f, "Ground");
+                direction = slopeDirection;
+                speed /= Mathf.Abs(1 - slopeDirection.y);
+            }
+            
             Rigidbody2D.AddForce(direction * (speed * Time.deltaTime), ForceMode2D.Impulse);
         }
 
@@ -96,6 +104,7 @@ namespace Entity {
                 if (GetComponent<PlayerEntity>()) {
                     KnockBack();
                 }
+
                 health = Mathf.Max(health - dmg, 0);
                 damageable = false;
                 dmgIFrameCountdown = dmgIFrames;
@@ -114,7 +123,7 @@ namespace Entity {
         }
 
         public void KnockBack() {
-            Rigidbody2D.AddForce(new Vector2(0,10f) * knockBackForce, ForceMode2D.Impulse);
+            Rigidbody2D.AddForce(new Vector2(0, 10f) * knockBackForce, ForceMode2D.Impulse);
         }
 
         public void UpdatePos(Vector3 pos) {
@@ -126,6 +135,7 @@ namespace Entity {
             if (healthBar) {
                 healthBar.GetComponent<HealthBar>().UpdateHealthBar(health, maxHealth);
             }
+
             return health;
         }
 
@@ -149,6 +159,30 @@ namespace Entity {
             if (!Rigidbody2D) return;
             SpriteRenderer.flipX = FacingRight;
             FacingRight = !FacingRight;
+        }
+
+        public float entityRayDist = .4f;
+        public float entityFootYOffset = -.2f;
+        public float ftOffset0 = .5f;
+        public float ftOffset1 = .7f;
+
+        private Vector2 GetSlopeDirection() {
+            Vector2 pt1 = new Vector2(GetX() + ftOffset0 * GetFaceDirection(), GetY() + entityFootYOffset);
+            Vector2 pt2 = new Vector2(GetX() + ftOffset1 * GetFaceDirection(), GetY() + entityFootYOffset);
+            Vector2 groundDirection = new Vector2(GetFaceDirection(), 0);
+            RaycastHit2D ptFore = RayCastHelper.RayCast(pt2, Vector2.down, entityRayDist, "Ground");
+            RaycastHit2D ptBehind = RayCastHelper.RayCast(pt1, Vector2.down, entityRayDist, "Ground");
+
+            if (ptBehind && ptFore) {
+                groundDirection = ptFore.point - ptBehind.point;
+                groundDirection = groundDirection.normalized;
+                if (Mathf.Abs(groundDirection.y) < 1E-3) {
+                    groundDirection.y = 0;
+                }
+            }
+
+            Debug.Log(groundDirection);
+            return groundDirection;
         }
     }
 }
