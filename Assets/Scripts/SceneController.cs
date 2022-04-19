@@ -45,6 +45,7 @@ public class SceneController : MonoBehaviour {
 
     public void ReturnMainPage() {
         UnloadAll();
+        GameController.Instance.Reload();
         SceneManager.LoadScene("MainUI", LoadSceneMode.Additive);
     }
 

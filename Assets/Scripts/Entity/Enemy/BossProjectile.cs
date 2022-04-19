@@ -78,16 +78,24 @@ namespace Entity.Enemy {
         }
 
         private void OnDestroy() {
-            var bossController = GameObject.FindGameObjectWithTag("Boss").gameObject.GetComponent<Boss>();
-            if (bossController) {
-                bossController.PlayArmDestroySound();
-                
+            if (GameObject.FindGameObjectWithTag("Boss")) {
+                var bossController = GameObject.FindGameObjectWithTag("Boss").gameObject.GetComponent<Boss>();
+                if (bossController) {
+                    bossController.PlayArmDestroySound();
+
+                    if (destroyEffect) {
+                        Instantiate(destroyEffect, transform.position, Quaternion.identity);
+                    }
+
+                    Destroy(gameObject);
+                    bossController.SendMessage("ArmAttackFinished");
+                }
+            } else {
                 if (destroyEffect) {
                     Instantiate(destroyEffect, transform.position, Quaternion.identity);
                 }
-    
+
                 Destroy(gameObject);
-                bossController.SendMessage("ArmAttackFinished");
             }
         }
     }

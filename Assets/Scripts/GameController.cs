@@ -22,6 +22,8 @@ public class GameController : MonoBehaviour {
 
     public bool seenChest;
 
+    public bool demoMode;
+
 
     private void Awake() {
         Instance = this;
@@ -45,7 +47,14 @@ public class GameController : MonoBehaviour {
         hasCoin = false;
 
         seenChest = false;
+
+        demoMode = false;
         
+        Save();
+    }
+
+    public void DemoMode() {
+        demoMode = true;
         Save();
     }
 

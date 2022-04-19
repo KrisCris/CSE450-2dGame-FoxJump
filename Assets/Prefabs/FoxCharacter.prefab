@@ -205,7 +205,7 @@ MonoBehaviour:
   wallCheckDistance: 0.4
   wallJumpXForce: 0.5
   wallJumpYForce: 1
-  projectileDischargeInterval: 30
+  projectileDischargeInterval: 20
   projectileDischargeCooldown: 0
 --- !u!82 &5285571879358348344
 AudioSource:
