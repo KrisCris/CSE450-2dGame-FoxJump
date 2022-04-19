@@ -20,10 +20,10 @@ namespace Entity {
         private void Awake() {
             if (dialogues.Count < 1) {
                 dialogues = new List<string> {
-                    "...",
-                    "A new face...\nIt's dangerous outside, return home...",
-                    "No? OK... I am Joe, an adventurer...",
-                    "If you want to stay here, I have something to offer..."
+                    "It's you!",
+                    "Thanks for releasing me from the god damn chests!",
+                    "Be careful, those chests can be really wild!",
+                    "Ah, I can offer you something..."
                 };
             }
             _message = new Messages(dialogues);

@@ -99,7 +99,7 @@ namespace Entity {
             return Rigidbody2D.transform.position.y;
         }
 
-        private void OnDamage(float dmg) {
+        public virtual bool OnDamage(float dmg) {
             if (damageable && health > 0) {
                 if (GetComponent<PlayerEntity>()) {
                     KnockBack();
@@ -119,7 +119,11 @@ namespace Entity {
                 if (health <= 0) {
                     OnDeath("Killed by Game Design.");
                 }
+
+                return true;
             }
+
+            return false;
         }
 
         public void KnockBack() {
@@ -130,13 +134,15 @@ namespace Entity {
             gameObject.transform.position = pos;
         }
 
-        private float OnHealing(float heal) {
+        public bool OnHealing(float heal) {
+            if (health == maxHealth) {
+                return false;
+            }
             health = Mathf.Min(heal + health, maxHealth);
             if (healthBar) {
                 healthBar.GetComponent<HealthBar>().UpdateHealthBar(health, maxHealth);
             }
-
-            return health;
+            return true;
         }
 
         protected virtual void OnDeath(string reason) {

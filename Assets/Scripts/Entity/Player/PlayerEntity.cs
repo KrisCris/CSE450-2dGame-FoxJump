@@ -46,6 +46,7 @@ namespace Entity.Player {
         public AudioSource playerJump;
         public AudioSource playerWalk;
         public AudioSource playerDeath;
+        public AudioSource playerHurt;
 
         public float footDistance = 0.3f;
         public float checkDistance = 0.1f;
@@ -293,11 +294,23 @@ namespace Entity.Player {
                 playerDeath.Play();
             }
 
-            SetEventTrigger(true);
+            // SetEventTrigger(true);
             SetColliderState(false);
             if (showDeath) {
                 SceneManager.LoadScene("Info", LoadSceneMode.Additive);
             }
+        }
+
+        public override bool OnDamage(float dmg) {
+            if (base.OnDamage(dmg)) {
+                if (playerHurt && !playerHurt.isPlaying) {
+                    playerHurt.Play();
+                }
+
+                return true;
+            }
+
+            return false;
         }
 
         private void OnTriggerEnter2D(Collider2D other) {

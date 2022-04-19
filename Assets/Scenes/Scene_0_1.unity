@@ -13209,7 +13209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6491023892630149896, guid: f3de43f32dd8c0f4fa46afece1f797a5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20.61
+      value: 20.47
       objectReference: {fileID: 0}
     - target: {fileID: 6491023892630149896, guid: f3de43f32dd8c0f4fa46afece1f797a5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13858,7 +13858,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6491023892630149896, guid: f3de43f32dd8c0f4fa46afece1f797a5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 21.6
+      value: 21.43
       objectReference: {fileID: 0}
     - target: {fileID: 6491023892630149896, guid: f3de43f32dd8c0f4fa46afece1f797a5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -131852,7 +131852,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6491023892630149896, guid: f3de43f32dd8c0f4fa46afece1f797a5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 16.609798
+      value: 16.45
       objectReference: {fileID: 0}
     - target: {fileID: 6491023892630149896, guid: f3de43f32dd8c0f4fa46afece1f797a5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -132664,7 +132664,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1670262464415821167, guid: e7a4d8681e495da48992925acc44cc23, type: 3}
       propertyPath: dialogues.Array.size
-      value: 0
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670262464415821167, guid: e7a4d8681e495da48992925acc44cc23, type: 3}
+      propertyPath: dialogues.Array.data[0]
+      value: ...
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670262464415821167, guid: e7a4d8681e495da48992925acc44cc23, type: 3}
+      propertyPath: dialogues.Array.data[1]
+      value: 'A new face...
+
+        It''s dangerous outside, return home...'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670262464415821167, guid: e7a4d8681e495da48992925acc44cc23, type: 3}
+      propertyPath: dialogues.Array.data[2]
+      value: No? OK... I am Joe, an adventurer...
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670262464415821167, guid: e7a4d8681e495da48992925acc44cc23, type: 3}
+      propertyPath: dialogues.Array.data[3]
+      value: If you want to stay here, I have something to offer...
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7a4d8681e495da48992925acc44cc23, type: 3}
