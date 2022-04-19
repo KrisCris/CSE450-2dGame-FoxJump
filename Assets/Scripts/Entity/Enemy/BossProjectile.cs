@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Entity.Enemy {
@@ -13,8 +14,11 @@ namespace Entity.Enemy {
         private float _lifeBtwTimer;
         public GameObject destroyEffect;
         public float health;
+        private int _flashingCountdown = 0;
+        private SpriteRenderer _spriteRenderer;
 
         private void Start() {
+            _spriteRenderer = GetComponent<SpriteRenderer>();
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
             _rigidbody2D.velocity = new Vector2(-shotSpeed / 2f, 0);
@@ -33,6 +37,16 @@ namespace Entity.Enemy {
 
             // Cap max speed
             _rigidbody2D.velocity = Vector2.ClampMagnitude(_rigidbody2D.velocity, maxSpeed);
+        }
+
+        private void LateUpdate() {
+            if (_flashingCountdown > 0) {
+                --_flashingCountdown;
+            }
+
+            if (_flashingCountdown == 0) {
+                _spriteRenderer.color = Color.white;
+            }
         }
 
         protected void FixedUpdate() {
@@ -75,9 +89,6 @@ namespace Entity.Enemy {
                 Destroy(gameObject);
                 bossController.SendMessage("ArmAttackFinished");
             }
-            
-            
-
         }
     }
 }
