@@ -8,6 +8,7 @@ public class SceneData: MonoBehaviour {
     public string sceneName;
     public string messages = "";
     private void Start() {
+        bool useSavePoint = false;
         if (CameraController.Instance && gameObject.TryGetComponent(out PolygonCollider2D vcamBoundingBox)) {
             CameraController.Instance.UpdateConfiner(vcamBoundingBox);
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
@@ -18,6 +19,7 @@ public class SceneData: MonoBehaviour {
             var pos = spawnPoint.position;
             if (GameController.Instance && GameController.Instance.ValidateSavePoint()) {
                 pos = GameController.Instance.GetLastSavePoint();
+                useSavePoint = true;
             }
             playerEntity.UpdatePos(new Vector3(pos.x, pos.y, 0));
             playerEntity.SetEventTrigger(false);
@@ -26,7 +28,7 @@ public class SceneData: MonoBehaviour {
             playerEntity.Animator.SetBool("IsDead", false);
         }
 
-        if (messages.Length > 0 && MessageController.Instance) {
+        if (messages.Length > 0 && MessageController.Instance && !useSavePoint) {
             MessageController.Instance.ShowMessage(messages);
         }
 
