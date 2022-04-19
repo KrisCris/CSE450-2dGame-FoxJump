@@ -13,6 +13,7 @@ namespace Entity.Enemy {
 
         private Transform _target;
         private bool _discharged;
+        public GameObject collisionVFX;
 
         void Start() {
             _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -30,7 +31,7 @@ namespace Entity.Enemy {
 
         void LateUpdate() {
             if (String.Equals(_spriteRenderer.sprite.name, "Laser_sheet_29")) {
-                if (laserSound && !laserSound.isPlaying &&!_discharged) {
+                if (laserSound && !laserSound.isPlaying && !_discharged) {
                     laserSound.Play();
                     _discharged = true;
                 }
@@ -45,7 +46,9 @@ namespace Entity.Enemy {
 
         private void OnCollisionEnter2D(Collision2D collision) {
             if (collision.collider.CompareTag("Player")) {
-                //Instantiate(destoryEffect, transform.position, Quaternion.identity);
+                if (collisionVFX) {
+                    Instantiate(collisionVFX, collision.gameObject.transform.position, Quaternion.identity);
+                }
 
                 collision.gameObject.SendMessage("OnDamage", attackDamage);
                 GameObject.FindGameObjectWithTag("Boss").gameObject.SendMessage("LaserAttackFinished");
@@ -53,8 +56,6 @@ namespace Entity.Enemy {
                 Destroy(gameObject);
             }
         }
-
-
         public void OnDamage(float dmg) { }
     }
 }

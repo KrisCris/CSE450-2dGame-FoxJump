@@ -76,7 +76,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 217785585
-  m_SortingLayer: 4
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -105052556, guid: 84ce97d5cf3a2fc408b4518d09e7c9db, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -170,6 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   laserSound: {fileID: 2144175143711236083}
   attackDamage: 2
+  collisionVFX: {fileID: 8952758437602722228, guid: a53964e150c8a7e44bc699bc331d3b9d, type: 3}
 --- !u!82 &2144175143711236083
 AudioSource:
   m_ObjectHideFlags: 0

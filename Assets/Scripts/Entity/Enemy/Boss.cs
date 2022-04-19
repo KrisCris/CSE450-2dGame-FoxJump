@@ -103,6 +103,10 @@ namespace Entity.Enemy {
                 col.gameObject.GetComponent<PlayerEntity>().SendMessage("OnDamage", touchDamage);
             }
         }
+
+        public bool IsDead() {
+            return _isDead;
+        }
     }
     
 }
