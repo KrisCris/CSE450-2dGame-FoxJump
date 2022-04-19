@@ -102,14 +102,9 @@ public class Witch : MonoBehaviour {
         // transform.position = v3;
     }
 
-    // private void OnTriggerEnter2D(Collider2D collision) {
-    //     if (collision.CompareTag("Player")) {
-    //         found = true;
-    //     } else if (collision.gameObject.layer == LayerMask.NameToLayer("Ground")) {
-    //         Vector3 v3 = new Vector3(target.position.x + Random.Range(minX, maxX),
-    //             target.position.y + Random.Range(minY, maxY), 0);
-    //         Debug.Log("meh");
-    //         transform.position = v3;
-    //     }
-    // }
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.CompareTag("Player")) {
+            found = true;
+        }
+    }
 }
