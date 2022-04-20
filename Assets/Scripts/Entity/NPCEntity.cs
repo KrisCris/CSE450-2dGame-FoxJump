@@ -12,15 +12,14 @@ namespace Entity {
         private MessageController _messageController;
         private PlayerEntity _player;
 
-        [TextArea(3, 10)] 
-        public List<string> dialogues;
+        [TextArea(3, 10)] public List<string> dialogues;
 
         private Messages _message;
 
         public Items sellItem = Items.RecoveryBlood;
         public Items priceItem = Items.Coin;
-        public int sellNum = 5;
-        public int priceNum = 2;
+        public int sellNum = 2;
+        public int priceNum = 5;
 
         private void Awake() {
             if (dialogues.Count < 1) {
@@ -28,9 +27,10 @@ namespace Entity {
                     "It's you!",
                     "Thanks for releasing me from the god damn chests!",
                     "Be careful, those chests can be really wild!",
-                    "Ah, I can heal you if you got hurt in a cheaper cost..."
+                    "Ah, I can heal you and boost your health...\n in a cheaper cost..."
                 };
             }
+
             _message = new Messages(dialogues);
         }
 
@@ -48,14 +48,16 @@ namespace Entity {
         }
 
         private void ShowShop(Items spend, int price, Items product, int num) {
+            string str = String.Format("Get {0} {1}(s) for {2} {3}(s).", num,
+                product == Items.RecoveryBlood ? "Health" : product.ToString(), price,
+                spend == Items.RecoveryBlood ? "Health" : spend.ToString());
             _messageController.ShowClickable(
-                String.Format("Get {0} {1}(s) for {2} {3}(s).", num, product.ToString(), price, spend.ToString()),
-                // "Get " + num + " boomerang(s) for " + price + " coin",
+                str,
                 (btn) => {
                     if (_player.OnItemUsed(spend, price)) {
                         _player.OnItemCollect(product, num);
                     } else {
-                        _messageController.ShowMessage("Not enough... Go find more coins!");
+                        _messageController.ShowMessage("Not enough...");
                     }
                 });
         }
@@ -69,7 +71,17 @@ namespace Entity {
                 _messageController.ShowMessage(_message, () => { ShowShop(priceItem, priceNum, sellItem, sellNum); });
             }
         }
-        
+
+        private void OnTriggerStay2D(Collider2D col) {
+            if (col.gameObject.GetComponent<PlayerEntity>() && !_messageController.isMessageOn() &&
+                !_messageController.isClickableOn()) {
+                // if (echoSound && !echoSound.isPlaying) {
+                //     echoSound.Play();
+                // }
+
+                _messageController.ShowMessage(_message, () => { ShowShop(priceItem, priceNum, sellItem, sellNum); });
+            }
+        }
 
         private void OnTriggerExit2D(Collider2D other) {
             if (other.GetComponent<PlayerEntity>()) {
@@ -85,7 +97,6 @@ namespace Entity {
                     }
                 }
             }
-
         }
 
         private void OnCollisionEnter2D(Collision2D col) { }

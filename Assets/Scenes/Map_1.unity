@@ -67780,6 +67780,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1670262464415821167, guid: e7a4d8681e495da48992925acc44cc23, type: 3}
+      propertyPath: sellNum
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670262464415821167, guid: e7a4d8681e495da48992925acc44cc23, type: 3}
+      propertyPath: priceNum
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670262464415821167, guid: e7a4d8681e495da48992925acc44cc23, type: 3}
+      propertyPath: sellItem
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670262464415821167, guid: e7a4d8681e495da48992925acc44cc23, type: 3}
       propertyPath: echoSound
       value: 
       objectReference: {fileID: 1241571295}
@@ -116715,7 +116727,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7141974545024208579, guid: 68910bece23c6d34a83bf4b72df8f48d, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7141974545024208579, guid: 68910bece23c6d34a83bf4b72df8f48d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -116976,7 +116988,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5467050202325830573, guid: cc91f42bb77eafc4591e890821420aa0, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5467050202325830573, guid: cc91f42bb77eafc4591e890821420aa0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -117399,7 +117411,7 @@ Transform:
   - {fileID: 516241113}
   - {fileID: 1970724414}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1893886269
 GameObject:
@@ -117647,7 +117659,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5467050202325830573, guid: cc91f42bb77eafc4591e890821420aa0, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 5467050202325830573, guid: cc91f42bb77eafc4591e890821420aa0, type: 3}
       propertyPath: m_LocalPosition.x

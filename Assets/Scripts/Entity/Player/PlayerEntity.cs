@@ -47,6 +47,7 @@ namespace Entity.Player {
         public AudioSource playerWalk;
         public AudioSource playerDeath;
         public AudioSource playerHurt;
+        public AudioSource playerStrengthen;
 
         public float footDistance = 0.3f;
         public float checkDistance = 0.1f;
@@ -253,10 +254,24 @@ namespace Entity.Player {
                 _gameController.hasFoxTail = true;
                 hudFoxTail.SetActive(true);
             }
+            
+            
+            if (item == Items.RecoveryBlood) {
+                OnBoostHealth(num);
+            }
         }
 
         public void SetEventTrigger(bool state) {
             eventTrigger.enabled = state;
+        }
+        
+        public bool OnBoostHealth(float heal) {
+            maxHealth += heal;
+            if (playerStrengthen && !playerStrengthen.isPlaying) {
+                playerStrengthen.Play();
+            }
+            OnHealing(heal);
+            return true;
         }
 
         public bool OnItemUsed(Items item, int num) {
@@ -283,9 +298,10 @@ namespace Entity.Player {
                     return true;
                 }
             }
-
+            
+            
             if (item == Items.RecoveryBlood) {
-                OnHealing(num);
+                OnDamage(num);
                 return true;
             }
 

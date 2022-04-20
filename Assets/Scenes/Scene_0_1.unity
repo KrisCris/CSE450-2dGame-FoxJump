@@ -132809,6 +132809,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1670262464415821167, guid: e7a4d8681e495da48992925acc44cc23, type: 3}
+      propertyPath: sellItem
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670262464415821167, guid: e7a4d8681e495da48992925acc44cc23, type: 3}
       propertyPath: dialogues.Array.size
       value: 4
       objectReference: {fileID: 0}

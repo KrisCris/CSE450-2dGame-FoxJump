@@ -301,5 +301,5 @@ MonoBehaviour:
   dialogues: []
   sellItem: 4
   priceItem: 2
-  sellNum: 5
-  priceNum: 2
+  sellNum: 2
+  priceNum: 5
