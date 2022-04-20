@@ -35,11 +35,13 @@ namespace Item {
                         // Init Item
                         GameObject itemInst = Instantiate(item);
                         // Prevent Item from falling
-                        BoxCollider2D col = itemInst.AddComponent<BoxCollider2D>();
-                        col.size = new Vector2(.5f, .5f);
-                        // Prevent collision w/ player
-                        Physics2D.IgnoreCollision(_player.gameObject.GetComponent<CapsuleCollider2D>(),
-                            GetComponent<BoxCollider2D>());
+                        BoxCollider2D col;
+                        if (itemInst.GetComponent<BoxCollider2D>() && !itemInst.GetComponent<BoxCollider2D>().isTrigger) {
+                            col = itemInst.GetComponent<BoxCollider2D>();
+                        } else {
+                            col = itemInst.AddComponent<BoxCollider2D>();
+                            col.size = new Vector2(.5f, .5f);
+                        }
                         // Let item fall by gravity
                         Rigidbody2D rb;
                         if (!itemInst.GetComponent<Rigidbody2D>()) {

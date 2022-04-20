@@ -12,6 +12,7 @@ namespace Item {
         public GameObject destroyFx;
 
         protected Vector3 Position;
+        private bool _avoidPlayerCollision;
         
         private void Start() {
             Position = transform.position;
@@ -20,6 +21,13 @@ namespace Item {
         private void Update() {
             if (isFloat && !GetComponent<Rigidbody2D>()) {
                 transform.position = Position + transform.up * Mathf.Sin(Time.fixedTime * Mathf.PI * frequency) * 0.1f;
+            }
+
+            if (GetComponent<BoxCollider2D>() && FindObjectOfType<PlayerEntity>() && !_avoidPlayerCollision) {
+                // Prevent collision w/ player
+                Physics2D.IgnoreCollision(FindObjectOfType<PlayerEntity>().gameObject.GetComponent<CapsuleCollider2D>(),
+                    GetComponent<BoxCollider2D>());
+                _avoidPlayerCollision = true;
             }
         }
 
