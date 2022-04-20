@@ -432,6 +432,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 128894726}
     - target: {fileID: 3753124482848880624, guid: 3f83447b48bf2984ba7cd1f0a1f9776c, type: 3}
+      propertyPath: footDistance
+      value: 0.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 3753124482848880624, guid: 3f83447b48bf2984ba7cd1f0a1f9776c, type: 3}
       propertyPath: hudJumpShoes
       value: 
       objectReference: {fileID: 1159723339}
@@ -445,7 +449,7 @@ PrefabInstance:
       objectReference: {fileID: 1538279274}
     - target: {fileID: 3753124482848880624, guid: 3f83447b48bf2984ba7cd1f0a1f9776c, type: 3}
       propertyPath: entityRayDist
-      value: 0.6
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 3753124482848880624, guid: 3f83447b48bf2984ba7cd1f0a1f9776c, type: 3}
       propertyPath: hudProjectile
@@ -453,7 +457,7 @@ PrefabInstance:
       objectReference: {fileID: 1671119823}
     - target: {fileID: 3753124482848880624, guid: 3f83447b48bf2984ba7cd1f0a1f9776c, type: 3}
       propertyPath: entityFootYOffset
-      value: -0.3
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3753124482848880624, guid: 3f83447b48bf2984ba7cd1f0a1f9776c, type: 3}
       propertyPath: projectileCountText
@@ -1459,7 +1463,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7781818, y: 1}
+    m_SensorSize: {x: 1.7780304, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

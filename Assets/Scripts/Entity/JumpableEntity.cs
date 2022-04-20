@@ -78,14 +78,7 @@ namespace Entity {
 
         private bool DetectGround() {
             if (GetComponent<PlayerEntity>()) {
-                PlayerEntity that = (PlayerEntity) this;
-                RaycastHit2D ptBack =
-                    RayCastHelper.RayCast(that.GetBackFoot(), Vector2.down, that.checkDistance, "Ground");
-                RaycastHit2D ptFront =
-                    RayCastHelper.RayCast(that.GetFrontFoot(), Vector2.down, that.checkDistance, "Ground");
-                if (ptBack || ptFront) {
-                    return true;
-                }
+                return PlayerNumFootOnGround() > 0;
             } else {
                 RaycastHit2D pt = RayCastHelper.RayCast(transform.position, -transform.up, .8f, "Ground");
                 if (pt) {
@@ -103,6 +96,24 @@ namespace Entity {
             //     }
             // }
             // return false;
+        }
+
+        public int PlayerNumFootOnGround() {
+            PlayerEntity that = (PlayerEntity) this;
+            RaycastHit2D ptBack =
+                RayCastHelper.RayCast(that.GetBackFoot(), Vector2.down, that.checkDistance, "Ground");
+            RaycastHit2D ptFront =
+                RayCastHelper.RayCast(that.GetFrontFoot(), Vector2.down, that.checkDistance, "Ground");
+            int ret = 0;
+            if (ptBack) {
+                ++ret;
+            }
+
+            if (ptFront) {
+                ++ret;
+            }
+
+            return ret;
         }
 
         // private void OnCollisionExit2D(Collision2D other) {

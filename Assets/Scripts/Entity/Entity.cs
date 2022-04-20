@@ -81,7 +81,7 @@ namespace Entity {
             if (Mathf.Abs(slopeDirection.y) > 0 && Mathf.Abs(slopeDirection.y) < 1) {
                 RayCastHelper.RayCast(transform.position,slopeDirection, .5f, "Ground");
                 direction = slopeDirection;
-                speed /= Mathf.Abs(1 - slopeDirection.y);
+                speed /= (Mathf.Abs(1 - slopeDirection.y)/1.6f);
             }
             
             Rigidbody2D.AddForce(direction * (speed * Time.deltaTime), ForceMode2D.Impulse);
@@ -189,6 +189,18 @@ namespace Entity {
                 if (Mathf.Abs(groundDirection.y) < 1E-3) {
                     groundDirection.y = 0;
                 }
+            }
+
+            if (GetComponent<PlayerEntity>() && ((PlayerEntity)this).PlayerNumFootOnGround() > 1) {
+                float ptBackY =
+                    RayCastHelper.RayCast(((PlayerEntity) this).GetBackFoot(), Vector2.down,
+                        ((PlayerEntity) this).checkDistance, "Ground").point.y;
+                if (Mathf.Abs(ptBackY - ptBehind.point.y) < 1E-3) {
+                    Debug.Log(ptBehind.point.y);
+                    Debug.Log(ptBackY);
+                    return new Vector2(GetFaceDirection(), 0);
+                }
+                    
             }
 
             Debug.Log(groundDirection);

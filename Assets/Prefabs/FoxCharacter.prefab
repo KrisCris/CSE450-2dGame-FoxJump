@@ -148,7 +148,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.01662755, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.7472596, y: 1.32}
   m_Direction: 0
 --- !u!114 &3753124482848880624
@@ -175,10 +175,10 @@ MonoBehaviour:
   knockBackForce: 1
   health: 15
   FacingRight: 1
-  entityRayDist: 0.3
-  entityFootYOffset: -0.6
-  ftOffset0: 0.4
-  ftOffset1: 0.5
+  entityRayDist: 0.4
+  entityFootYOffset: -0.2
+  ftOffset0: 0.5
+  ftOffset1: 0.7
   jumpForce: 10
   maxJumps: 1
   currJumps: 0
