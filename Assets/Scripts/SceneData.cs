@@ -26,6 +26,8 @@ public class SceneData: MonoBehaviour {
             playerEntity.SetColliderState(true);
             playerEntity.showDeath = true;
             playerEntity.Animator.SetBool("IsDead", false);
+            playerEntity.NoSpeed();
+            playerEntity.UnsetClimbable();
         }
 
         if (messages.Length > 0 && MessageController.Instance && !useSavePoint) {

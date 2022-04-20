@@ -357,5 +357,9 @@ namespace Entity.Player {
                 Animator.SetBool("OnLift", false);
             }
         }
+
+        public void UnsetClimbable() {
+                _climbable = false;
+        }
     }
 }

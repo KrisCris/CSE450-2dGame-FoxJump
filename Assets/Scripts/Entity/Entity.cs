@@ -55,6 +55,10 @@ namespace Entity {
             }
         }
 
+        public void NoSpeed() {
+            Rigidbody2D.velocity = Vector2.zero;
+        }
+
         protected void Update() {
             // TODO Entity  Movement? 
             // TODO health management?            
