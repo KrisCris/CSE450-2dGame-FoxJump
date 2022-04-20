@@ -2,7 +2,9 @@
 using UnityEngine;
 
 [Serializable]
+// Unused
 public class KeyBinds: MonoBehaviour {
+    
     public static KeyBinds Instance;
 
     public KeyCode climb = KeyCode.W;
