@@ -1459,7 +1459,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7779695, y: 1}
+    m_SensorSize: {x: 1.7781818, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1893,6 +1893,22 @@ PrefabInstance:
     - target: {fileID: 7819150095918057693, guid: ff01041299dd4f847a2282ef7b42ebab, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819150095918057695, guid: ff01041299dd4f847a2282ef7b42ebab, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819150095918057695, guid: ff01041299dd4f847a2282ef7b42ebab, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819150095918057695, guid: ff01041299dd4f847a2282ef7b42ebab, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1280
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819150095918057695, guid: ff01041299dd4f847a2282ef7b42ebab, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 720
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff01041299dd4f847a2282ef7b42ebab, type: 3}
