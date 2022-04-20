@@ -284,6 +284,11 @@ namespace Entity.Player {
                 }
             }
 
+            if (item == Items.RecoveryBlood) {
+                OnHealing(num);
+                return true;
+            }
+
             return false;
         }
 

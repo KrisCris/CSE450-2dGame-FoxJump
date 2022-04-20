@@ -35,13 +35,18 @@ namespace Item {
                         // Init Item
                         GameObject itemInst = Instantiate(item);
                         // Prevent Item from falling
-                        BoxCollider2D col;
-                        if (itemInst.GetComponent<BoxCollider2D>() && !itemInst.GetComponent<BoxCollider2D>().isTrigger) {
-                            col = itemInst.GetComponent<BoxCollider2D>();
-                        } else {
-                            col = itemInst.AddComponent<BoxCollider2D>();
-                            col.size = new Vector2(.5f, .5f);
+                        bool needExtraCol = true;
+                        Collider2D[] cols = itemInst.GetComponents<Collider2D>();
+                        foreach (var col in cols) {
+                            if (!col.isTrigger) {
+                                needExtraCol = false;
+                            }
                         }
+
+                        if (needExtraCol) {
+                            itemInst.AddComponent<BoxCollider2D>().size = new Vector2(.5f, .5f);
+                        }
+
                         // Let item fall by gravity
                         Rigidbody2D rb;
                         if (!itemInst.GetComponent<Rigidbody2D>()) {
@@ -51,6 +56,7 @@ namespace Item {
                         } else {
                             rb = itemInst.GetComponent<Rigidbody2D>();
                         }
+
                         bool isLeft = _player.gameObject.transform.position.x < transform.position.x;
                         rb.AddForce(((isLeft ? 1 : -1) * transform.right + transform.up) * force, ForceMode2D.Force);
                         itemInst.transform.position = transform.position + transform.up * 0.4f;

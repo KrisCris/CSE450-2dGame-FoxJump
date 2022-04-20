@@ -17,13 +17,18 @@ namespace Entity {
 
         private Messages _message;
 
+        public Items sellItem = Items.RecoveryBlood;
+        public Items priceItem = Items.Coin;
+        public int sellNum = 5;
+        public int priceNum = 2;
+
         private void Awake() {
             if (dialogues.Count < 1) {
                 dialogues = new List<string> {
                     "It's you!",
                     "Thanks for releasing me from the god damn chests!",
                     "Be careful, those chests can be really wild!",
-                    "Ah, I can offer you something..."
+                    "Ah, I can heal you if you got hurt in a cheaper cost..."
                 };
             }
             _message = new Messages(dialogues);
@@ -44,7 +49,8 @@ namespace Entity {
 
         private void ShowShop(Items spend, int price, Items product, int num) {
             _messageController.ShowClickable(
-                "Get " + num + " boomerangs for " + price + " coin",
+                String.Format("Get {0} {1}(s) for {2} {3}(s).", num, product.ToString(), price, spend.ToString()),
+                // "Get " + num + " boomerang(s) for " + price + " coin",
                 (btn) => {
                     if (_player.OnItemUsed(spend, price)) {
                         _player.OnItemCollect(product, num);
@@ -60,9 +66,10 @@ namespace Entity {
                     echoSound.Play();
                 }
 
-                _messageController.ShowMessage(_message, () => { ShowShop(Items.Coin, 5, Items.Projectile, 4); });
+                _messageController.ShowMessage(_message, () => { ShowShop(priceItem, priceNum, sellItem, sellNum); });
             }
         }
+        
 
         private void OnTriggerExit2D(Collider2D other) {
             if (other.GetComponent<PlayerEntity>()) {

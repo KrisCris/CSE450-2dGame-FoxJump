@@ -77,7 +77,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 217785585
-  m_SortingLayer: 4
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1181986120, guid: 1dda27c51eb035e4895563ebbd92b41c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -293,4 +293,13 @@ MonoBehaviour:
   knockBackForce: 1
   health: 0
   FacingRight: 1
+  entityRayDist: 0.4
+  entityFootYOffset: -0.2
+  ftOffset0: 0.5
+  ftOffset1: 0.7
   echoSound: {fileID: 1670262464415821160}
+  dialogues: []
+  sellItem: 4
+  priceItem: 2
+  sellNum: 5
+  priceNum: 2

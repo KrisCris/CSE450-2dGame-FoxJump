@@ -11482,6 +11482,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1670262464415821167, guid: e7a4d8681e495da48992925acc44cc23, type: 3}
+      propertyPath: sellNum
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670262464415821167, guid: e7a4d8681e495da48992925acc44cc23, type: 3}
+      propertyPath: priceNum
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670262464415821167, guid: e7a4d8681e495da48992925acc44cc23, type: 3}
+      propertyPath: sellItem
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670262464415821167, guid: e7a4d8681e495da48992925acc44cc23, type: 3}
       propertyPath: dialogues.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -74323,14 +74335,14 @@ Transform:
   - {fileID: 553494689}
   - {fileID: 1828950413}
   - {fileID: 1236624964}
-  - {fileID: 188591315}
   - {fileID: 860868508}
-  - {fileID: 372659334}
-  - {fileID: 1266760056}
+  - {fileID: 188591315}
   - {fileID: 729110493}
+  - {fileID: 372659334}
   - {fileID: 1972049456}
-  - {fileID: 1422674953}
+  - {fileID: 1266760056}
   - {fileID: 1022616891}
+  - {fileID: 1422674953}
   - {fileID: 370738990}
   - {fileID: 852653705}
   m_Father: {fileID: 833043054}
@@ -132787,6 +132799,14 @@ PrefabInstance:
     - target: {fileID: 1670262464415821159, guid: e7a4d8681e495da48992925acc44cc23, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670262464415821167, guid: e7a4d8681e495da48992925acc44cc23, type: 3}
+      propertyPath: sellNum
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670262464415821167, guid: e7a4d8681e495da48992925acc44cc23, type: 3}
+      propertyPath: priceNum
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1670262464415821167, guid: e7a4d8681e495da48992925acc44cc23, type: 3}
       propertyPath: dialogues.Array.size
