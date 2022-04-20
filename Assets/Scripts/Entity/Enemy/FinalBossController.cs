@@ -3,7 +3,6 @@ using Entity.Player;
 using Ground;
 using UI;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Entity.Enemy {
     public class FinalBossController : MonoBehaviour {
@@ -17,6 +16,13 @@ namespace Entity.Enemy {
         private PlayerEntity _player;
         private bool _triggered;
         private bool _attacking;
+        private bool _shownDieMessage;
+
+        private void Awake() {
+            _triggered = false;
+            _attacking = false;
+            _shownDieMessage = false;
+        }
 
         private void OnTriggerEnter2D(Collider2D other) {
             if (!_triggered && other.gameObject.GetComponent<PlayerEntity>()) {
@@ -62,16 +68,17 @@ namespace Entity.Enemy {
                 }
             }
 
-            if (boss.GetComponent<Boss>().IsDead()) {
+            if (boss.GetComponent<Boss>().IsDead() && !_shownDieMessage) {
                 if (SceneController.Instance) {
                     if (MessageController.Instance) {
-                        MessageController.Instance.ShowMessage("Boss defeated...\nIt's time to go home...",
+                        MessageController.Instance.ShowMessage("Boss defeated...\nTime to go home...",
                             () => { SceneController.Instance.SwitchMap(endGameScene); });
                     } else {
                         SceneController.Instance.SwitchMap(endGameScene);
                     }
                 }
 
+                _shownDieMessage = true;
             }
         }
     }
