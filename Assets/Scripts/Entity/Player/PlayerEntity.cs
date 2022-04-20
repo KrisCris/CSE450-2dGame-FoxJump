@@ -49,7 +49,7 @@ namespace Entity.Player {
         public AudioSource playerHurt;
         public AudioSource playerStrengthen;
 
-        public float footDistance = 0.3f;
+        public float footDistance = 0.5f;
         public float checkDistance = 0.1f;
         public float footYOffset = -0.6f;
         public bool showDeath = true;
@@ -159,7 +159,7 @@ namespace Entity.Player {
                 PerformJump();
             }
 
-            if (Input.GetKeyDown(KeyCode.Escape) && !SceneManager.GetSceneByName("Menu").isLoaded) {
+            if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.I)) && !SceneManager.GetSceneByName("Menu").isLoaded) {
                 Time.timeScale = 0;
                 SceneManager.LoadScene("Menu", LoadSceneMode.Additive);
             }
@@ -207,7 +207,7 @@ namespace Entity.Player {
         }
 
         public Vector2 GetBackFoot() {
-            float behindX = GetX() - ((footDistance + 0.15f) * GetFaceDirection());
+            float behindX = GetX() - (footDistance * GetFaceDirection());
             Vector2 behindFoot = new Vector2(behindX, GetY() + footYOffset);
             return behindFoot;
         }

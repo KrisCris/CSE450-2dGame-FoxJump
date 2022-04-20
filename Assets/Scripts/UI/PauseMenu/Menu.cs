@@ -6,7 +6,7 @@ namespace UI.PauseMenu {
     {
         private void Update()
         {
-            if (!Input.GetKeyDown(KeyCode.Escape))
+            if (!(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.I)))
             {
                 return;
             }

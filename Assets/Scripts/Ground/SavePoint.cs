@@ -5,19 +5,18 @@ using UnityEngine;
 namespace Ground {
     public class SavePoint : MonoBehaviour {
         public AudioSource interactSound;
+
         private void OnTriggerEnter2D(Collider2D col) {
-            if (col.gameObject.GetComponent<PlayerEntity>()) {
-                if (col.gameObject.GetComponent<PlayerEntity>().OnHealing(1000) && !interactSound.isPlaying) {
+            if (col.gameObject.GetComponent<PlayerEntity>() && GameController.Instance) {
+                if (!interactSound.isPlaying) {
                     interactSound.Play();
                 }
 
-                if (GameController.Instance) {
-                    if (GameController.Instance.GetLastSavePoint() != GetSavePoint()) {
-                        GameController.Instance.SetLastSavePoint(GetSavePoint());
-                        if (MessageController.Instance) {
-                            MessageController.Instance.ShowMessage("Game Saved");
-                        }
-                    }
+                col.gameObject.GetComponent<PlayerEntity>().OnHealing(30);
+                
+                GameController.Instance.SetLastSavePoint(GetSavePoint());
+                if (MessageController.Instance) {
+                    MessageController.Instance.ShowMessage("Game Saved");
                 }
             }
         }
