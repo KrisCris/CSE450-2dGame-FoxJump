@@ -72,6 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mob: {fileID: 1080865971540130182}
+  explosionVFX: {fileID: 8952758437602722228, guid: a53964e150c8a7e44bc699bc331d3b9d, type: 3}
 --- !u!1 &1080865970032971038
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,6 +431,10 @@ MonoBehaviour:
   knockBackForce: 1
   health: 0
   FacingRight: 1
+  entityRayDist: 0.4
+  entityFootYOffset: -0.2
+  ftOffset0: 0.5
+  ftOffset1: 0.7
   moveSpeed: 1
   maxDist: 2
   dist: 0

@@ -72,6 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mob: {fileID: 7141974545024208636}
+  explosionVFX: {fileID: 8952758437602722228, guid: a53964e150c8a7e44bc699bc331d3b9d, type: 3}
 --- !u!1 &7141974545024208636
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,6 +224,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.010115385, y: -0.0606941}
-  m_Size: {x: 0.6798034, y: 1.0776863}
+  m_Offset: {x: 0.010115385, y: 0.12223226}
+  m_Size: {x: 0.6798034, y: 0.7118336}
   m_Direction: 0

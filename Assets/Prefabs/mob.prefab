@@ -72,6 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mob: {fileID: 6491023892630149897}
+  explosionVFX: {fileID: 8952758437602722228, guid: a53964e150c8a7e44bc699bc331d3b9d, type: 3}
 --- !u!1 &6491023892130385495
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,10 +1,12 @@
-﻿using Item;
+﻿using Entity.Enemy;
+using Item;
 using UnityEngine;
 
 namespace Entity.Player {
     public class DefaultProjectile : MonoBehaviour {
         private Rigidbody2D _rb;
         private PlayerEntity _player;
+        public GameObject destroyVFX;
 
         private float _creationTime;
 
@@ -33,9 +35,17 @@ namespace Entity.Player {
 
         private void OnCollisionEnter2D(Collision2D col) {
             if (col.collider.CompareTag("Enemy")) {
-                Destroy(col.gameObject.transform.parent.gameObject);
+                if (col.gameObject.GetComponentInChildren<HeadKill>()) {
+                    col.gameObject.GetComponentInChildren<HeadKill>().KillMob();
+                } else {
+                    Destroy(col.gameObject.transform.parent.gameObject);
+                }
             } else if (col.collider.CompareTag("Enemy2")) {
-                Destroy(col.gameObject);
+                if (col.gameObject.GetComponentInChildren<HeadKill>()) {
+                    col.gameObject.GetComponentInChildren<HeadKill>().KillMob();
+                } else {
+                    Destroy(col.gameObject);
+                }
             } else if (col.collider.CompareTag("Boss")) {
                 col.gameObject.SendMessage("OnDamage", 1f);
             } else {
@@ -43,6 +53,9 @@ namespace Entity.Player {
                 // _player.OnItemCollect(Items.Projectile, 1);
             }
 
+            if (destroyVFX) {
+                Instantiate(destroyVFX, transform.position, Quaternion.identity);
+            }
             Destroy(gameObject);
         }
 
