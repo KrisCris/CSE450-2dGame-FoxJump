@@ -348,6 +348,12 @@ namespace Entity.Player {
             }
         }
 
+        private void OnTriggerStay2D(Collider2D other) {
+            if (other.gameObject.GetComponentInParent<Lift>()) {
+                Animator.SetBool("OnLift", true);
+            }
+        }
+
         private void OnTriggerExit2D(Collider2D other) {
             if (other.gameObject.layer == LayerMask.NameToLayer("Ladder")) {
                 _climbable = false;
