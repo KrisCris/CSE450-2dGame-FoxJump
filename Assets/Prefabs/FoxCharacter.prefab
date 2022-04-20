@@ -200,7 +200,7 @@ MonoBehaviour:
   playerDeath: {fileID: 5662286005645276078}
   playerHurt: {fileID: 7843969323188841381}
   playerStrengthen: {fileID: 4726220361045960322}
-  footDistance: 0.3
+  footDistance: 0.5
   checkDistance: 0.1
   footYOffset: -0.6
   showDeath: 1

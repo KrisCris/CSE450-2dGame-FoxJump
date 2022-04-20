@@ -14,12 +14,14 @@ namespace Entity.Enemy {
         private Transform _target;
         private bool _discharged;
         public GameObject collisionVFX;
+        private bool _targetSelected;
 
         void Start() {
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _animator = GetComponent<Animator>();
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _discharged = false;
+            _targetSelected = false;
 
             if (GameObject.FindGameObjectWithTag("Player")) {
                 _target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -30,11 +32,20 @@ namespace Entity.Enemy {
         }
 
         void LateUpdate() {
-            if (String.Equals(_spriteRenderer.sprite.name, "Laser_sheet_29")) {
+            if (String.Equals(_spriteRenderer.sprite.name, "Laser_sheet_24") && !_targetSelected) {
+                _targetSelected = true;
+            } else if (String.Equals(_spriteRenderer.sprite.name, "Laser_sheet_29")) {
                 if (laserSound && !laserSound.isPlaying && !_discharged) {
                     laserSound.Play();
                     _discharged = true;
                 }
+            }
+        }
+
+        private void FixedUpdate() {
+            if (!_targetSelected) {
+                Vector2 directionToTarget = -_target.position + transform.position;
+                _rigidbody2D.MoveRotation(Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg);
             }
         }
 

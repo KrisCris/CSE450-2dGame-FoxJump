@@ -118507,6 +118507,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BOSS
       objectReference: {fileID: 0}
+    - target: {fileID: 987140766479282609, guid: f202856cffc85524281c272573ad024f, type: 3}
+      propertyPath: laserAttackFrequent
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 987140766479282614, guid: f202856cffc85524281c272573ad024f, type: 3}
       propertyPath: m_RootOrder
       value: 0
